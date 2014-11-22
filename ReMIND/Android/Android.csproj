@@ -76,6 +76,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activities\SettingsActivity.cs" />
+    <Compile Include="Helpers\Constants.cs" />
+    <Compile Include="Helpers\MD5Helper.cs" />
     <Compile Include="Helpers\MethodHelper.cs" />
     <Compile Include="Activities\LoginActivity.cs" />
     <Compile Include="Activities\QuestionActivity.cs" />
@@ -87,6 +90,7 @@
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\layout\Login.axml" />
+    <AndroidResource Include="Resources\layout\Settings.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Question.axml" />
@@ -99,6 +103,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\AndroidManifest.xml" />
+    <AndroidResource Include="Resources\values\colors.xml" />
+    <AndroidResource Include="Resources\drawable\Hamburger_Menu_Icon.png" />
+    <AndroidResource Include="Resources\menu\mainmenu.xml" />
+    <AndroidResource Include="Resources\values\Themes.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <Content Include="Scripts\json-serialize.js" />
     <Content Include="Scripts\json-serialize.min.js" />
   </ItemGroup>
