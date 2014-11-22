@@ -25,14 +25,9 @@ namespace WebAPI.Controllers
         }
 
         // GET api/Subjects
-        public List<Subject> GetUserSubjects(int userID)
+        public List<SubjectDTO> GetUserSubjects(int userID)
         {
-            //db.Users.Where(x => x.ID == userID).Select(y => y.Subjects).ToList();
-            //return db.Subjects.ToList();
-            var test = db.Subjects.Select(x => new SubjectDTO() { SubjectID = x.ID, SubjectName = x.SubjectTitle, UserSelected = x.Users.Where(y => y.ID == x.ID).Count() == 1 });
-
-
-            return null;
+            return db.Subjects.Select(x => new SubjectDTO() { SubjectID = x.ID, SubjectName = x.SubjectTitle, UserSelected = x.Users.Where(y => y.ID == x.ID).Count() == 1 }).ToList();            
         }
 
         // GET api/Subjects/5
