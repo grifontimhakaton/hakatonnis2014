@@ -37,6 +37,7 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataContracts\LoginOrRegisterResponseDto.cs" />
     <Compile Include="DataContracts\QuestionDto.cs" />
     <Compile Include="Enums\CategoryTypes.cs" />
     <Compile Include="Enums\QuestionType.cs" />
