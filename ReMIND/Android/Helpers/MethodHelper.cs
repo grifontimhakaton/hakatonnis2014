@@ -24,7 +24,7 @@ namespace Android.Helpers
 {
     public static class MethodHelper
     {
-        public static TResultType Post<TResultType, TRequestType>(TRequestType value, string methodName, string apiUrl, string controller)
+        public static string Post<TResultType, TRequestType>(TRequestType value, string methodName, string apiUrl, string controller)
         {
             //var httpClient = new HttpClient
             //{
@@ -57,6 +57,8 @@ namespace Android.Helpers
             //    var errorResult = ex.Message;
             //}
             //return result;
+
+            return string.Empty;
         }
     }
 }
