@@ -1,7 +1,11 @@
-﻿using System;
+﻿using Excel;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
+using WebAPI.Models;
 
 namespace WebAPI.DAL
 {
@@ -16,9 +20,44 @@ namespace WebAPI.DAL
 
             //TODO
             //Test Questions initialization
+            var stream = System.IO.File.Open(System.Web.HttpContext.Current.Server.MapPath(@"~/TestData/pitanja_3.xlsx"), FileMode.Open, FileAccess.Read);
+            var excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
+            excelReader.IsFirstRowAsColumnNames = true;
+            var ds = excelReader.AsDataSet();
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                try
+                {
+                    //null records
+                    if (string.IsNullOrWhiteSpace(row[0].ToString())) break;
 
+                    Question q = new Question();
+                    q.QuestionText = row[0].ToString();
+                    q.QuestionExplanation = row[5].ToString();
 
+                    context.Questions.Add(q);
+                    context.SaveChanges();
 
+                    for (int i = 1; i < 5; i++)
+                    {
+                        QuestionAnswer qa = new QuestionAnswer();
+                        qa.QuestionID = q.ID;
+                        qa.AnswerText = row[i].ToString();
+                        qa.AnswerValue = Convert.ToInt32(q.QuestionExplanation == qa.AnswerText);
+                        qa.Question = q;
+                        context.QuestionAnswers.Add(qa);
+                    }
+
+                    context.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    //null error exception
+                    throw;
+                }
+
+            }
+            excelReader.Close();
             context.SaveChanges(); 
         }
     }

@@ -55,6 +55,21 @@ namespace WebAPI.Models
         public string SubjectDescription { get; set; }
 
         public virtual ICollection<QuestionArea> Questions { get; set; }
+        public virtual ICollection<User> Users { get; set; }
+    }
+
+    public class User
+    {
+        [Key]
+        public int ID { get; set; }
+        public string Email { get; set; }
+        public string PasswordHash { get; set; }
+        public string FullName { get; set; }       
+
+        //links
+        public virtual ICollection<Subject> Subjects { get; set; }
+        public virtual ICollection<QuestionArea> QuestionAreas { get; set; }
+        public virtual ICollection<QuestionAnswer> QuestionAnswers { get; set; }
     }
 
 }

@@ -1,0 +1,64 @@
+﻿@model WebAPI.Models.Question
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Question</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionText)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionExplanation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionExplanation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VotePositiveCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VotePositiveCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VoteNegativeCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VoteNegativeCount)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

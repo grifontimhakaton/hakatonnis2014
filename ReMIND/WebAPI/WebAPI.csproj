@@ -40,6 +40,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Excel">
+      <HintPath>..\packages\ExcelDataReader.2.1.2.3\lib\net45\Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -201,13 +207,21 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\QuestionAnswerController.cs" />
+    <Compile Include="Controllers\QuestionAreaController.cs" />
+    <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
+    <Compile Include="Controllers\SubjectController.cs" />
+    <Compile Include="Controllers\SubjectsController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DAL\ReMinderContext.cs" />
     <Compile Include="DAL\ReMinderInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\MD5Helper.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -274,6 +288,32 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Question\Create.cshtml" />
+    <Content Include="Views\Question\Delete.cshtml" />
+    <Content Include="Views\Question\Details.cshtml" />
+    <Content Include="Views\Question\Edit.cshtml" />
+    <Content Include="Views\Question\Index.cshtml" />
+    <Content Include="TestData\pitanja_3.xlsx" />
+    <Content Include="Views\QuestionAnswer\Create.cshtml" />
+    <Content Include="Views\QuestionAnswer\Delete.cshtml" />
+    <Content Include="Views\QuestionAnswer\Details.cshtml" />
+    <Content Include="Views\QuestionAnswer\Edit.cshtml" />
+    <Content Include="Views\QuestionAnswer\Index.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Subject\Create.cshtml" />
+    <Content Include="Views\Subject\Delete.cshtml" />
+    <Content Include="Views\Subject\Details.cshtml" />
+    <Content Include="Views\Subject\Edit.cshtml" />
+    <Content Include="Views\Subject\Index.cshtml" />
+    <Content Include="Views\QuestionArea\Create.cshtml" />
+    <Content Include="Views\QuestionArea\Delete.cshtml" />
+    <Content Include="Views\QuestionArea\Details.cshtml" />
+    <Content Include="Views\QuestionArea\Edit.cshtml" />
+    <Content Include="Views\QuestionArea\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -309,7 +349,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>53781</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:53781/</IISUrl>
+          <IISUrl>http://localhost:8089/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

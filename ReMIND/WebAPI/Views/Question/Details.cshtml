@@ -1,0 +1,58 @@
+﻿@model WebAPI.Models.Question
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Question</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionText)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionExplanation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionExplanation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VotePositiveCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VotePositiveCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VoteNegativeCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VoteNegativeCount)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
