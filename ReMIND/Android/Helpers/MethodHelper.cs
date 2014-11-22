@@ -31,5 +31,27 @@ namespace Android.Helpers
                 return null;
             }
         }
+
+        public static LoginOrRegisterResponseDto LoginOrRegister(string username, string password)
+        {
+            try
+            {
+                var client = new HttpClient(new NativeMessageHandler());
+                HttpResponseMessage response = client.GetAsync(string.Format("{0}api/User/LoginOrRegister?username={1}&password={2}", baseApiUrl, username, password)).Result;
+
+                response.EnsureSuccessStatusCode();
+                HttpContent content = response.Content;
+
+                var result = content.ReadAsStringAsync().Result;
+                var loginOrRegisterResponse = JsonConvert.DeserializeObject<LoginOrRegisterResponseDto>(result);
+
+                return loginOrRegisterResponse;
+            }
+            catch (Exception ex)
+            {
+                var errorResult = ex.Message;
+                return null;
+            }
+        }
     }
 }
