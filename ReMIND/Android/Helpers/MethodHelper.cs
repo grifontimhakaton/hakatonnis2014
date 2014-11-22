@@ -9,13 +9,15 @@ namespace Android.Helpers
 {
     public static class MethodHelper
     {
-        private static string baseApiUrl = "http://192.168.0.102:8081/";
+        //private static string baseApiUrl = "http://192.168.0.102:8081/";
+        private static string baseApiUrl = "http://localhost:53781/";
         public static List<QuestionDto> GetQuestions(int userId)
         {
             try
             {
                 var client = new HttpClient(new NativeMessageHandler());
-                HttpResponseMessage response = client.GetAsync(string.Format("{0}api/Question/GetQuestions?userId={1}", baseApiUrl, userId)).Result;
+                //HttpResponseMessage response = client.GetAsync(string.Format("{0}api/Questions/GetQuestionsDTO?userId={1}", baseApiUrl, userId)).Result;
+                HttpResponseMessage response = client.GetAsync(string.Format("{0}api/Questions/GetQuestionsDTO", baseApiUrl)).Result;
               
                 response.EnsureSuccessStatusCode();
                 HttpContent content = response.Content;
