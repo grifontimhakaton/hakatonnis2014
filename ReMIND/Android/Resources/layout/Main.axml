@@ -2,12 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
-<Button  
-    android:id="@+id/MyButton"
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="@string/Hello"
-    />
+    android:layout_height="fill_parent">
+    <Button
+        android:id="@+id/btnFinish"
+        android:text="@string/Finish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+    <Button
+        android:id="@+id/btnContinue"
+        android:text="@string/Continue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
 </LinearLayout>
