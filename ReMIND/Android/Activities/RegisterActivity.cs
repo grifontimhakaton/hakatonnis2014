@@ -6,10 +6,10 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using SharedPCL.DataContracts;
-using Android.Helpers;
+using ReMinder.Helpers;
 using Android.Content.PM;
 
-namespace Android.Activities
+namespace ReMinder.Activities
 {
     [Activity(NoHistory = true, ScreenOrientation = ScreenOrientation.Portrait)]
     public class RegisterActivity : Activity

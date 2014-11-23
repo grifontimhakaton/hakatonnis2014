@@ -1,11 +1,11 @@
 using System;
-using Android.Activities;
+using ReMinder.Activities;
 using Android.App;
 using Android.Content;
 using Android.Preferences;
 using SharedPCL.Enums;
 
-namespace Android.Services
+namespace ReMinder.Services
 {
     [Service]
     public class AlarmService : Android.App.Service

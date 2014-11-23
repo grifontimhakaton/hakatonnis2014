@@ -1,26 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Android.Activities;
+using ReMinder.Activities;
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using System;
-using Android.App;
-using Android.Content;
-using Android.Media;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Android.OS;
-using Android.Support.V4.App;
 
 
-namespace Android.BroadcastReceivers
+namespace ReMinder.BroadcastReceivers
 {
     public class NotificationSender : BroadcastReceiver
     {

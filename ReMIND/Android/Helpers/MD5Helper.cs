@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 using System.Linq;
 using System.Text;
 
-namespace Android.Helpers
+namespace ReMinder.Helpers
 {
     public static class MD5Helper
     {

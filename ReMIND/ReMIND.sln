@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{68010901-54DB-4E0B-9111-623F6F6CE0BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Android", "Android\Android.csproj", "{C201F892-4F06-471F-AFF2-9AE64EB81395}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReMinder", "Android\ReMinder.csproj", "{C201F892-4F06-471F-AFF2-9AE64EB81395}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedPCL", "SharedPCL\SharedPCL.csproj", "{0185F5F1-5B2D-4500-83E0-0AB118449A9D}"
 EndProject

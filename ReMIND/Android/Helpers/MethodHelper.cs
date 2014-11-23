@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 
-namespace Android.Helpers
+namespace ReMinder.Helpers
 {
     public static class MethodHelper
     {

@@ -3,16 +3,16 @@ using Android.App;
 using Android.Content;
 using Android.Preferences;
 using Android.Runtime;
-using Android.Services;
+using ReMinder.Services;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
 using SharedPCL.DataContracts;
-using Android.Helpers;
+using ReMinder.Helpers;
 using Android.Content.PM;
 using SharedPCL.Enums;
 
-namespace Android.Activities
+namespace ReMinder.Activities
 {
     [Activity(Label = "ReMinder", MainLauncher = true, NoHistory = true, ScreenOrientation = ScreenOrientation.Portrait)]
     public class LoginActivity : Activity, View.IOnTouchListener

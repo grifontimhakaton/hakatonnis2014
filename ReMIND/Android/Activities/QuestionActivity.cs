@@ -1,10 +1,10 @@
 ﻿using System;
 using Android.App;
 using Android.Content;
-using Android.Helpers;
+using ReMinder.Helpers;
 using Android.Preferences;
 using Android.Runtime;
-using Android.Services;
+using ReMinder.Services;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
@@ -12,7 +12,7 @@ using Android.Content.PM;
 using SharedPCL.DataContracts;
 using System.Collections.Generic;
 
-namespace Android.Activities
+namespace ReMinder.Activities
 {
     [Activity(ScreenOrientation = ScreenOrientation.Portrait)]
     public class QuestionActivity : Activity

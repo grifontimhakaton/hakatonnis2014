@@ -1,17 +1,17 @@
 ﻿using System;
 using Android.App;
 using Android.Content;
-using Android.Helpers;
+using ReMinder.Helpers;
 using Android.Preferences;
 using Android.Runtime;
-using Android.Services;
+using ReMinder.Services;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Android.Content.PM;
 using Java.Util;
 
-namespace Android.Activities
+namespace ReMinder.Activities
 {
     [Activity(ScreenOrientation = ScreenOrientation.Portrait)]
     public class SettingsActivity : Activity
@@ -20,6 +20,23 @@ namespace Android.Activities
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.Settings);
+
+            Spinner spinner = FindViewById<Spinner>(Resource.Id.spinner1);
+
+            spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(spinner_ItemSelected);
+            var adapter = ArrayAdapter.CreateFromResource(
+                this, Resource.Array.planets_array, Android.Resource.Layout.SimpleSpinnerItem);
+
+            adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+            spinner.Adapter = adapter;
+        }
+
+        private void spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            Spinner spinner = (Spinner)sender;
+
+            string toast = string.Format("The planet is {0}", spinner.GetItemAtPosition(e.Position));
+            Toast.MakeText(this, toast, ToastLength.Long).Show();
         }
 
         private void ChangeAlarmTimes(SharedPCL.Enums.AlarmTimerType alarmTimerType)

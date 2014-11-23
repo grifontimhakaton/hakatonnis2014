@@ -10,7 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
-namespace Android.Helpers
+namespace ReMinder.Helpers
 {
     public static class Constants
     {
