@@ -75,7 +75,7 @@ namespace Android.Activities
                     editor.Apply();
 
                     btnLogin.Click -= LoginUser;
-                    StartNotifications(AlarmTimerType.None);
+                    StartNotifications(AlarmTimerType.Unknown);
                     RedirectToQuestionActivity();
                 }
                 else
@@ -151,21 +151,22 @@ namespace Android.Activities
             ISharedPreferencesEditor editor = localSettings.Edit();
             editor.PutInt(Helpers.Constants.ALARM_TIMER_TYPE, (int)alarmTimerType);
             editor.PutBoolean(Helpers.Constants.RAISE_NOTIFICATION, false);
+            editor.PutBoolean("IsFromLogin", true);
             editor.Apply();
 
             StartService(new Intent(this, typeof(AlarmService)));
         }
 
-        protected override void OnPause()
-        {
-            base.OnPause();
-            NotificationHelper.OnPauseActivity(this.BaseContext);
-        }
+        //protected override void OnPause()
+        //{
+        //    base.OnPause();
+        //    NotificationHelper.OnPauseActivity(this.BaseContext);
+        //}
 
-        protected override void OnResume()
-        {
-            base.OnResume();
-            NotificationHelper.OnResumeActivity(this.BaseContext);
-        }
+        //protected override void OnResume()
+        //{
+        //    base.OnResume();
+        //    NotificationHelper.OnResumeActivity(this.BaseContext);
+        //}
     }
 }

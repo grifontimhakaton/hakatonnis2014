@@ -28,6 +28,7 @@ namespace Android.Helpers
             ISharedPreferences localSettings = PreferenceManager.GetDefaultSharedPreferences(context);
             ISharedPreferencesEditor editor = localSettings.Edit();
             editor.PutBoolean(Helpers.Constants.RAISE_NOTIFICATION, true);
+            editor.PutBoolean("IsFromLogin", false);
             editor.Apply();
         }
     }

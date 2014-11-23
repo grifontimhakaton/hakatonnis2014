@@ -77,7 +77,8 @@ namespace Android.Services
             ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
             RaiseNotification = prefs.GetBoolean(Helpers.Constants.RAISE_NOTIFICATION, false);
             var alarmTimerType = (AlarmTimerType)prefs.GetInt(Helpers.Constants.ALARM_TIMER_TYPE, 1);
-            if (!RaiseNotification || alarmTimerType == AlarmTimerType.None)
+            var isFromLoging = prefs.GetBoolean("IsFromLogin", false);
+            if (!RaiseNotification || alarmTimerType == AlarmTimerType.None || isFromLoging)
             {
                 return;
             }

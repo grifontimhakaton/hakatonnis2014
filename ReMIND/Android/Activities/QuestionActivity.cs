@@ -70,9 +70,6 @@ namespace Android.Activities
         protected override void OnResume()
         {
             base.OnResume();
-
-
-
             NotificationHelper.OnResumeActivity(this.BaseContext);
         }
     }
