@@ -21,6 +21,7 @@ namespace ReMinder.Activities
     public class SettingsActivity : Activity
     {
         private int userId;
+        int[] spinnerValues;
         List<SubjectDTO> subjectList = new List<SubjectDTO>();
         ISharedPreferences localSettings;
 
@@ -33,13 +34,15 @@ namespace ReMinder.Activities
             userId = localSettings.GetInt(Helpers.Constants.USER_ID, 0);
             if (userId > 0)
             {
-                string[] spinnerValues = Enum.GetValues(typeof(AlarmTimerType)).Cast<AlarmTimerType>().Select(x => string.Format("Every {0} mins", (int)x)).ToArray();
-                var alarmTimerType = string.Format("Every {0} mins", localSettings.GetInt(Helpers.Constants.ALARM_TIMER_TYPE, (int)AlarmTimerType.None));
+                spinnerValues = Enum.GetValues(typeof(AlarmTimerType)).Cast<AlarmTimerType>().Select(x => (int)x).ToArray();
+                var alarmTimerType = localSettings.GetInt(Helpers.Constants.ALARM_TIMER_TYPE, (int)AlarmTimerType.None);
                 int selectedPosition = Array.IndexOf(spinnerValues, alarmTimerType);
+                
+                var spinnerStrings = spinnerValues.Select(x => string.Format("Every {0} mins", (int)x)).ToArray();
 
                 Spinner spinner = FindViewById<Spinner>(Resource.Id.spinTimeOptions);
                 spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(spinner_ItemSelected);
-                var adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, spinnerValues);
+                var adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, spinnerStrings);
                 spinner.Adapter = adapter;
                 spinner.SetSelection(selectedPosition);
 
@@ -60,23 +63,16 @@ namespace ReMinder.Activities
 
         private void spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
-            Spinner spinner = (Spinner)sender;
-            spinner.SetSelection(e.Position);
-            var pera = spinner.GetItemAtPosition(e.Position);
-
-            //localSettings = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
-            //ISharedPreferencesEditor editor = localSettings.Edit();
-            //editor.PutInt(Helpers.Constants.ALARM_TIMER_TYPE, currentUser.ID);
-            //editor.Apply();
+            ChangeAlarmTimes(spinnerValues[e.Position]);
         }
 
-        private void ChangeAlarmTimes(SharedPCL.Enums.AlarmTimerType alarmTimerType)
+        private void ChangeAlarmTimes(int alarmTimerPeriods)
         {
             StopService(new Intent(this, typeof(AlarmService)));
             //write
-            ISharedPreferences localSettings = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
+            localSettings = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
             ISharedPreferencesEditor editor = localSettings.Edit();
-            editor.PutInt(Helpers.Constants.ALARM_TIMER_TYPE, (int) alarmTimerType);
+            editor.PutInt(Helpers.Constants.ALARM_TIMER_TYPE, alarmTimerPeriods);
             editor.PutBoolean(Helpers.Constants.RAISE_NOTIFICATION, true);
             editor.Apply();
             
