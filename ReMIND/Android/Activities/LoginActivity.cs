@@ -75,7 +75,7 @@ namespace Android.Activities
                     editor.Apply();
 
                     btnLogin.Click -= LoginUser;
-                    StartNotifications(AlarmTimerType.Unknown);
+                    StartNotifications(AlarmTimerType.None);
                     RedirectToQuestionActivity();
                 }
                 else
