@@ -37,26 +37,26 @@ namespace ReMinder.Adapters
         }
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
-            var vi = convertView;
-            if (vi == null)
+            var view = convertView;
+            if (view == null)
             {
-                vi = context.LayoutInflater.Inflate(Resource.Layout.CustomRowView, null);
+                view = context.LayoutInflater.Inflate(Resource.Layout.CustomRowView, null);
             }
-            TextView text = (TextView)vi.FindViewById(Resource.Id.questionRowText);
-            text.Text = items[position];
-            return vi;
-            
-            
-            
-            
-            
-            View view = convertView; // re-use an existing view, if one is available
-            if (view == null) // otherwise create a new one
-                view = context.LayoutInflater.Inflate(Android.Resource.Layout.SimpleListItemChecked, null);
-            // set view properties to reflect data for the given row
-            view.FindViewById<TextView>(Android.Resource.Id.Text1).Text = items[position];
-            // return the view, populated with data, for display
+            TextView txtAnswerEnum = (TextView)view.FindViewById(Resource.Id.txtAnswerEnum);
+            txtAnswerEnum.Text =  Helpers.Constants.Digits[position].ToString();
+
+            TextView txtAnswerText = (TextView)view.FindViewById(Resource.Id.txtAnswerText);
+            txtAnswerText.Text = items[position];
+
             return view;
+            
+            //View view = convertView; // re-use an existing view, if one is available
+            //if (view == null) // otherwise create a new one
+            //    view = context.LayoutInflater.Inflate(Android.Resource.Layout.SimpleListItemChecked, null);
+            //// set view properties to reflect data for the given row
+            //view.FindViewById<TextView>(Android.Resource.Id.Text1).Text = items[position];
+            //// return the view, populated with data, for display
+            //return view;
         }
     }
 }

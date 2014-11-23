@@ -2,13 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="horizontal">
     <TextView
+        android:id="@+id/txtAnswerEnum"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Header" />
+        android:layout_height="match_parent"
+        android:layout_weight="0"
+        android:textColor="@color/textColor"
+        android:textSize="30dp"
+        android:text="A" />
     <TextView
+        android:id="@+id/txtAnswerText"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:textColor="@color/textColor"
+        android:textSize="20dp"
+        android:text="Lorem Ipsum Dolor sit amet, onsectetur elit." />
+    <ImageView
+        android:id="@+id/imgCheckmark"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/questionRowText" />
+        android:layout_height="match_parent"
+        android:minWidth="20dp"
+        android:layout_weight="0" />
 </LinearLayout>
