@@ -15,43 +15,62 @@
         android:layout_height="wrap_content"
         android:id="@+id/imgLoginLogo" />
     <EditText
-        android:id="@+id/txtEmail"
-        android:inputType="textEmailAddress"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/EmailHint"
-        android:background="@drawable/user" />
+        android:layout_height="55dp"
+        android:hint="@string/UsernameHint"
+        android:background="@color/white"
+        android:layout_marginTop="80dp"
+        android:drawableLeft="@drawable/user"
+        android:drawablePadding="5dip"
+        android:paddingLeft="3dip"
+        android:paddingRight="3dip"
+        android:textColor="@color/textColor"
+        android:id="@+id/txtEmail" />
     <EditText
         android:id="@+id/txtPassword"
         android:inputType="textPassword"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:hint="@string/PasswordHint"
-        android:background="@drawable/password" />
+        android:layout_marginTop="2dp"
+        android:drawablePadding="5dip"
+        android:paddingLeft="3dip"
+        android:paddingRight="3dip"
+        android:drawableLeft="@drawable/password"
+        android:textColor="@color/textColor"
+        android:background="@color/white" />
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp">
+        android:layout_marginTop="110dp">
         <TextView
             android:text="@string/Register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/txtViewRegister"
             android:layout_weight="1"
-            android:paddingLeft="10dp" />
+            android:textColor="@color/white"
+            android:paddingBottom="15dp"
+            android:layout_marginBottom="2dp"
+            android:paddingLeft="0dp" />
         <TextView
             android:text="@string/Password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/txtViewPassword"
             android:layout_weight="1"
-            android:paddingRight="10dp"
+            android:textColor="@color/white"
+            android:paddingRight="0dp"
+            android:paddingBottom="15dp"
+            android:layout_marginBottom="2dp"
             android:gravity="right" />
     </LinearLayout>
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
+        android:background="@drawable/CreateAccountSelector"
+        android:textSize="25dp"
         android:text="@string/Login" />
 </LinearLayout>

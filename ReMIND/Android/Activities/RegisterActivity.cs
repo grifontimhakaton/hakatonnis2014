@@ -50,7 +50,7 @@ namespace Android.Activities
         {
             if (ValidateFields())
             {
-                UserDTO currentUser = MethodHelper.LoginOrRegister(txtEmail.Text, username.Text, MD5Helper.GetMd5Hash(txtPassword.Text));
+                UserDTO currentUser = MethodHelper.LoginOrRegister(txtEmail.Text, txtPassword.Text, MD5Helper.GetMd5Hash(txtPassword.Text));
 
                 if (currentUser != null)
                 {
