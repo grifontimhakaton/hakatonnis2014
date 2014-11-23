@@ -14,6 +14,7 @@ using System.Linq;
 using System.Collections.Generic;
 using SharedPCL.DataContracts;
 using SharedPCL.Enums;
+using Newtonsoft.Json;
 
 namespace ReMinder.Activities
 {
@@ -54,6 +55,7 @@ namespace ReMinder.Activities
                 var listAdapter = new ArrayAdapter<String>(this, Resource.Drawable.SpinnerTextView, items);
                 categorySpinner.Adapter = listAdapter;
                 categorySpinner.SetSelection(0);
+                spinner.ItemSelected += spinner_SubjectSelected;
 
                 //ListView listSubjectsOptions = FindViewById<ListView>(Resource.Id.listSubjectsOptions);
                 //listSubjectsOptions.ChoiceMode = Android.Widget.ChoiceMode.Multiple;
@@ -68,6 +70,15 @@ namespace ReMinder.Activities
         private void spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             ChangeAlarmTimes(spinnerValues[e.Position]);
+        }
+
+        private void spinner_SubjectSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            localSettings = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
+            ISharedPreferencesEditor editor = localSettings.Edit();
+            subjectList.ForEach(item => { item.UserSelected = true; });
+            editor.PutString(Helpers.Constants.USER_SUBJECTS, JsonConvert.SerializeObject(subjectList));
+            editor.Apply();
         }
 
         private void ChangeAlarmTimes(int alarmTimerPeriods)

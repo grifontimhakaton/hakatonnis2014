@@ -29,12 +29,14 @@ namespace ReMinder.Activities
         private Button btnClose;
         private Button btnNextQuestion;
 
+        ISharedPreferences localSettings;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.Question);
 
-            ISharedPreferences localSettings = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
+            localSettings = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
             userId = localSettings.GetInt(Helpers.Constants.USER_ID, 0);
             if (userId > 0)
             {
@@ -49,29 +51,29 @@ namespace ReMinder.Activities
                 btnNextQuestion.Click += BindNextQuestion;
 
 
-                List<SubjectDTO> subjectList = MethodHelper.GetUserSubjects(userId);
-                List<SubjectDTO> userSubjects = subjectList.FindAll(subject => subject.UserSelected);
-                if (userSubjects.Count > 0)
-                {
-                    localSettings = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
-                    ISharedPreferencesEditor editor = localSettings.Edit();
-                    editor.PutString(Helpers.Constants.USER_SUBJECTS, JsonConvert.SerializeObject(userSubjects));
-                    editor.Apply();
+                //List<SubjectDTO> subjectList = MethodHelper.GetUserSubjects(userId);
+                //List<SubjectDTO> userSubjects = subjectList.FindAll(subject => subject.UserSelected);
+                //if (userSubjects.Count > 0)
+                //{
+                //    localSettings = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
+                //    ISharedPreferencesEditor editor = localSettings.Edit();
+                //    editor.PutString(Helpers.Constants.USER_SUBJECTS, JsonConvert.SerializeObject(userSubjects));
+                //    editor.Apply();
 
-                    foreach (var subject in userSubjects)
-                    {
-                        questionList.AddRange(MethodHelper.GetQuestions(userId, subject.SubjectID));
-                    }
+                //    foreach (var subject in userSubjects)
+                //    {
+                //        questionList.AddRange(MethodHelper.GetQuestions(userId, subject.SubjectID));
+                //    }
 
-                    if (questionList.Count > 0)
-                    {
-                        BindQuestionWithAnswers();
-                    }
-                }
-                else
-                {
-                    StartActivity(typeof(SettingsActivity));
-                }
+                //    if (questionList.Count > 0)
+                //    {
+                //        BindQuestionWithAnswers();
+                //    }
+                //}
+                //else
+                //{
+                //    StartActivity(typeof(SettingsActivity));
+                //}
             }
             else
             {
@@ -142,6 +144,37 @@ namespace ReMinder.Activities
         protected override void OnResume()
         {
             base.OnResume();
+
+            localSettings = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
+            var localSubjects = localSettings.GetString(Helpers.Constants.USER_SUBJECTS, "More");
+            List<SubjectDTO> subjectList = new List<SubjectDTO>();
+            try
+            {
+                subjectList = JsonConvert.DeserializeObject<List<SubjectDTO>>(localSubjects);
+            }
+            catch (Exception ex)
+            {
+                subjectList = MethodHelper.GetUserSubjects(userId);
+            }
+
+
+            List<SubjectDTO> userSubjects = subjectList.FindAll(subject => subject.UserSelected);
+            if (userSubjects.Count > 0)
+            {
+                foreach (var subject in userSubjects)
+                {
+                    questionList.AddRange(MethodHelper.GetQuestions(userId, subject.SubjectID));
+                }
+
+                if (questionList.Count > 0)
+                {
+                    BindQuestionWithAnswers();
+                }
+            }
+            else
+            {
+                StartActivity(typeof(SettingsActivity));
+            }
             NotificationHelper.OnResumeActivity(this.BaseContext);
         }
 
