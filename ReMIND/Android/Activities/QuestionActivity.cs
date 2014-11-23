@@ -76,33 +76,33 @@ namespace ReMinder.Activities
             }
         }
 
-        private void RefitText(String text, int textWidth)
-        {
-            if (textWidth <= 0)
-                return;
-            var mTestPaint = new Android.Graphics.Paint();
-            mTestPaint.Set(txtQuestion.Paint);
+        //private void RefitText(String text, int textWidth)
+        //{
+        //    if (textWidth <= 0)
+        //        return;
+        //    var mTestPaint = new Android.Graphics.Paint();
+        //    mTestPaint.Set(txtQuestion.Paint);
 
-            int targetWidth = textWidth - txtQuestion.PaddingLeft - txtQuestion.PaddingRight;
-            float hi = 100;
-            float lo = 2;
-            float threshold = 0.5f; // How close we have to be
+        //    int targetWidth = textWidth - txtQuestion.PaddingLeft - txtQuestion.PaddingRight;
+        //    float hi = 100;
+        //    float lo = 2;
+        //    float threshold = 0.5f; // How close we have to be
 
-            mTestPaint.Set(txtQuestion.Paint);
+        //    mTestPaint.Set(txtQuestion.Paint);
 
-            while ((hi - lo) > threshold)
-            {
-                float size = (hi + lo)/2;
-                mTestPaint.TextSize = size;
-                if (mTestPaint.MeasureText(text) >= targetWidth)
-                    hi = size; // too big
-                else
-                    lo = size; // too small
-            }
-            // Use lo so that we undershoot rather than overshoot
-            //txtQuestion.TextSize = (Android.Util.TypedValue.ComplexToDimensionPixelSize(), lo);
-            txtQuestion.TextSize =  (int)lo;
-        }
+        //    while ((hi - lo) > threshold)
+        //    {
+        //        float size = (hi + lo)/2;
+        //        mTestPaint.TextSize = size;
+        //        if (mTestPaint.MeasureText(text) >= targetWidth)
+        //            hi = size; // too big
+        //        else
+        //            lo = size; // too small
+        //    }
+        //    // Use lo so that we undershoot rather than overshoot
+        //    //txtQuestion.TextSize = (Android.Util.TypedValue.ComplexToDimensionPixelSize(), lo);
+        //    txtQuestion.TextSize =  (int)lo;
+        //}
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
@@ -149,7 +149,7 @@ namespace ReMinder.Activities
 
             currentQuestion = questionList[rnd.Next(0, questionList.Count)];
             txtQuestion.Text = currentQuestion.QuestionText;
-            RefitText(txtQuestion.Text, 700);
+            //RefitText(txtQuestion.Text, 700);
 
             listAnswers.ItemClick += OnAnswerClicked;
 

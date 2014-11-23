@@ -71,7 +71,7 @@ namespace ReMinder.Services
                 return;
             }
 
-            var category = prefs.GetString("Category", "Test");
+            var category = prefs.GetString(Helpers.Constants.USER_CATEGORIES, "Test");
             var notificationManager = (NotificationManager)context.GetSystemService(Context.NotificationService);
             var builder = new Notification.Builder(context);
             var intent = new Intent(context, typeof(LoginActivity));

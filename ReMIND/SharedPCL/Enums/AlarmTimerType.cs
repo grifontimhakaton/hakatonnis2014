@@ -7,7 +7,7 @@
         Ten = 10,
         Fifteen = 15,
         Twenty = 20,
-        Thirdy = 30,
+        Thirty = 30,
         Sixty = 60,
     }
 }
