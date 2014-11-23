@@ -43,7 +43,9 @@ namespace Android.Activities
                 SetContentView(Resource.Layout.Login);
 
                 txtEmail = (EditText)FindViewById(Resource.Id.txtEmail);
+                txtEmail.Text = "test@email.com";
                 txtPassword = (EditText)FindViewById(Resource.Id.txtPassword);
+                txtPassword.Text = "123456aaa";
 
                 txtViewRegister = (TextView)FindViewById(Resource.Id.txtViewRegister);
                 txtViewPassword = (TextView)FindViewById(Resource.Id.txtViewPassword);

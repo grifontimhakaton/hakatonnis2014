@@ -39,7 +39,7 @@
         android:paddingLeft="3dip"
         android:paddingRight="3dip"
         android:textColor="@color/textColor"
-        android:id="@+id/username" />
+        android:id="@+id/txtUsername1" />
     <EditText
         android:id="@+id/txtPassword"
         android:inputType="textPassword"
