@@ -213,6 +213,17 @@
     <AndroidResource Include="Resources\drawable\QuestionSingleRowStylePurple.xml" />
     <AndroidResource Include="Resources\drawable\ActionBarLayout.xml" />
     <AndroidResource Include="Resources\drawable\SpinnerTextView.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\OFF.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ON.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\OFF.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\ON.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\OFF.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ON.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\OFF.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ON.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\OFF.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ON.png" />
+    <AndroidResource Include="Resources\drawable\TransparentToogleVibrationButton.xml" />
     <Content Include="Scripts\json-serialize.js" />
     <Content Include="Scripts\json-serialize.min.js" />
   </ItemGroup>
