@@ -108,7 +108,6 @@ namespace ReMinder.Activities
             txtQuestion.Text = currentQuestion.QuestionText;
             if (currentQuestion.QuestionAnswers.Count > 1)
             {
-                
                 currentQuestion.QuestionAnswers = currentQuestion.QuestionAnswers.OrderBy(item => rnd.Next()).ToList();
 
                 listAnswers.Adapter = new AnswerAdapter(this, currentQuestion.QuestionAnswers.Select(x => x.QuestionAnswerText).ToArray());
@@ -127,7 +126,8 @@ namespace ReMinder.Activities
             if (!questionAnswer.Correct)
             {
                 e.View.SetBackgroundColor(Android.Graphics.Color.Red);
-                correctItem = e.Parent.GetChildAt(currentQuestion.QuestionAnswers.FindIndex(item => item.Correct));
+                int correctAnswerIndex = currentQuestion.QuestionAnswers.FindIndex(item => item.Correct);
+                correctItem = e.Parent.GetChildAt(correctAnswerIndex);
             }
             else
             {
