@@ -3,4 +3,5 @@
   <color name="action_bar_background">#c922a8</color>
   <color name="white">#ffffff</color>
   <color name="textColor">#3F3F3F</color>
+  <color name="black">#000000</color>
 </resources>

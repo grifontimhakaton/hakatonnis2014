@@ -4,6 +4,7 @@ using SharedPCL.DataContracts;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Linq;
 
 namespace ReMinder.Helpers
 {

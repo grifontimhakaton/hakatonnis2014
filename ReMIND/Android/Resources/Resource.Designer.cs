@@ -29,27 +29,8 @@ namespace ReMinder
 			global::ModernHttpClient.Resource.String.library_name = global::ReMinder.Resource.String.library_name;
 		}
 		
-		public partial class Array
-		{
-			
-			// aapt resource value: 0x7f060000
-			public const int planets_array = 2131099648;
-			
-			static Array()
-			{
-				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
-			}
-			
-			private Array()
-			{
-			}
-		}
-		
 		public partial class Attribute
 		{
-			
-			// aapt resource value: 0x7f010000
-			public const int minTextSize = 2130771968;
 			
 			static Attribute()
 			{
@@ -66,6 +47,9 @@ namespace ReMinder
 			
 			// aapt resource value: 0x7f050000
 			public const int action_bar_background = 2131034112;
+			
+			// aapt resource value: 0x7f050003
+			public const int black = 2131034115;
 			
 			// aapt resource value: 0x7f050002
 			public const int textColor = 2131034114;
@@ -87,82 +71,91 @@ namespace ReMinder
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int arrow_left = 2130837504;
+			public const int AnswerListCustomColor = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int arrow_right = 2130837505;
+			public const int arrow_left = 2130837505;
 			
 			// aapt resource value: 0x7f020002
-			public const int arrow_right_big = 2130837506;
+			public const int arrow_right = 2130837506;
 			
 			// aapt resource value: 0x7f020003
-			public const int checkbox_off = 2130837507;
+			public const int arrow_right_big = 2130837507;
 			
 			// aapt resource value: 0x7f020004
-			public const int checkbox_on = 2130837508;
+			public const int checkbox_off = 2130837508;
 			
 			// aapt resource value: 0x7f020005
-			public const int checkmark = 2130837509;
+			public const int checkbox_on = 2130837509;
 			
 			// aapt resource value: 0x7f020006
-			public const int chevron = 2130837510;
+			public const int checkmark = 2130837510;
 			
 			// aapt resource value: 0x7f020007
-			public const int CreateAccountSelector = 2130837511;
+			public const int chevron = 2130837511;
 			
 			// aapt resource value: 0x7f020008
-			public const int crossmark = 2130837512;
+			public const int CreateAccountSelector = 2130837512;
 			
 			// aapt resource value: 0x7f020009
-			public const int email = 2130837513;
+			public const int crossmark = 2130837513;
 			
 			// aapt resource value: 0x7f02000a
-			public const int ic_action_new = 2130837514;
+			public const int email = 2130837514;
 			
 			// aapt resource value: 0x7f02000b
-			public const int ic_action_overflow = 2130837515;
+			public const int ic_action_new = 2130837515;
 			
 			// aapt resource value: 0x7f02000c
-			public const int login_bkg = 2130837516;
+			public const int ic_action_overflow = 2130837516;
 			
 			// aapt resource value: 0x7f02000d
-			public const int logo = 2130837517;
+			public const int login_bkg = 2130837517;
 			
 			// aapt resource value: 0x7f02000e
-			public const int logo_login = 2130837518;
+			public const int logo = 2130837518;
 			
 			// aapt resource value: 0x7f02000f
-			public const int monoandroidsplash = 2130837519;
+			public const int logo_login = 2130837519;
 			
 			// aapt resource value: 0x7f020010
-			public const int password = 2130837520;
+			public const int monoandroidsplash = 2130837520;
 			
 			// aapt resource value: 0x7f020011
-			public const int qna_bkg = 2130837521;
+			public const int password = 2130837521;
 			
 			// aapt resource value: 0x7f020012
-			public const int QuestionsCloseButton = 2130837522;
+			public const int qna_bkg = 2130837522;
 			
 			// aapt resource value: 0x7f020013
-			public const int QuestionTextView = 2130837523;
+			public const int QuestionsCloseButton = 2130837523;
 			
 			// aapt resource value: 0x7f020014
-			public const int register_bkg = 2130837524;
+			public const int QuestionSingleRowStyle = 2130837524;
 			
 			// aapt resource value: 0x7f020015
-			public const int reminder_icon = 2130837525;
+			public const int QuestionSingleRowStylePurple = 2130837525;
 			
 			// aapt resource value: 0x7f020016
-			public const int TransparentButton = 2130837526;
+			public const int QuestionTextView = 2130837526;
 			
 			// aapt resource value: 0x7f020017
-			public const int TransparentButtonPressed = 2130837527;
+			public const int register_bkg = 2130837527;
 			
 			// aapt resource value: 0x7f020018
-			public const int TransparentButtonSelected = 2130837528;
+			public const int reminder_icon = 2130837528;
 			
 			// aapt resource value: 0x7f020019
-			public const int user = 2130837529;
+			public const int TransparentButton = 2130837529;
+			
+			// aapt resource value: 0x7f02001a
+			public const int TransparentButtonPressed = 2130837530;
+			
+			// aapt resource value: 0x7f02001b
+			public const int TransparentButtonSelected = 2130837531;
+			
+			// aapt resource value: 0x7f02001c
+			public const int user = 2130837532;
 			
 			static Drawable()
 			{
@@ -177,86 +170,86 @@ namespace ReMinder
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f09000c
-			public const int btnClose = 2131296268;
+			// aapt resource value: 0x7f08000c
+			public const int btnClose = 2131230732;
 			
-			// aapt resource value: 0x7f090008
-			public const int btnLogin = 2131296264;
+			// aapt resource value: 0x7f080008
+			public const int btnLogin = 2131230728;
 			
-			// aapt resource value: 0x7f09000a
-			public const int btnNextQuestion = 2131296266;
+			// aapt resource value: 0x7f08000a
+			public const int btnNextQuestion = 2131230730;
 			
-			// aapt resource value: 0x7f090011
-			public const int btnRegister = 2131296273;
+			// aapt resource value: 0x7f080011
+			public const int btnRegister = 2131230737;
 			
-			// aapt resource value: 0x7f090002
-			public const int imgCheckmark = 2131296258;
+			// aapt resource value: 0x7f080002
+			public const int imgCheckmark = 2131230722;
 			
-			// aapt resource value: 0x7f090003
-			public const int imgLoginLogo = 2131296259;
+			// aapt resource value: 0x7f080003
+			public const int imgLoginLogo = 2131230723;
 			
-			// aapt resource value: 0x7f09000b
-			public const int listAnswers = 2131296267;
+			// aapt resource value: 0x7f08000b
+			public const int listAnswers = 2131230731;
 			
-			// aapt resource value: 0x7f090016
-			public const int listView1 = 2131296278;
+			// aapt resource value: 0x7f080016
+			public const int listSubjectsOptions = 2131230742;
 			
-			// aapt resource value: 0x7f090019
-			public const int mainMenu = 2131296281;
+			// aapt resource value: 0x7f080019
+			public const int mainMenu = 2131230745;
 			
-			// aapt resource value: 0x7f09001a
-			public const int overflowMenuItem = 2131296282;
+			// aapt resource value: 0x7f08001a
+			public const int overflowMenuItem = 2131230746;
 			
-			// aapt resource value: 0x7f090014
-			public const int spinner1 = 2131296276;
+			// aapt resource value: 0x7f080014
+			public const int spinTimeOptions = 2131230740;
 			
-			// aapt resource value: 0x7f090012
-			public const int textView1 = 2131296274;
+			// aapt resource value: 0x7f080018
+			public const int toggleVibrationOptions = 2131230744;
 			
-			// aapt resource value: 0x7f090013
-			public const int textView2 = 2131296275;
+			// aapt resource value: 0x7f080000
+			public const int txtAnswerEnum = 2131230720;
 			
-			// aapt resource value: 0x7f090015
-			public const int textView3 = 2131296277;
+			// aapt resource value: 0x7f080001
+			public const int txtAnswerText = 2131230721;
 			
-			// aapt resource value: 0x7f090017
-			public const int textView4 = 2131296279;
+			// aapt resource value: 0x7f080004
+			public const int txtEmail = 2131230724;
 			
-			// aapt resource value: 0x7f090018
-			public const int toggleButton1 = 2131296280;
+			// aapt resource value: 0x7f08000d
+			public const int txtNewEmail = 2131230733;
 			
-			// aapt resource value: 0x7f090000
-			public const int txtAnswerEnum = 2131296256;
+			// aapt resource value: 0x7f08000f
+			public const int txtNewPassword = 2131230735;
 			
-			// aapt resource value: 0x7f090001
-			public const int txtAnswerText = 2131296257;
+			// aapt resource value: 0x7f08000e
+			public const int txtNewUsername = 2131230734;
 			
-			// aapt resource value: 0x7f090004
-			public const int txtEmail = 2131296260;
+			// aapt resource value: 0x7f080012
+			public const int txtOptionsAndSettingsHeader = 2131230738;
 			
-			// aapt resource value: 0x7f09000d
-			public const int txtNewEmail = 2131296269;
+			// aapt resource value: 0x7f080005
+			public const int txtPassword = 2131230725;
 			
-			// aapt resource value: 0x7f09000f
-			public const int txtNewPassword = 2131296271;
+			// aapt resource value: 0x7f080009
+			public const int txtQuestion = 2131230729;
 			
-			// aapt resource value: 0x7f09000e
-			public const int txtNewUsername = 2131296270;
+			// aapt resource value: 0x7f080010
+			public const int txtRepeatPassword = 2131230736;
 			
-			// aapt resource value: 0x7f090005
-			public const int txtPassword = 2131296261;
+			// aapt resource value: 0x7f080015
+			public const int txtSubjectsOptions = 2131230741;
 			
-			// aapt resource value: 0x7f090009
-			public const int txtQuestion = 2131296265;
+			// aapt resource value: 0x7f080013
+			public const int txtTimer = 2131230739;
 			
-			// aapt resource value: 0x7f090010
-			public const int txtRepeatPassword = 2131296272;
+			// aapt resource value: 0x7f080017
+			public const int txtVibrationOptions = 2131230743;
 			
-			// aapt resource value: 0x7f090007
-			public const int txtViewPassword = 2131296263;
+			// aapt resource value: 0x7f080007
+			public const int txtViewPassword = 2131230727;
 			
-			// aapt resource value: 0x7f090006
-			public const int txtViewRegister = 2131296262;
+			// aapt resource value: 0x7f080006
+			public const int txtViewRegister = 2131230726;
 			
 			static Id()
 			{
@@ -299,8 +292,8 @@ namespace ReMinder
 		public partial class Menu
 		{
 			
-			// aapt resource value: 0x7f080000
-			public const int mainMenu = 2131230720;
+			// aapt resource value: 0x7f070000
+			public const int mainMenu = 2131165184;
 			
 			static Menu()
 			{
@@ -385,14 +378,14 @@ namespace ReMinder
 		public partial class Style
 		{
 			
-			// aapt resource value: 0x7f070000
-			public const int Mono_Android_Theme_Splash = 2131165184;
+			// aapt resource value: 0x7f060000
+			public const int Mono_Android_Theme_Splash = 2131099648;
 			
-			// aapt resource value: 0x7f070002
-			public const int ReMinder_ActionBar = 2131165186;
+			// aapt resource value: 0x7f060002
+			public const int ReMinder_ActionBar = 2131099650;
 			
-			// aapt resource value: 0x7f070001
-			public const int ReMinderTheme = 2131165185;
+			// aapt resource value: 0x7f060001
+			public const int ReMinderTheme = 2131099649;
 			
 			static Style()
 			{
@@ -400,25 +393,6 @@ namespace ReMinder
 			}
 			
 			private Style()
-			{
-			}
-		}
-		
-		public partial class Styleable
-		{
-			
-			public static int[] AutoResizeTextView = new int[] {
-					2130771968};
-			
-			// aapt resource value: 0
-			public const int AutoResizeTextView_minTextSize = 0;
-			
-			static Styleable()
-			{
-				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
-			}
-			
-			private Styleable()
 			{
 			}
 		}

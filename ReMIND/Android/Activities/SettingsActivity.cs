@@ -10,45 +10,64 @@ using Android.Widget;
 using Android.OS;
 using Android.Content.PM;
 using Java.Util;
+using System.Linq;
+using System.Collections.Generic;
+using SharedPCL.DataContracts;
+using SharedPCL.Enums;
 
 namespace ReMinder.Activities
 {
     [Activity(ScreenOrientation = ScreenOrientation.Portrait)]
     public class SettingsActivity : Activity
     {
+        private int userId;
+        List<SubjectDTO> subjectList = new List<SubjectDTO>();
+        ISharedPreferences localSettings;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.Settings);
 
-            //TEST
-            //END TEST
+            localSettings = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
+            userId = localSettings.GetInt(Helpers.Constants.USER_ID, 0);
+            if (userId > 0)
+            {
+                string[] spinnerValues = Enum.GetValues(typeof(AlarmTimerType)).Cast<AlarmTimerType>().Select(x => string.Format("Every {0} mins", (int)x)).ToArray();
+                var alarmTimerType = string.Format("Every {0} mins", localSettings.GetInt(Helpers.Constants.ALARM_TIMER_TYPE, (int)AlarmTimerType.None));
+                int selectedPosition = Array.IndexOf(spinnerValues, alarmTimerType);
 
-            Spinner spinner = FindViewById<Spinner>(Resource.Id.spinner1);
+                Spinner spinner = FindViewById<Spinner>(Resource.Id.spinTimeOptions);
+                spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(spinner_ItemSelected);
+                var adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, spinnerValues);
+                spinner.Adapter = adapter;
+                spinner.SetSelection(selectedPosition);
 
-            spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(spinner_ItemSelected);
-            var adapter = ArrayAdapter.CreateFromResource(
-                this, Resource.Array.planets_array, Android.Resource.Layout.SimpleSpinnerItem);
+                subjectList = MethodHelper.GetUserSubjects(userId);
+                string[] items = subjectList.Select(subject => subject.SubjectName).ToArray();
 
-            adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
-            spinner.Adapter = adapter;
+                var ListAdapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItemChecked, items);
 
-            string[] items = new string[] { "Option 1", "Option 2", "Option 3" };
-
-            var ListAdapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItemChecked, items);
-
-            ListView lv = FindViewById<ListView>(Resource.Id.listView1);
-            lv.ChoiceMode = Android.Widget.ChoiceMode.Multiple;
-            lv.Adapter = ListAdapter;
-
+                ListView listSubjectsOptions = FindViewById<ListView>(Resource.Id.listSubjectsOptions);
+                listSubjectsOptions.ChoiceMode = Android.Widget.ChoiceMode.Multiple;
+                listSubjectsOptions.Adapter = ListAdapter;
+            }
+            else
+            {
+                StartActivity(typeof(LoginActivity));
+            }
         }
 
         private void spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
+            spinner.SetSelection(e.Position);
+            var pera = spinner.GetItemAtPosition(e.Position);
 
-            string toast = string.Format("The planet is {0}", spinner.GetItemAtPosition(e.Position));
-            Toast.MakeText(this, toast, ToastLength.Long).Show();
+            //localSettings = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
+            //ISharedPreferencesEditor editor = localSettings.Edit();
+            //editor.PutInt(Helpers.Constants.ALARM_TIMER_TYPE, currentUser.ID);
+            //editor.Apply();
         }
 
         private void ChangeAlarmTimes(SharedPCL.Enums.AlarmTimerType alarmTimerType)

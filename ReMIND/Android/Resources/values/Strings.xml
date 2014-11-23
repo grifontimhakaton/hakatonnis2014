@@ -22,16 +22,4 @@
 
   <string name="ErrorWhileLogin">Incorrect username or password</string>
   <string name="ErrorWhileRegistration">Error during registration process</string>
-
-  <string-array name="planets_array">
-    <item>Mercury</item>
-    <item>Venus</item>
-    <item>Earth</item>
-    <item>Mars</item>
-    <item>Jupiter</item>
-    <item>Saturn</item>
-    <item>Uranus</item>
-    <item>Neptune</item>
-  </string-array>
-  
 </resources>

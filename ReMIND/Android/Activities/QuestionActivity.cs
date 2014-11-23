@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Mime;
 using Android.App;
 using Android.Content;
 using ReMinder.Helpers;
@@ -37,11 +38,11 @@ namespace ReMinder.Activities
 
             ISharedPreferences localSettings = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
             userId = localSettings.GetInt(Helpers.Constants.USER_ID, 0);
-
+            if (userId > 0)
+            {
             txtQuestion = (TextView)FindViewById(Resource.Id.txtQuestion);
 
             listAnswers = (ListView)FindViewById(Resource.Id.listAnswers);
-            listAnswers.ItemClick += OnAnswerClicked;
 
             btnClose = (Button)FindViewById(Resource.Id.btnClose);
             btnClose.Click += CloseReMinder;
@@ -49,12 +50,12 @@ namespace ReMinder.Activities
             btnNextQuestion = (Button)FindViewById(Resource.Id.btnNextQuestion);
             btnNextQuestion.Click += BindNextQuestion;
 
-            if (userId > 0)
-            {
+
                 List<SubjectDTO> subjectList = MethodHelper.GetUserSubjects(userId);
-                if (subjectList.Count > 0)
+                List<SubjectDTO> userSubjects = subjectList.FindAll(subject => subject.UserSelected);
+                if (userSubjects.Count > 0)
                 {
-                    foreach (var subject in subjectList)
+                    foreach (var subject in userSubjects)
                     {
                         questionList.AddRange(MethodHelper.GetQuestions(userId, subject.SubjectID));
                     }
@@ -68,6 +69,10 @@ namespace ReMinder.Activities
                 {
                     StartActivity(typeof(SettingsActivity));
                 }
+            }
+            else
+            {
+                StartActivity(typeof(LoginActivity));
             }
         }
 
@@ -94,7 +99,8 @@ namespace ReMinder.Activities
         //        else
         //            lo = size; // too small
         //    }
-        //    // Use lo so that we undershoot rather than overshoot            
+        //    // Use lo so that we undershoot rather than overshoot
+        //    //txtQuestion.TextSize = (Android.Util.TypedValue.ComplexToDimensionPixelSize(), lo);
         //    txtQuestion.TextSize =  (int)lo;
         //}
 
@@ -138,11 +144,15 @@ namespace ReMinder.Activities
 
         private void BindQuestionWithAnswers()
         {
+            listAnswers.ItemClick -= OnAnswerClicked;
             var rnd = new Random();
 
             currentQuestion = questionList[rnd.Next(0, questionList.Count)];
             txtQuestion.Text = currentQuestion.QuestionText;
             //RefitText(txtQuestion.Text, 700);
+
+            listAnswers.ItemClick += OnAnswerClicked;
+
             if (currentQuestion.QuestionAnswers.Count > 1)
             {
                 currentQuestion.QuestionAnswers = currentQuestion.QuestionAnswers.OrderBy(item => rnd.Next()).ToList();
@@ -158,15 +168,32 @@ namespace ReMinder.Activities
         private void OnAnswerClicked(object sender, Android.Widget.AdapterView.ItemClickEventArgs e)
         {
             var questionAnswer = currentQuestion.QuestionAnswers[e.Position];
-            TextView textView = null;
+            
+            var selectedRowImage = (ImageView)e.Parent.GetChildAt(e.Position).FindViewById(Resource.Id.imgCheckmark);
+            var textView = (TextView) e.Parent.GetChildAt(e.Position).FindViewById(Resource.Id.txtAnswerEnum);
+            textView.SetTextColor(Resources.GetColor(Resource.Color.action_bar_background));
+
+            var textViewAnswer = (TextView)e.Parent.GetChildAt(e.Position).FindViewById(Resource.Id.txtAnswerText);
+            textViewAnswer.SetTextColor(Resources.GetColor(Resource.Color.action_bar_background));
+            textViewAnswer.SetBackgroundDrawable(Resources.GetDrawable(Resource.Drawable.QuestionSingleRowStylePurple));
+            var scale = Resources.DisplayMetrics.Density;
+            var padding_5dp = (int)(5 * scale + 0.5f);
+            textViewAnswer.SetPadding(padding_5dp,0,0,0);
+
             if (!questionAnswer.Correct)
             {
+                selectedRowImage.SetImageResource(Resource.Drawable.crossmark);
+                
                 int correctAnswerIndex = currentQuestion.QuestionAnswers.FindIndex(item => item.Correct);
                 if (correctAnswerIndex > -1)
                 {
-                    //TextView correctTextView = (TextView)e.Parent.GetChildAt(correctAnswerIndex).FindViewById(Resource.Id.txtAnswerText);
-                    //textView.SetTextColor(Android.Graphics.Color.Green);
+                    var selectedRowCorrectImage = (ImageView)e.Parent.GetChildAt(correctAnswerIndex).FindViewById(Resource.Id.imgCheckmark);
+                    selectedRowCorrectImage.SetImageResource(Resource.Drawable.checkmark);
                 }
+                }
+            else
+            {
+                selectedRowImage.SetImageResource(Resource.Drawable.checkmark);
             }
 
             //textView = (TextView)e.View.FindViewById(Resource.Id.txtAnswerText);
@@ -175,6 +202,7 @@ namespace ReMinder.Activities
             //    textView.SetTextColor(Resources.GetColor(Resource.Color.textColor));
             //}
 
+            listAnswers.ItemClick -= OnAnswerClicked;
 
             if (MethodHelper.AnswerQuestion(questionAnswer.Id, userId))
             {

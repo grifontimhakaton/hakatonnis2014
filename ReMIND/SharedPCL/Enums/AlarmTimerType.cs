@@ -2,13 +2,12 @@
 {
     public enum AlarmTimerType
     {
-        Unknown = 0,
-        None,
-        Five,
-        Ten,
-        Fifteen,
-        Twenty,
-        Thirdy,
-        Sixty,
+        None = 0,
+        Five = 5,
+        Ten = 10,
+        Fifteen = 15,
+        Twenty = 20,
+        Thirdy = 30,
+        Sixty = 60,
     }
 }

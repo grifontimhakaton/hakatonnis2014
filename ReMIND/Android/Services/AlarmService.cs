@@ -22,43 +22,32 @@ namespace ReMinder.Services
         public override void OnDestroy()
         {
             base.OnDestroy();
-            _timer.Dispose();
+            if (_timer != null)
+            {
+                _timer.Dispose();
+            }
         }
 
         public void DoStuff()
         {
             //read prefs 
             ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
-            var alarmTimerType = prefs.GetInt(Helpers.Constants.ALARM_TIMER_TYPE, 1);
+            var alarmTimerType = prefs.GetInt(Helpers.Constants.ALARM_TIMER_TYPE, (int)AlarmTimerType.None);
             RemindedTimes = 0;
 
-
             var time = GetTime((AlarmTimerType) alarmTimerType);
-            _timer = new System.Threading.Timer((o) =>
+            if (time > 0)
             {
-                buildNotification(this);
-            }, null, 0, time);
+                _timer = new System.Threading.Timer((o) =>
+                {
+                    buildNotification(this);
+                }, null, 0, time);
+            }
         }
 
         private int GetTime(AlarmTimerType alarmTimerType)
         {
-            switch (alarmTimerType)
-            {
-                case AlarmTimerType.Five:
-                    return 1000*60*5;
-                case AlarmTimerType.Fifteen:
-                    return 1000*60*15;
-                case AlarmTimerType.Sixty:
-                    return 1000*60*60;
-                case AlarmTimerType.Ten:
-                    return 1000*60*10;
-                case AlarmTimerType.Thirdy:
-                    return 1000*60*30;
-                case AlarmTimerType.Twenty:
-                    return 1000*60*20;
-                default:
-                    return 1000*10;
-            }
+            return (int)alarmTimerType * 60 * 1000;
         }
 
         public override Android.OS.IBinder OnBind(Android.Content.Intent intent)
@@ -75,7 +64,7 @@ namespace ReMinder.Services
             RemindedTimes++;
             ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
             RaiseNotification = prefs.GetBoolean(Helpers.Constants.RAISE_NOTIFICATION, false);
-            var alarmTimerType = (AlarmTimerType)prefs.GetInt(Helpers.Constants.ALARM_TIMER_TYPE, 1);
+            var alarmTimerType = (AlarmTimerType)prefs.GetInt(Helpers.Constants.ALARM_TIMER_TYPE, (int)AlarmTimerType.None);
             var isFromLoging = prefs.GetBoolean("IsFromLogin", false);
             if (!RaiseNotification || alarmTimerType == AlarmTimerType.None || isFromLoging)
             {
