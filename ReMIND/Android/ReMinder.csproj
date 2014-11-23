@@ -210,6 +210,7 @@
     <AndroidResource Include="Resources\drawable\QuestionsCloseButton.xml" />
     <AndroidResource Include="Resources\drawable\QuestionSingleRowStyle.xml" />
     <AndroidResource Include="Resources\drawable\AnswerListCustomColor.xml" />
+    <AndroidResource Include="Resources\drawable\QuestionSingleRowStylePurple.xml" />
     <Content Include="Scripts\json-serialize.js" />
     <Content Include="Scripts\json-serialize.min.js" />
   </ItemGroup>

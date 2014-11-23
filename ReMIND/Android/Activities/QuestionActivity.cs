@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Mime;
 using Android.App;
 using Android.Content;
 using ReMinder.Helpers;
@@ -169,16 +170,26 @@ namespace ReMinder.Activities
             var questionAnswer = currentQuestion.QuestionAnswers[e.Position];
             
             var selectedRowImage = (ImageView)e.Parent.GetChildAt(e.Position).FindViewById(Resource.Id.imgCheckmark);
+            var textView = (TextView) e.Parent.GetChildAt(e.Position).FindViewById(Resource.Id.txtAnswerEnum);
+            textView.SetTextColor(Resources.GetColor(Resource.Color.action_bar_background));
+
+            var textViewAnswer = (TextView)e.Parent.GetChildAt(e.Position).FindViewById(Resource.Id.txtAnswerText);
+            textViewAnswer.SetTextColor(Resources.GetColor(Resource.Color.action_bar_background));
+            textViewAnswer.SetBackgroundDrawable(Resources.GetDrawable(Resource.Drawable.QuestionSingleRowStylePurple));
+            var scale = Resources.DisplayMetrics.Density;
+            var padding_5dp = (int)(5 * scale + 0.5f);
+            textViewAnswer.SetPadding(padding_5dp,0,0,0);
+
             if (!questionAnswer.Correct)
             {
                 selectedRowImage.SetImageResource(Resource.Drawable.crossmark);
                 
-                //int correctAnswerIndex = currentQuestion.QuestionAnswers.FindIndex(item => item.Correct);
-                //if (correctAnswerIndex > -1)
-                //{
-                    //TextView correctTextView = (TextView)e.Parent.GetChildAt(correctAnswerIndex).FindViewById(Resource.Id.txtAnswerText);
-                    //textView.SetTextColor(Android.Graphics.Color.Green);
-                //}
+                int correctAnswerIndex = currentQuestion.QuestionAnswers.FindIndex(item => item.Correct);
+                if (correctAnswerIndex > -1)
+                {
+                    var selectedRowCorrectImage = (ImageView)e.Parent.GetChildAt(correctAnswerIndex).FindViewById(Resource.Id.imgCheckmark);
+                    selectedRowCorrectImage.SetImageResource(Resource.Drawable.checkmark);
+                }
                 }
             else
             {
