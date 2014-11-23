@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="Activities\RegisterActivity.cs" />
     <Compile Include="Activities\SettingsActivity.cs" />
+    <Compile Include="Adapters\AnswerAdapter.cs" />
     <Compile Include="BroadcastReceivers\NotificationSender.cs" />
     <Compile Include="Helpers\Constants.cs" />
     <Compile Include="Helpers\MD5Helper.cs" />
@@ -201,6 +202,7 @@
     <AndroidResource Include="Resources\drawable\CreateAccountSelector.xml" />
     <AndroidResource Include="Resources\drawable\TransparentButtonPressed.xml" />
     <AndroidResource Include="Resources\drawable\TransparentButtonSelected.xml" />
+    <AndroidResource Include="Resources\drawable\QuestionTextView.xml" />
     <Content Include="Scripts\json-serialize.js" />
     <Content Include="Scripts\json-serialize.min.js" />
   </ItemGroup>
