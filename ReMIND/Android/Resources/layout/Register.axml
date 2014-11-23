@@ -20,14 +20,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/EmailHint"
-        android:background="@drawable/user" />
+        android:background="@color/white" />
+<!--android:background="@drawable/user" />-->
     <EditText
         android:id="@+id/txtPassword"
         android:inputType="textPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/PasswordHint"
-        android:background="@drawable/password" />
+        android:background="@color/white" />
+<!--android:background="@drawable/password" />-->
+    <EditText
+        android:id="@+id/txtRepeatPassword"
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/RepeatPasswordHint"
+        android:background="@color/white" />
+<!--android:background="@drawable/password" />-->
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/UsernameHint"
+        android:background="@color/white"
+        android:id="@+id/username" />
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"

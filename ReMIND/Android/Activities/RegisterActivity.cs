@@ -11,7 +11,7 @@ using Android.Content.PM;
 
 namespace Android.Activities
 {
-    [Activity(ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(NoHistory = true, ScreenOrientation = ScreenOrientation.Portrait)]
     public class RegisterActivity : Activity
     {
         Button btnLogin;
