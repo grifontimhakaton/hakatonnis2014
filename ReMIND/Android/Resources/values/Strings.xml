@@ -11,11 +11,15 @@
   <string name="EmailHint">email</string>
   <string name="EmailValidationError">Email field is required</string>
 
+  <string name="UsernameHint">username</string>
+  <string name="UsernameValidationError">Username field is required</string>
+  
   <string name="Password">Password?</string>
   <string name="PasswordHint">password</string>
-  <string name="RepeatPasswordHint">repeat password</string>
-  <string name="UsernameHint">username</string>
+  <string name="RepeatPasswordHint">repeat password</string>  
   <string name="PasswordValidationError">Password field is required</string>
+  <string name="PasswordUnMatchValidationError">Must match Password value</string>
 
   <string name="ErrorWhileLogin">Incorrect username or password</string>
+  <string name="ErrorWhileRegistration">Error during registration process</string>
 </resources>

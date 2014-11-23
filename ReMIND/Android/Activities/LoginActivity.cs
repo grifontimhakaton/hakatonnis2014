@@ -82,7 +82,7 @@ namespace Android.Activities
                 {
                     this.RunOnUiThread(() =>
                     {
-                        Toast.MakeText(this, Resource.String.ErrorWhileLogin, ToastLength.Long);
+                        Toast.MakeText(this, Resource.String.ErrorWhileLogin, ToastLength.Long).Show();
                     });
                 }
             }
