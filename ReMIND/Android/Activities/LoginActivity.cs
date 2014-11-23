@@ -35,7 +35,7 @@ namespace ReMinder.Activities
 
             if (IsUserLoggedIn())
             {
-                StartNotifications(AlarmTimerType.Unknown);
+                StartNotifications(AlarmTimerType.None);
                 RedirectToQuestionActivity();
             }
             else
@@ -75,7 +75,7 @@ namespace ReMinder.Activities
                     editor.Apply();
 
                     btnLogin.Click -= LoginUser;
-                    StartNotifications(AlarmTimerType.Unknown);
+                    StartNotifications(AlarmTimerType.None);
                     RedirectToQuestionActivity();
                 }
                 else

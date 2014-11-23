@@ -10,8 +10,10 @@ using Android.Widget;
 using Android.OS;
 using Android.Content.PM;
 using Java.Util;
+using System.Linq;
 using System.Collections.Generic;
 using SharedPCL.DataContracts;
+using SharedPCL.Enums;
 
 namespace ReMinder.Activities
 {
@@ -19,6 +21,7 @@ namespace ReMinder.Activities
     public class SettingsActivity : Activity
     {
         private int userId;
+        List<SubjectDTO> subjectList = new List<SubjectDTO>();
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -33,12 +36,12 @@ namespace ReMinder.Activities
                 Spinner spinner = FindViewById<Spinner>(Resource.Id.spinTimeOptions);
 
                 spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(spinner_ItemSelected);
-                var adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.planets_array, Android.Resource.Layout.SimpleSpinnerItem);
-                adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+                string[] spinnerValues = Enum.GetValues(typeof(AlarmTimerType)).Cast<AlarmTimerType>().Select(x => string.Format("Every {0} mins", (int)x)).ToArray();
+                var adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, spinnerValues);
                 spinner.Adapter = adapter;
 
-                List<SubjectDTO> subjectList = MethodHelper.GetUserSubjects(userId);
-                string[] items = new string[] { "Option 1", "Option 2", "Option 3" };
+                subjectList = MethodHelper.GetUserSubjects(userId);
+                string[] items = subjectList.Select(subject => subject.SubjectName).ToArray();
 
                 var ListAdapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItemChecked, items);
 
@@ -55,9 +58,7 @@ namespace ReMinder.Activities
         private void spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
-
-            string toast = string.Format("The planet is {0}", spinner.GetItemAtPosition(e.Position));
-            Toast.MakeText(this, toast, ToastLength.Long).Show();
+            var pera = spinner.GetItemAtPosition(e.Position);
         }
 
         private void ChangeAlarmTimes(SharedPCL.Enums.AlarmTimerType alarmTimerType)
