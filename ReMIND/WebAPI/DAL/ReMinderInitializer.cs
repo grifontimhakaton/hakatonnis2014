@@ -18,11 +18,22 @@ namespace WebAPI.DAL
             //sqllocaldb.exe delete v11.0
             //sqllocaldb.exe start v11.0
 
+            Event eve = new Event();
+            eve.EventDescription = "TestEvent";
+            eve.EventText = "Teve Text";
+            eve.EventTitle = "Teve Title";
+            eve.EventStartUTC = DateTime.UtcNow;
+            eve.EventEndtUTC = DateTime.UtcNow + TimeSpan.FromHours(24);
+            
+
 
             Subject s = new Subject();
             s.SubjectTitle = "Fizika";
             s.SubjectDescription = "Lorem Opsta Fizika Ipsum";
 
+            eve.Subject = s;
+
+            context.Events.Add(eve);
             context.Subjects.Add(s);
             context.SaveChanges();
 

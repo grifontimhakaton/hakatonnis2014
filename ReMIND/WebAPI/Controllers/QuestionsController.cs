@@ -41,7 +41,7 @@ namespace WebAPI.Controllers
         public IHttpActionResult AnswerQuestion(int answerID,int userID)
         {
             QuestionAnswer questiona = db.QuestionAnswers.Find(answerID);
-            User user = db.Users.Find(userID);            
+            User user = db.Users.Include(x => x.QuestionAnswers).Where(y => y.ID == userID).FirstOrDefault();
             if (questiona == null || user == null)
             {
                 return Ok(false);
@@ -57,90 +57,6 @@ namespace WebAPI.Controllers
 
             return Ok(true);
         }
-
-        //// GET api/Questions
-        //public IQueryable<Question> GetQuestions()
-        //{
-        //    return db.Questions;
-        //}
-
-        //// GET api/Questions/5
-        //[ResponseType(typeof(Question))]
-        //public IHttpActionResult GetQuestion(int id)
-        //{
-        //    Question question = db.Questions.Find(id);
-        //    if (question == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return Ok(question);
-        //}
-
-        //// PUT api/Questions/5
-        //public IHttpActionResult PutQuestion(int id, Question question)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    if (id != question.ID)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    db.Entry(question).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        db.SaveChanges();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!QuestionExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return StatusCode(HttpStatusCode.NoContent);
-        //}
-
-        //// POST api/Questions
-        //[ResponseType(typeof(Question))]
-        //public IHttpActionResult PostQuestion(Question question)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    db.Questions.Add(question);
-        //    db.SaveChanges();
-
-        //    return CreatedAtRoute("DefaultApi", new { id = question.ID }, question);
-        //}
-
-        //// DELETE api/Questions/5
-        //[ResponseType(typeof(Question))]
-        //public IHttpActionResult DeleteQuestion(int id)
-        //{
-        //    Question question = db.Questions.Find(id);
-        //    if (question == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    db.Questions.Remove(question);
-        //    db.SaveChanges();
-
-        //    return Ok(question);
-        //}
 
         protected override void Dispose(bool disposing)
         {

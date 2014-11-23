@@ -24,6 +24,26 @@ namespace WebAPI.Models
         //public virtual ICollection<QuestionArea> QuestionAreas { get; set; }
     }
 
+    public class Event
+    {
+        [Key]
+        public int ID { get; set; }
+        public string EventText { get; set; }
+        public string EventTitle { get; set; }
+        public string EventDescription { get; set; }
+
+        public DateTime EventStartUTC { get; set; }
+        public DateTime EventEndtUTC { get; set; }
+
+        //calc
+        public TimeSpan Duration { get { return EventEndtUTC - EventStartUTC; } }
+
+        //links
+        public virtual Subject Subject { get; set; }
+    }
+
+
+
     public class QuestionAnswer
     {
         [Key]
