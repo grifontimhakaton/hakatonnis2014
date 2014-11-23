@@ -25,6 +25,7 @@ namespace ReMinder.Activities
         int[] spinnerValues;
         List<SubjectDTO> subjectList = new List<SubjectDTO>();
         ISharedPreferences localSettings;
+        private ToggleButton toggleVibrationOption;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -57,6 +58,11 @@ namespace ReMinder.Activities
                 categorySpinner.SetSelection(0);
                 spinner.ItemSelected += spinner_SubjectSelected;
 
+                toggleVibrationOption = FindViewById<ToggleButton>(Resource.Id.toggleVibrationOptions);
+                toggleVibrationOption.Click += ToggleVibrationOptionButton;
+
+
+
                 //ListView listSubjectsOptions = FindViewById<ListView>(Resource.Id.listSubjectsOptions);
                 //listSubjectsOptions.ChoiceMode = Android.Widget.ChoiceMode.Multiple;
                 //listSubjectsOptions.Adapter = ListAdapter;
@@ -79,6 +85,11 @@ namespace ReMinder.Activities
             subjectList.ForEach(item => { item.UserSelected = true; });
             editor.PutString(Helpers.Constants.USER_SUBJECTS, JsonConvert.SerializeObject(subjectList));
             editor.Apply();
+        }
+
+        private void ToggleVibrationOptionButton(object sender, EventArgs e)
+        {
+            //toggleVibrationOption.SetBackgroundDrawable(Resources.);
         }
 
         private void ChangeAlarmTimes(int alarmTimerPeriods)

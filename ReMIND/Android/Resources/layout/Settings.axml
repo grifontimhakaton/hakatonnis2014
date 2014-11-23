@@ -70,13 +70,16 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:gravity="left|center"
             android:layout_weight="1"
             android:textColor="@color/textColor" />
         <ToggleButton
             android:id="@+id/toggleVibrationOptions"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:background="@drawable/TransparentToogleVibrationButton"
+            android:gravity="center"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:textColor="@color/black"
             android:layout_weight="2" />
     </LinearLayout>
 </LinearLayout>
