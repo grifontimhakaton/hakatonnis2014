@@ -3,13 +3,33 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
     android:background="@drawable/qna_bkg">
-    <TextView
-        android:text="Text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:id="@+id/txtQuestion" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/QuestionTextView"
+        android:layout_marginTop="30dp">
+        <TextView
+            android:text="KO JE BIO VUK KARADZIC?"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/txtQuestion" />
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:background="@null"
+            android:layout_gravity="bottom"
+            android:text="next"
+            android:drawableRight="@drawable/arrow_right"
+            android:textSize="20dp"
+            android:textColor="@color/textColor" />
+    </LinearLayout>
     <ListView
         android:minWidth="25px"
         android:minHeight="25px"

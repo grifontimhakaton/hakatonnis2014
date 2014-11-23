@@ -135,22 +135,25 @@ namespace ReMinder
 			public const int qna_bkg = 2130837520;
 			
 			// aapt resource value: 0x7f020011
-			public const int register_bkg = 2130837521;
+			public const int QuestionTextView = 2130837521;
 			
 			// aapt resource value: 0x7f020012
-			public const int reminder_icon = 2130837522;
+			public const int register_bkg = 2130837522;
 			
 			// aapt resource value: 0x7f020013
-			public const int TransparentButton = 2130837523;
+			public const int reminder_icon = 2130837523;
 			
 			// aapt resource value: 0x7f020014
-			public const int TransparentButtonPressed = 2130837524;
+			public const int TransparentButton = 2130837524;
 			
 			// aapt resource value: 0x7f020015
-			public const int TransparentButtonSelected = 2130837525;
+			public const int TransparentButtonPressed = 2130837525;
 			
 			// aapt resource value: 0x7f020016
-			public const int user = 2130837526;
+			public const int TransparentButtonSelected = 2130837526;
+			
+			// aapt resource value: 0x7f020017
+			public const int user = 2130837527;
 			
 			static Drawable()
 			{
@@ -165,44 +168,47 @@ namespace ReMinder
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f090008
-			public const int btnClose = 2131296264;
+			// aapt resource value: 0x7f090009
+			public const int btnClose = 2131296265;
 			
 			// aapt resource value: 0x7f090005
 			public const int btnLogin = 2131296261;
 			
-			// aapt resource value: 0x7f09000d
-			public const int btnRegister = 2131296269;
+			// aapt resource value: 0x7f090007
+			public const int btnNext = 2131296263;
+			
+			// aapt resource value: 0x7f09000e
+			public const int btnRegister = 2131296270;
 			
 			// aapt resource value: 0x7f090000
 			public const int imgLoginLogo = 2131296256;
 			
-			// aapt resource value: 0x7f090007
-			public const int listAnswers = 2131296263;
-			
-			// aapt resource value: 0x7f090010
-			public const int mainMenu = 2131296272;
+			// aapt resource value: 0x7f090008
+			public const int listAnswers = 2131296264;
 			
 			// aapt resource value: 0x7f090011
-			public const int overflowMenuItem = 2131296273;
+			public const int mainMenu = 2131296273;
+			
+			// aapt resource value: 0x7f090012
+			public const int overflowMenuItem = 2131296274;
+			
+			// aapt resource value: 0x7f090010
+			public const int spinner1 = 2131296272;
 			
 			// aapt resource value: 0x7f09000f
-			public const int spinner1 = 2131296271;
-			
-			// aapt resource value: 0x7f09000e
-			public const int textView1 = 2131296270;
+			public const int textView1 = 2131296271;
 			
 			// aapt resource value: 0x7f090001
 			public const int txtEmail = 2131296257;
 			
-			// aapt resource value: 0x7f090009
-			public const int txtNewEmail = 2131296265;
+			// aapt resource value: 0x7f09000a
+			public const int txtNewEmail = 2131296266;
+			
+			// aapt resource value: 0x7f09000c
+			public const int txtNewPassword = 2131296268;
 			
 			// aapt resource value: 0x7f09000b
-			public const int txtNewPassword = 2131296267;
-			
-			// aapt resource value: 0x7f09000a
-			public const int txtNewUsername = 2131296266;
+			public const int txtNewUsername = 2131296267;
 			
 			// aapt resource value: 0x7f090002
 			public const int txtPassword = 2131296258;
@@ -210,8 +216,8 @@ namespace ReMinder
 			// aapt resource value: 0x7f090006
 			public const int txtQuestion = 2131296262;
 			
-			// aapt resource value: 0x7f09000c
-			public const int txtRepeatPassword = 2131296268;
+			// aapt resource value: 0x7f09000d
+			public const int txtRepeatPassword = 2131296269;
 			
 			// aapt resource value: 0x7f090004
 			public const int txtViewPassword = 2131296260;

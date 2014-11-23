@@ -201,6 +201,7 @@
     <AndroidResource Include="Resources\drawable\CreateAccountSelector.xml" />
     <AndroidResource Include="Resources\drawable\TransparentButtonPressed.xml" />
     <AndroidResource Include="Resources\drawable\TransparentButtonSelected.xml" />
+    <AndroidResource Include="Resources\drawable\QuestionTextView.xml" />
     <Content Include="Scripts\json-serialize.js" />
     <Content Include="Scripts\json-serialize.min.js" />
   </ItemGroup>
