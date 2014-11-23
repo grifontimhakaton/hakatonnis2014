@@ -32,7 +32,7 @@ namespace WebAPI.Controllers
             }).ToList();
         }
 
-        public List<EventDTO> GetEventsFroSubject(int subjectID)
+        public List<EventDTO> GetEventsFromSubject(int subjectID)
         {
             return db.Events.Include(x => x.Subject).Where(y => y.Subject.ID == subjectID).Select(z => new EventDTO()
             {

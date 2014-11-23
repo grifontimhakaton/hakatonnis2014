@@ -19,9 +19,9 @@ namespace WebAPI.Controllers
         private ReMinderContext db = new ReMinderContext();
 
         // GET api/Subjects
-        public List<Subject> GetSubjects()
+        public List<SubjectDTO> GetSubjects()
         {
-            return db.Subjects.ToList();
+            return db.Subjects.Select(x => new SubjectDTO() { SubjectID = x.ID, SubjectName = x.SubjectTitle }).ToList();            
         }
 
         // GET api/Subjects

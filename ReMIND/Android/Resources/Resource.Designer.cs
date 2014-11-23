@@ -26,7 +26,6 @@ namespace Android
 		
 		public static void UpdateIdValues()
 		{
-			global::ModernHttpClient.Resource.String.library_name = global::Android.Resource.String.library_name;
 		}
 		
 		public partial class Attribute
@@ -45,11 +44,11 @@ namespace Android
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f050000
-			public const int menu_background = 2131034112;
+			// aapt resource value: 0x7f040000
+			public const int menu_background = 2130968576;
 			
-			// aapt resource value: 0x7f050001
-			public const int white = 2131034113;
+			// aapt resource value: 0x7f040001
+			public const int white = 2130968577;
 			
 			static Color()
 			{
@@ -218,44 +217,41 @@ namespace Android
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f040006
-			public const int ApplicationName = 2130968582;
+			// aapt resource value: 0x7f050005
+			public const int ApplicationName = 2131034117;
 			
-			// aapt resource value: 0x7f040005
-			public const int Continue = 2130968581;
+			// aapt resource value: 0x7f050004
+			public const int Continue = 2131034116;
 			
-			// aapt resource value: 0x7f040007
-			public const int EmailHint = 2130968583;
+			// aapt resource value: 0x7f050006
+			public const int EmailHint = 2131034118;
 			
-			// aapt resource value: 0x7f040008
-			public const int EmailValidationError = 2130968584;
+			// aapt resource value: 0x7f050007
+			public const int EmailValidationError = 2131034119;
 			
-			// aapt resource value: 0x7f04000c
-			public const int ErrorWhileLogin = 2130968588;
+			// aapt resource value: 0x7f05000b
+			public const int ErrorWhileLogin = 2131034123;
 			
-			// aapt resource value: 0x7f040004
-			public const int Finish = 2130968580;
+			// aapt resource value: 0x7f050003
+			public const int Finish = 2131034115;
 			
-			// aapt resource value: 0x7f040001
-			public const int Login = 2130968577;
+			// aapt resource value: 0x7f050000
+			public const int Login = 2131034112;
 			
-			// aapt resource value: 0x7f040003
-			public const int NotImplemented = 2130968579;
+			// aapt resource value: 0x7f050002
+			public const int NotImplemented = 2131034114;
 			
-			// aapt resource value: 0x7f040009
-			public const int Password = 2130968585;
+			// aapt resource value: 0x7f050008
+			public const int Password = 2131034120;
 			
-			// aapt resource value: 0x7f04000a
-			public const int PasswordHint = 2130968586;
+			// aapt resource value: 0x7f050009
+			public const int PasswordHint = 2131034121;
 			
-			// aapt resource value: 0x7f04000b
-			public const int PasswordValidationError = 2130968587;
+			// aapt resource value: 0x7f05000a
+			public const int PasswordValidationError = 2131034122;
 			
-			// aapt resource value: 0x7f040002
-			public const int Register = 2130968578;
-			
-			// aapt resource value: 0x7f040000
-			public const int library_name = 2130968576;
+			// aapt resource value: 0x7f050001
+			public const int Register = 2131034113;
 			
 			static String()
 			{
