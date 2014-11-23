@@ -12,6 +12,8 @@
 
   <string name="Password">Password?</string>
   <string name="PasswordHint">password</string>
+  <string name="RepeatPasswordHint">repeat password</string>
+  <string name="UsernameHint">username</string>
   <string name="PasswordValidationError">Password field is required</string>
 
   <string name="ErrorWhileLogin">Incorrect username or password</string>
