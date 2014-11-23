@@ -11,7 +11,6 @@ using System.Web.Http.Description;
 using WebAPI.Models;
 using WebAPI.DAL;
 using SharedPCL.DataContracts;
-using SharedPCL.Enums;
 
 namespace WebAPI.Controllers
 {
@@ -20,97 +19,43 @@ namespace WebAPI.Controllers
         private ReMinderContext db = new ReMinderContext();
 
         // GET api/GetQuestionsDTO
-        public List<QuestionDto> GetQuestionsDTO()
+        public List<QuestionDTO> GetUserQuestions(int userID, int subjectID)
         {
-//          return db.Questions.Select(x => new QuestionDto() { Id = x.ID, QuestionType = QuestionType.ABC, Text = x.QuestionText}).ToList();
-            var result = new List<QuestionDto>();
-            result.Add(new QuestionDto() { Id = 20, QuestionType = QuestionType.ABC, Text = "Sta koj kurac ?" });
+            var result = db.Questions.Where(x => x.Subject.ID == subjectID).Select(y => new QuestionDTO()
+            {
+                Id = y.ID,
+                QuestionExplanation = y.QuestionExplanation,
+                QuestionText = y.QuestionText,
+                QuestionTitle = y.QuestionTitle,
+                QuestionAnswers = y.QuestionAnswers.Select(z => new QuestionAnswerDTO() { QuestionAnswerText = z.AnswerText,
+                    Id = z.ID,
+                    Correct = z.AnswerValue == 1
+                }).ToList()
+            }).ToList();
+
             return result;
         }
 
-
-        // GET api/Questions
-        public IQueryable<Question> GetQuestions()
+        [HttpGet]
+        [ResponseType(typeof(bool))]
+        public IHttpActionResult AnswerQuestion(int answerID,int userID)
         {
-            return db.Questions;
-        }
-
-        // GET api/Questions/5
-        [ResponseType(typeof(Question))]
-        public IHttpActionResult GetQuestion(int id)
-        {
-            Question question = db.Questions.Find(id);
-            if (question == null)
+            QuestionAnswer questiona = db.QuestionAnswers.Find(answerID);
+            User user = db.Users.Include(x => x.QuestionAnswers).Where(y => y.ID == userID).FirstOrDefault();
+            if (questiona == null || user == null)
             {
-                return NotFound();
+                return Ok(false);
             }
 
-            return Ok(question);
-        }
-
-        // PUT api/Questions/5
-        public IHttpActionResult PutQuestion(int id, Question question)
-        {
-            if (!ModelState.IsValid)
+            if (user.QuestionAnswers == null)
             {
-                return BadRequest(ModelState);
+                user.QuestionAnswers = new List<QuestionAnswer>();
             }
 
-            if (id != question.ID)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(question).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!QuestionExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
-        // POST api/Questions
-        [ResponseType(typeof(Question))]
-        public IHttpActionResult PostQuestion(Question question)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.Questions.Add(question);
+            user.QuestionAnswers.Add(questiona);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = question.ID }, question);
-        }
-
-        // DELETE api/Questions/5
-        [ResponseType(typeof(Question))]
-        public IHttpActionResult DeleteQuestion(int id)
-        {
-            Question question = db.Questions.Find(id);
-            if (question == null)
-            {
-                return NotFound();
-            }
-
-            db.Questions.Remove(question);
-            db.SaveChanges();
-
-            return Ok(question);
+            return Ok(true);
         }
 
         protected override void Dispose(bool disposing)

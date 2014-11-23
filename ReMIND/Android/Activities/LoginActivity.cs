@@ -24,6 +24,10 @@ namespace Android.Activities
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+
+            Window.SetFlags(WindowManagerFlags.Fullscreen, WindowManagerFlags.Fullscreen);
+            RequestWindowFeature(WindowFeatures.NoTitle);
+
             StartNotifications(AlarmTimerType.Unknown);
             bool isUserLoggedIn = false;
             if (isUserLoggedIn)

@@ -48,6 +48,9 @@ namespace Android
 			// aapt resource value: 0x7f050000
 			public const int menu_background = 2131034112;
 			
+			// aapt resource value: 0x7f050001
+			public const int white = 2131034113;
+			
 			static Color()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -131,26 +134,35 @@ namespace Android
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f080004
-			public const int btnContinue = 2131230724;
-			
-			// aapt resource value: 0x7f080003
-			public const int btnFinish = 2131230723;
-			
-			// aapt resource value: 0x7f080002
-			public const int btnLogin = 2131230722;
-			
-			// aapt resource value: 0x7f080005
-			public const int mainMenu = 2131230725;
+			// aapt resource value: 0x7f080007
+			public const int btnContinue = 2131230727;
 			
 			// aapt resource value: 0x7f080006
-			public const int overflowMenuItem = 2131230726;
+			public const int btnFinish = 2131230726;
+			
+			// aapt resource value: 0x7f080005
+			public const int btnLogin = 2131230725;
 			
 			// aapt resource value: 0x7f080000
-			public const int txtEmail = 2131230720;
+			public const int imgLoginLogo = 2131230720;
+			
+			// aapt resource value: 0x7f080008
+			public const int mainMenu = 2131230728;
+			
+			// aapt resource value: 0x7f080009
+			public const int overflowMenuItem = 2131230729;
 			
 			// aapt resource value: 0x7f080001
-			public const int txtPassword = 2131230721;
+			public const int txtEmail = 2131230721;
+			
+			// aapt resource value: 0x7f080002
+			public const int txtPassword = 2131230722;
+			
+			// aapt resource value: 0x7f080004
+			public const int txtViewPassword = 2131230724;
+			
+			// aapt resource value: 0x7f080003
+			public const int txtViewRegister = 2131230723;
 			
 			static Id()
 			{
@@ -203,32 +215,38 @@ namespace Android
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f040004
-			public const int ApplicationName = 2130968580;
-			
-			// aapt resource value: 0x7f040003
-			public const int Continue = 2130968579;
-			
 			// aapt resource value: 0x7f040005
-			public const int EmailHint = 2130968581;
+			public const int ApplicationName = 2130968581;
+			
+			// aapt resource value: 0x7f040004
+			public const int Continue = 2130968580;
 			
 			// aapt resource value: 0x7f040006
-			public const int EmailValidationError = 2130968582;
+			public const int EmailHint = 2130968582;
 			
-			// aapt resource value: 0x7f040009
-			public const int ErrorWhileLogin = 2130968585;
+			// aapt resource value: 0x7f040007
+			public const int EmailValidationError = 2130968583;
 			
-			// aapt resource value: 0x7f040002
-			public const int Finish = 2130968578;
+			// aapt resource value: 0x7f04000b
+			public const int ErrorWhileLogin = 2130968587;
+			
+			// aapt resource value: 0x7f040003
+			public const int Finish = 2130968579;
 			
 			// aapt resource value: 0x7f040001
 			public const int Login = 2130968577;
 			
-			// aapt resource value: 0x7f040007
-			public const int PasswordHint = 2130968583;
-			
 			// aapt resource value: 0x7f040008
-			public const int PasswordValidationError = 2130968584;
+			public const int Password = 2130968584;
+			
+			// aapt resource value: 0x7f040009
+			public const int PasswordHint = 2130968585;
+			
+			// aapt resource value: 0x7f04000a
+			public const int PasswordValidationError = 2130968586;
+			
+			// aapt resource value: 0x7f040002
+			public const int Register = 2130968578;
 			
 			// aapt resource value: 0x7f040000
 			public const int library_name = 2130968576;
