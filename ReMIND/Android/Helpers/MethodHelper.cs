@@ -38,15 +38,15 @@ namespace ReMinder.Helpers
             try
             {
                 var client = new HttpClient(new NativeMessageHandler());
-                HttpResponseMessage response = client.GetAsync(string.Format("{0}api/Subjects/GetUserSubjects?userID={0}", baseApiUrl, userId)).Result;
+                HttpResponseMessage response = client.GetAsync(string.Format("{0}api/Subjects/GetUserSubjects?userID={1}", baseApiUrl, userId)).Result;
 
                 response.EnsureSuccessStatusCode();
                 HttpContent content = response.Content;
 
                 var result = content.ReadAsStringAsync().Result;
-                var questions = JsonConvert.DeserializeObject<List<SubjectDTO>>(result);
+                var subjects = JsonConvert.DeserializeObject<List<SubjectDTO>>(result);
 
-                return questions;
+                return subjects;
             }
             catch (Exception ex)
             {

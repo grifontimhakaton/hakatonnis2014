@@ -67,7 +67,7 @@ namespace ReMinder.Activities
             {
                 UserDTO currentUser = MethodHelper.LoginOrRegister(txtEmail.Text, MD5Helper.GetMd5Hash(txtPassword.Text));
 
-                if (currentUser != null)
+                if (currentUser != null && currentUser.Status == UserStatus.OK)
                 {
                     localSettings = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
                     ISharedPreferencesEditor editor = localSettings.Edit();
@@ -75,14 +75,14 @@ namespace ReMinder.Activities
                     editor.Apply();
 
                     btnLogin.Click -= LoginUser;
-                    StartNotifications(AlarmTimerType.Unknown);
+                    StartNotifications(AlarmTimerType.None);
                     RedirectToQuestionActivity();
                 }
                 else
                 {
                     this.RunOnUiThread(() =>
                     {
-                        Toast.MakeText(this, Resource.String.ErrorWhileLogin, ToastLength.Long);
+                        Toast.MakeText(this, Resource.String.ErrorWhileLogin, ToastLength.Long).Show();
                     });
                 }
             }

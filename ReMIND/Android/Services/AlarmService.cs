@@ -77,7 +77,7 @@ namespace ReMinder.Services
             ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
             RaiseNotification = prefs.GetBoolean(Helpers.Constants.RAISE_NOTIFICATION, false);
             var alarmTimerType = (AlarmTimerType)prefs.GetInt(Helpers.Constants.ALARM_TIMER_TYPE, 1);
-            if (!RaiseNotification || alarmTimerType == AlarmTimerType.None || alarmTimerType == AlarmTimerType.Unknown)
+            if (!RaiseNotification || alarmTimerType == AlarmTimerType.None)
             {
                 return;
             }

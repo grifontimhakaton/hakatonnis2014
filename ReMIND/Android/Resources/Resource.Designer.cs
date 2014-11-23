@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("ReMinder.Resource", IsApplication=true)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("Android.Resource", IsApplication=true)]
 
-namespace ReMinder
+namespace Android
 {
 	
 	
@@ -26,23 +26,7 @@ namespace ReMinder
 		
 		public static void UpdateIdValues()
 		{
-			global::ModernHttpClient.Resource.String.library_name = global::ReMinder.Resource.String.library_name;
-		}
-		
-		public partial class Array
-		{
-			
-			// aapt resource value: 0x7f060000
-			public const int planets_array = 2131099648;
-			
-			static Array()
-			{
-				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
-			}
-			
-			private Array()
-			{
-			}
+			global::ModernHttpClient.Resource.String.library_name = global::Android.Resource.String.library_name;
 		}
 		
 		public partial class Attribute
@@ -129,31 +113,28 @@ namespace ReMinder
 			public const int logo_login = 2130837518;
 			
 			// aapt resource value: 0x7f02000f
-			public const int monoandroidsplash = 2130837519;
+			public const int password = 2130837519;
 			
 			// aapt resource value: 0x7f020010
-			public const int password = 2130837520;
+			public const int qna_bkg = 2130837520;
 			
 			// aapt resource value: 0x7f020011
-			public const int qna_bkg = 2130837521;
+			public const int register_bkg = 2130837521;
 			
 			// aapt resource value: 0x7f020012
-			public const int register_bkg = 2130837522;
+			public const int reminder_icon = 2130837522;
 			
 			// aapt resource value: 0x7f020013
-			public const int reminder_icon = 2130837523;
+			public const int TransparentButton = 2130837523;
 			
 			// aapt resource value: 0x7f020014
-			public const int TransparentButton = 2130837524;
+			public const int TransparentButtonPressed = 2130837524;
 			
 			// aapt resource value: 0x7f020015
-			public const int TransparentButtonPressed = 2130837525;
+			public const int TransparentButtonSelected = 2130837525;
 			
 			// aapt resource value: 0x7f020016
-			public const int TransparentButtonSelected = 2130837526;
-			
-			// aapt resource value: 0x7f020017
-			public const int user = 2130837527;
+			public const int user = 2130837526;
 			
 			static Drawable()
 			{
@@ -168,53 +149,53 @@ namespace ReMinder
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f090008
-			public const int btnClose = 2131296264;
+			// aapt resource value: 0x7f080008
+			public const int btnClose = 2131230728;
 			
-			// aapt resource value: 0x7f090005
-			public const int btnLogin = 2131296261;
+			// aapt resource value: 0x7f080005
+			public const int btnLogin = 2131230725;
 			
-			// aapt resource value: 0x7f09000b
-			public const int btnRegister = 2131296267;
+			// aapt resource value: 0x7f08000d
+			public const int btnRegister = 2131230733;
 			
-			// aapt resource value: 0x7f090000
-			public const int imgLoginLogo = 2131296256;
+			// aapt resource value: 0x7f080000
+			public const int imgLoginLogo = 2131230720;
 			
-			// aapt resource value: 0x7f090007
-			public const int listAnswers = 2131296263;
+			// aapt resource value: 0x7f080007
+			public const int listAnswers = 2131230727;
 			
-			// aapt resource value: 0x7f09000e
-			public const int mainMenu = 2131296270;
+			// aapt resource value: 0x7f08000e
+			public const int mainMenu = 2131230734;
 			
-			// aapt resource value: 0x7f09000f
-			public const int overflowMenuItem = 2131296271;
+			// aapt resource value: 0x7f08000f
+			public const int overflowMenuItem = 2131230735;
 			
-			// aapt resource value: 0x7f09000d
-			public const int spinner1 = 2131296269;
+			// aapt resource value: 0x7f080001
+			public const int txtEmail = 2131230721;
 			
-			// aapt resource value: 0x7f09000c
-			public const int textView1 = 2131296268;
+			// aapt resource value: 0x7f080009
+			public const int txtNewEmail = 2131230729;
 			
-			// aapt resource value: 0x7f090001
-			public const int txtEmail = 2131296257;
+			// aapt resource value: 0x7f08000b
+			public const int txtNewPassword = 2131230731;
 			
-			// aapt resource value: 0x7f090002
-			public const int txtPassword = 2131296258;
+			// aapt resource value: 0x7f08000a
+			public const int txtNewUsername = 2131230730;
 			
-			// aapt resource value: 0x7f090006
-			public const int txtQuestion = 2131296262;
+			// aapt resource value: 0x7f080002
+			public const int txtPassword = 2131230722;
 			
-			// aapt resource value: 0x7f09000a
-			public const int txtRepeatPassword = 2131296266;
+			// aapt resource value: 0x7f080006
+			public const int txtQuestion = 2131230726;
 			
-			// aapt resource value: 0x7f090009
-			public const int txtUsername1 = 2131296265;
+			// aapt resource value: 0x7f08000c
+			public const int txtRepeatPassword = 2131230732;
 			
-			// aapt resource value: 0x7f090004
-			public const int txtViewPassword = 2131296260;
+			// aapt resource value: 0x7f080004
+			public const int txtViewPassword = 2131230724;
 			
-			// aapt resource value: 0x7f090003
-			public const int txtViewRegister = 2131296259;
+			// aapt resource value: 0x7f080003
+			public const int txtViewRegister = 2131230723;
 			
 			static Id()
 			{
@@ -254,8 +235,8 @@ namespace ReMinder
 		public partial class Menu
 		{
 			
-			// aapt resource value: 0x7f080000
-			public const int mainMenu = 2131230720;
+			// aapt resource value: 0x7f070000
+			public const int mainMenu = 2131165184;
 			
 			static Menu()
 			{
@@ -288,8 +269,11 @@ namespace ReMinder
 			// aapt resource value: 0x7f040009
 			public const int EmailValidationError = 2130968585;
 			
-			// aapt resource value: 0x7f04000f
-			public const int ErrorWhileLogin = 2130968591;
+			// aapt resource value: 0x7f040011
+			public const int ErrorWhileLogin = 2130968593;
+			
+			// aapt resource value: 0x7f040012
+			public const int ErrorWhileRegistration = 2130968594;
 			
 			// aapt resource value: 0x7f040001
 			public const int Login = 2130968577;
@@ -297,29 +281,32 @@ namespace ReMinder
 			// aapt resource value: 0x7f040004
 			public const int NotImplemented = 2130968580;
 			
-			// aapt resource value: 0x7f04000a
-			public const int Password = 2130968586;
+			// aapt resource value: 0x7f04000c
+			public const int Password = 2130968588;
 			
-			// aapt resource value: 0x7f04000b
-			public const int PasswordHint = 2130968587;
+			// aapt resource value: 0x7f04000d
+			public const int PasswordHint = 2130968589;
 			
-			// aapt resource value: 0x7f04000e
-			public const int PasswordValidationError = 2130968590;
+			// aapt resource value: 0x7f040010
+			public const int PasswordUnMatchValidationError = 2130968592;
+			
+			// aapt resource value: 0x7f04000f
+			public const int PasswordValidationError = 2130968591;
 			
 			// aapt resource value: 0x7f040002
 			public const int Register = 2130968578;
 			
-			// aapt resource value: 0x7f04000c
-			public const int RepeatPasswordHint = 2130968588;
+			// aapt resource value: 0x7f04000e
+			public const int RepeatPasswordHint = 2130968590;
 			
-			// aapt resource value: 0x7f04000d
-			public const int UsernameHint = 2130968589;
+			// aapt resource value: 0x7f04000a
+			public const int UsernameHint = 2130968586;
+			
+			// aapt resource value: 0x7f04000b
+			public const int UsernameValidationError = 2130968587;
 			
 			// aapt resource value: 0x7f040000
 			public const int library_name = 2130968576;
-			
-			// aapt resource value: 0x7f040010
-			public const int planet_prompt = 2130968592;
 			
 			static String()
 			{
@@ -334,14 +321,11 @@ namespace ReMinder
 		public partial class Style
 		{
 			
-			// aapt resource value: 0x7f070000
-			public const int Mono_Android_Theme_Splash = 2131165184;
+			// aapt resource value: 0x7f060001
+			public const int ReMinder_ActionBar = 2131099649;
 			
-			// aapt resource value: 0x7f070002
-			public const int ReMinder_ActionBar = 2131165186;
-			
-			// aapt resource value: 0x7f070001
-			public const int ReMinderTheme = 2131165185;
+			// aapt resource value: 0x7f060000
+			public const int ReMinderTheme = 2131099648;
 			
 			static Style()
 			{

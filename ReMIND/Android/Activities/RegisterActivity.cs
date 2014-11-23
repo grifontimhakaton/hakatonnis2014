@@ -8,6 +8,8 @@ using Android.OS;
 using SharedPCL.DataContracts;
 using ReMinder.Helpers;
 using Android.Content.PM;
+using Android.Preferences;
+using SharedPCL.Enums;
 
 namespace ReMinder.Activities
 {
@@ -16,7 +18,9 @@ namespace ReMinder.Activities
     {
         Button btnLogin;
         EditText txtEmail;
+        EditText txtUsername;
         EditText txtPassword;
+        EditText txtRepeatPassword;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -35,8 +39,10 @@ namespace ReMinder.Activities
             {
                 SetContentView(Resource.Layout.Register);
 
-                txtEmail = (EditText)FindViewById(Resource.Id.txtEmail);
-                txtPassword = (EditText)FindViewById(Resource.Id.txtPassword);
+                txtEmail = (EditText)FindViewById(Resource.Id.txtNewEmail);
+                txtUsername = (EditText)FindViewById(Resource.Id.txtNewUsername);
+                txtPassword = (EditText)FindViewById(Resource.Id.txtNewPassword);
+                txtRepeatPassword = (EditText)FindViewById(Resource.Id.txtRepeatPassword);
 
                 btnLogin = (Button)FindViewById(Resource.Id.btnRegister);
                 if (btnLogin != null)
@@ -50,10 +56,15 @@ namespace ReMinder.Activities
         {
             if (ValidateFields())
             {
-                UserDTO currentUser = MethodHelper.LoginOrRegister(txtEmail.Text, txtEmail.Text, MD5Helper.GetMd5Hash(txtPassword.Text));
+                UserDTO currentUser = MethodHelper.LoginOrRegister(txtEmail.Text, txtUsername.Text, MD5Helper.GetMd5Hash(txtPassword.Text));
 
-                if (currentUser != null)
+                if (currentUser != null && currentUser.Status == UserStatus.OK)
                 {
+                    ISharedPreferences localSettings = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
+                    ISharedPreferencesEditor editor = localSettings.Edit();
+                    editor.PutInt(Helpers.Constants.USER_ID, currentUser.ID);
+                    editor.Apply();
+
                     btnLogin.Click -= RegisterUser;
                     RedirectToQuestionActivity();
                 }
@@ -61,7 +72,7 @@ namespace ReMinder.Activities
                 {
                     this.RunOnUiThread(() =>
                     {
-                        Toast.MakeText(this, Resource.String.ErrorWhileLogin, ToastLength.Long);
+                        Toast.MakeText(this, Resource.String.ErrorWhileRegistration, ToastLength.Long).Show();
                     });
                 }
             }
@@ -81,12 +92,46 @@ namespace ReMinder.Activities
                 result = false;
             }
 
-            if (this.txtPassword.Text.Length <= 0)
+            if (this.txtUsername.Text.Length <= 0)
+            {
+                this.RunOnUiThread(() =>
+                {
+                    this.txtUsername.Error = GetString(Resource.String.UsernameValidationError);
+                });
+
+                result = false;
+            }
+
+            string password = this.txtPassword.Text;
+            string repPassword = this.txtRepeatPassword.Text;
+
+            if (password.Length <= 0)
             {
                 this.RunOnUiThread(() =>
                 {
                     this.txtPassword.Error = GetString(Resource.String.PasswordValidationError);
                 });
+
+                result = false;
+            }
+
+            if (repPassword.Length <= 0 || !string.Equals(password, repPassword))
+            {
+                this.RunOnUiThread(() =>
+                {
+                    this.txtRepeatPassword.Error = GetString(Resource.String.PasswordValidationError);
+                });
+
+                result = false;
+            }
+
+            if (!string.Equals(password, repPassword))
+            {
+                this.RunOnUiThread(() =>
+                {
+                    this.txtRepeatPassword.Error = GetString(Resource.String.PasswordUnMatchValidationError);
+                });
+
                 result = false;
             }
 
