@@ -24,7 +24,7 @@ namespace ReMinder.Activities
             //TEST
             //END TEST
 
-            Spinner spinner = FindViewById<Spinner>(Resource.Id.spinner1);
+            Spinner spinner = FindViewById<Spinner>(Resource.Id.spinTimeOptions);
 
             spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(spinner_ItemSelected);
             var adapter = ArrayAdapter.CreateFromResource(
@@ -37,7 +37,7 @@ namespace ReMinder.Activities
 
             var ListAdapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItemChecked, items);
 
-            ListView lv = FindViewById<ListView>(Resource.Id.listView1);
+            ListView lv = FindViewById<ListView>(Resource.Id.listSubjectsOptions);
             lv.ChoiceMode = Android.Widget.ChoiceMode.Multiple;
             lv.Adapter = ListAdapter;
 

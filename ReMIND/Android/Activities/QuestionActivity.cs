@@ -159,7 +159,7 @@ namespace ReMinder.Activities
         private void OnAnswerClicked(object sender, Android.Widget.AdapterView.ItemClickEventArgs e)
         {
             var questionAnswer = currentQuestion.QuestionAnswers[e.Position];
-            TextView textView = null;
+            //TextView textView = null;
             if (!questionAnswer.Correct)
             {
                 int correctAnswerIndex = currentQuestion.QuestionAnswers.FindIndex(item => item.Correct);

@@ -2,48 +2,77 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:background="@color/white">
     <TextView
-        android:text="OPTIONS AND SETTINGS"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="366.1dp"
-        android:layout_height="60.8dp"
-        android:id="@+id/textView1"
-        android:layout_marginBottom="0.0dp"
-        android:layout_marginLeft="0.0dp" />
-    <TextView
-        android:text="Timer"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/txtOptionsAndSettingsHeader"
+        android:text="OPTIONS AND SETINGS"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2" />
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="61.7dp"
-        android:id="@+id/spinner1"
-        android:layout_marginTop="0.0dp" />
-    <TextView
-        android:text="Subjects"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:paddingTop="30dp"
+        android:paddingLeft="20dp"
+        android:textColor="@color/textColor"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView3" />
-    <ListView
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:layout_width="match_parent"
-        android:layout_height="58.9dp"
-        android:id="@+id/listView1"
-        android:layout_marginBottom="0.0dp"
-        android:layout_marginTop="0.0dp" />
-    <TextView
-        android:text="Vibration"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:padding="20dp">
+        <TextView
+            android:id="@+id/txtTimer"
+            android:text="Timer"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/textColor" />
+        <Spinner
+            android:id="@+id/spinTimeOptions"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:textColor="@color/textColor" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView4" />
-    <ToggleButton
+        android:padding="20dp">
+        <TextView
+            android:id="@+id/txtSubjectsOptions"
+            android:text="Subjects"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/textColor" />
+        <ListView
+            android:id="@+id/listSubjectsOptions"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:textColor="@color/textColor" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/toggleButton1" />
+        android:padding="20dp">
+        <TextView
+            android:id="@+id/txtVibrationOptions"
+            android:text="Vibration"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/textColor" />
+        <ToggleButton
+            android:id="@+id/toggleVibrationOptions"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2" />
+    </LinearLayout>
 </LinearLayout>
