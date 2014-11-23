@@ -37,12 +37,12 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataContracts\LoginOrRegisterResponseDto.cs" />
+    <Compile Include="DataContracts\GenericDTO.cs" />
     <Compile Include="DataContracts\QuestionDto.cs" />
     <Compile Include="DataContracts\SubjectDTO.cs" />
     <Compile Include="DataContracts\UserDTO.cs" />
-    <Compile Include="Enums\CategoryTypes.cs" />
-    <Compile Include="Enums\QuestionType.cs" />
+    <Compile Include="Enums\Enums.cs" />
+    <Compile Include="Enums\AlarmTimerType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

@@ -18,7 +18,7 @@ namespace WebAPI.DAL
 
         public DbSet<Question> Questions { get; set; }
         public DbSet<QuestionAnswer> QuestionAnswers { get; set; }
-        public DbSet<QuestionArea> QuestionAreas { get; set; }
+        //public DbSet<QuestionArea> QuestionAreas { get; set; }
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<User> Users { get; set; }
 
