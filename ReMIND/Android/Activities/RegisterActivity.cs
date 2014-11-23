@@ -38,23 +38,23 @@ namespace Android.Activities
                 txtEmail = (EditText)FindViewById(Resource.Id.txtEmail);
                 txtPassword = (EditText)FindViewById(Resource.Id.txtPassword);
 
-                btnLogin = (Button)FindViewById(Resource.Id.btnLogin);
+                btnLogin = (Button)FindViewById(Resource.Id.btnRegister);
                 if (btnLogin != null)
                 {
-                    btnLogin.Click += LoginUser;
+                    btnLogin.Click += RegisterUser;
                 }
             }
         }
 
-        private void LoginUser(object sender, EventArgs e)
+        private void RegisterUser(object sender, EventArgs e)
         {
             if (ValidateFields())
             {
-                UserDTO currentUser = MethodHelper.LoginOrRegister(txtEmail.Text, MD5Helper.GetMd5Hash(txtPassword.Text));
+                UserDTO currentUser = MethodHelper.LoginOrRegister(txtEmail.Text, txtEmail.Text, MD5Helper.GetMd5Hash(txtPassword.Text));
 
                 if (currentUser != null)
                 {
-                    btnLogin.Click -= LoginUser;
+                    btnLogin.Click -= RegisterUser;
                     RedirectToQuestionActivity();
                 }
                 else

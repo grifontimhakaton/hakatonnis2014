@@ -176,14 +176,14 @@ namespace Android
 			// aapt resource value: 0x7f080008
 			public const int txtRepeatPassword = 2131230728;
 			
+			// aapt resource value: 0x7f080007
+			public const int txtUsername1 = 2131230727;
+			
 			// aapt resource value: 0x7f080004
 			public const int txtViewPassword = 2131230724;
 			
 			// aapt resource value: 0x7f080003
 			public const int txtViewRegister = 2131230723;
-			
-			// aapt resource value: 0x7f080007
-			public const int username = 2131230727;
 			
 			static Id()
 			{
