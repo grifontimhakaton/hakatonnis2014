@@ -32,6 +32,7 @@ namespace Android.Activities
             RequestWindowFeature(WindowFeatures.NoTitle);
 
             StartNotifications(AlarmTimerType.Unknown);
+
             bool isUserLoggedIn = false;
             if (isUserLoggedIn)
             {
@@ -48,7 +49,7 @@ namespace Android.Activities
                 txtViewPassword = (TextView)FindViewById(Resource.Id.txtViewPassword);
 
                 txtViewRegister.SetOnTouchListener(this);
-                txtViewPassword.SetOnTouchListener(this);
+                //txtViewPassword.SetOnTouchListener(this);
 
                 btnLogin = (Button)FindViewById(Resource.Id.btnLogin);
                 if (btnLogin != null)
@@ -113,18 +114,17 @@ namespace Android.Activities
 
         bool View.IOnTouchListener.OnTouch(View v, MotionEvent e)
         {
-            int viewId = v.Id;
-            if (viewId == Resource.Id.txtViewRegister)
+            if (v.Id == Resource.Id.txtViewRegister)
             {
-                StartActivity(typeof(QuestionActivity));
+                StartActivity(typeof(RegisterActivity));
             }
-            else if (viewId == Resource.Id.txtViewPassword)
-            {
-                RunOnUiThread(() =>
-                    {
-                        Toast.MakeText(this, Resource.String.NotImplemented, ToastLength.Long);
-                    });
-            }
+            //else if (viewId == Resource.Id.txtViewPassword)
+            //{
+            //    RunOnUiThread(() =>
+            //        {
+            //            Toast.MakeText(this, Resource.String.NotImplemented, ToastLength.Long);
+            //        });
+            //}
             return true;
 
         }
