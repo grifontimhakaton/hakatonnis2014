@@ -22,6 +22,9 @@ namespace Android.Activities
         {
             base.OnCreate(bundle);
 
+            Window.SetFlags(WindowManagerFlags.Fullscreen, WindowManagerFlags.Fullscreen);
+            RequestWindowFeature(WindowFeatures.NoTitle);
+
             bool isUserLoggedIn = false;
 
             if (isUserLoggedIn)
