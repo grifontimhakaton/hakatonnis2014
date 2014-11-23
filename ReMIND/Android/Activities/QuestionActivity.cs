@@ -1,19 +1,17 @@
-﻿using System;
-using System.Net.Mime;
-using Android.App;
+﻿using Android.App;
 using Android.Content;
-using ReMinder.Helpers;
+using Android.Content.PM;
+using Android.OS;
 using Android.Preferences;
-using Android.Runtime;
-using ReMinder.Services;
 using Android.Views;
 using Android.Widget;
-using Android.OS;
-using Android.Content.PM;
+using Newtonsoft.Json;
+using ReMinder.Adapters;
+using ReMinder.Helpers;
 using SharedPCL.DataContracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using ReMinder.Adapters;
 
 namespace ReMinder.Activities
 {
@@ -40,21 +38,26 @@ namespace ReMinder.Activities
             userId = localSettings.GetInt(Helpers.Constants.USER_ID, 0);
             if (userId > 0)
             {
-            txtQuestion = (TextView)FindViewById(Resource.Id.txtQuestion);
+                txtQuestion = (TextView)FindViewById(Resource.Id.txtQuestion);
 
-            listAnswers = (ListView)FindViewById(Resource.Id.listAnswers);
+                listAnswers = (ListView)FindViewById(Resource.Id.listAnswers);
 
-            btnClose = (Button)FindViewById(Resource.Id.btnClose);
-            btnClose.Click += CloseReMinder;
+                btnClose = (Button)FindViewById(Resource.Id.btnClose);
+                btnClose.Click += CloseReMinder;
 
-            btnNextQuestion = (Button)FindViewById(Resource.Id.btnNextQuestion);
-            btnNextQuestion.Click += BindNextQuestion;
+                btnNextQuestion = (Button)FindViewById(Resource.Id.btnNextQuestion);
+                btnNextQuestion.Click += BindNextQuestion;
 
 
                 List<SubjectDTO> subjectList = MethodHelper.GetUserSubjects(userId);
                 List<SubjectDTO> userSubjects = subjectList.FindAll(subject => subject.UserSelected);
                 if (userSubjects.Count > 0)
                 {
+                    localSettings = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
+                    ISharedPreferencesEditor editor = localSettings.Edit();
+                    editor.PutString(Helpers.Constants.USER_SUBJECTS, JsonConvert.SerializeObject(userSubjects));
+                    editor.Apply();
+
                     foreach (var subject in userSubjects)
                     {
                         questionList.AddRange(MethodHelper.GetQuestions(userId, subject.SubjectID));
@@ -168,9 +171,9 @@ namespace ReMinder.Activities
         private void OnAnswerClicked(object sender, Android.Widget.AdapterView.ItemClickEventArgs e)
         {
             var questionAnswer = currentQuestion.QuestionAnswers[e.Position];
-            
+
             var selectedRowImage = (ImageView)e.Parent.GetChildAt(e.Position).FindViewById(Resource.Id.imgCheckmark);
-            var textView = (TextView) e.Parent.GetChildAt(e.Position).FindViewById(Resource.Id.txtAnswerEnum);
+            var textView = (TextView)e.Parent.GetChildAt(e.Position).FindViewById(Resource.Id.txtAnswerEnum);
             textView.SetTextColor(Resources.GetColor(Resource.Color.action_bar_background));
 
             var textViewAnswer = (TextView)e.Parent.GetChildAt(e.Position).FindViewById(Resource.Id.txtAnswerText);
@@ -178,19 +181,19 @@ namespace ReMinder.Activities
             textViewAnswer.SetBackgroundDrawable(Resources.GetDrawable(Resource.Drawable.QuestionSingleRowStylePurple));
             var scale = Resources.DisplayMetrics.Density;
             var padding_5dp = (int)(5 * scale + 0.5f);
-            textViewAnswer.SetPadding(padding_5dp,0,0,0);
+            textViewAnswer.SetPadding(padding_5dp, 0, 0, 0);
 
             if (!questionAnswer.Correct)
             {
                 selectedRowImage.SetImageResource(Resource.Drawable.crossmark);
-                
+
                 int correctAnswerIndex = currentQuestion.QuestionAnswers.FindIndex(item => item.Correct);
                 if (correctAnswerIndex > -1)
                 {
                     var selectedRowCorrectImage = (ImageView)e.Parent.GetChildAt(correctAnswerIndex).FindViewById(Resource.Id.imgCheckmark);
                     selectedRowCorrectImage.SetImageResource(Resource.Drawable.checkmark);
                 }
-                }
+            }
             else
             {
                 selectedRowImage.SetImageResource(Resource.Drawable.checkmark);

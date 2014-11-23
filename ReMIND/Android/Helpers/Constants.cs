@@ -17,7 +17,7 @@ namespace ReMinder.Helpers
         public const string USER_ID = "UserId";
         public const string ALARM_TIMER_TYPE = "AlarmTimerType";
         public const string RAISE_NOTIFICATION = "RaiseNotification";
-        public const string USER_CATEGORIES = "Category";
+        public const string USER_SUBJECTS = "UserSubjects";
 
         public const string Digits = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     }

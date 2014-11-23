@@ -4,6 +4,9 @@ using Android.App;
 using Android.Content;
 using Android.Preferences;
 using SharedPCL.Enums;
+using System.Collections.Generic;
+using SharedPCL.DataContracts;
+using Newtonsoft.Json;
 
 namespace ReMinder.Services
 {
@@ -71,7 +74,20 @@ namespace ReMinder.Services
                 return;
             }
 
-            var category = prefs.GetString(Helpers.Constants.USER_CATEGORIES, "Test");
+            var subject = prefs.GetString(Helpers.Constants.USER_SUBJECTS, "More");
+            try
+            {
+                List<SubjectDTO> userSubjectList = JsonConvert.DeserializeObject<List<SubjectDTO>>(subject);
+                SubjectDTO randomUserSubject = userSubjectList.Find(item => item.UserSelected);
+                if (randomUserSubject != null)
+                {
+                    subject = randomUserSubject.SubjectName;
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+
             var notificationManager = (NotificationManager)context.GetSystemService(Context.NotificationService);
             var builder = new Notification.Builder(context);
             var intent = new Intent(context, typeof(LoginActivity));
@@ -83,7 +99,7 @@ namespace ReMinder.Services
                 .SetContentTitle("ReMind") // Set the title
                 .SetNumber(RemindedTimes) // Display the count in the Content Info
                 .SetSmallIcon(Resource.Drawable.reminder_icon) // This is the icon to display
-                .SetContentText(String.Format("New question from category: {0}", category))
+                .SetContentText(String.Format("New question from subject: {0}", subject))
                 .SetDefaults((NotificationDefaults.Sound | NotificationDefaults.Vibrate | NotificationDefaults.Lights)); // the message to display.
 
             notificationManager.Notify(ButtonClickNotificationId, builder.Build());

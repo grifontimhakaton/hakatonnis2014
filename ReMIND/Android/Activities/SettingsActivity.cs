@@ -42,11 +42,10 @@ namespace ReMinder.Activities
                 var spinnerStrings = spinnerValues.Select(x => string.Format("Every {0} mins", (int)x)).ToArray();
 
                 Spinner spinner = FindViewById<Spinner>(Resource.Id.spinTimeOptions);
-                spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(spinner_ItemSelected);
                 var adapter = new ArrayAdapter<String>(this, Resource.Drawable.SpinnerTextView, spinnerStrings);
-
                 spinner.Adapter = adapter;
                 spinner.SetSelection(selectedPosition);
+                spinner.ItemSelected += spinner_ItemSelected;
 
                 subjectList = MethodHelper.GetUserSubjects(userId);
                 string[] items = subjectList.Select(subject => subject.SubjectName).ToArray();
