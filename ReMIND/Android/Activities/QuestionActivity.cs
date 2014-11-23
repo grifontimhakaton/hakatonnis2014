@@ -151,7 +151,7 @@ namespace ReMinder.Activities
             var rnd = new Random();
 
             currentQuestion = questionList[rnd.Next(0, questionList.Count)];
-            txtQuestion.Text = currentQuestion.QuestionText;
+            txtQuestion.Text = currentQuestion.QuestionText != null ? currentQuestion.QuestionText.ToUpper() : string.Empty;
             //RefitText(txtQuestion.Text, 700);
 
             listAnswers.ItemClick += OnAnswerClicked;
