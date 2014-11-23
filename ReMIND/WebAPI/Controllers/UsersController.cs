@@ -25,9 +25,9 @@ namespace WebAPI.Controllers
             User user = db.Users.Where(x => x.Email == email && x.PasswordHash == passwordMD5).FirstOrDefault();
             if (user == null)
             {
-                return NotFound();
+                return Ok(new UserDTO() { Status = SharedPCL.Enums.UserStatus.NotFound });
             }
-            return Ok(new UserDTO() { FullName = user.FullName, ID = user.ID});
+            return Ok(new UserDTO() { FullName = user.FullName, ID = user.ID, Status = SharedPCL.Enums.UserStatus.OK });
         }
 
 
@@ -38,7 +38,7 @@ namespace WebAPI.Controllers
             User user = db.Users.Where(x => x.Email == email).FirstOrDefault();
             if (user != null)
             {
-                return NotFound();
+                return Ok(new UserDTO() { Status = SharedPCL.Enums.UserStatus.EmailExists });
             }
             user = new User()
             {
@@ -49,11 +49,8 @@ namespace WebAPI.Controllers
             db.Users.Add(user);
             db.SaveChanges();
 
-            return Ok(new UserDTO() { FullName = user.FullName, ID = user.ID });
+            return Ok(new UserDTO() { FullName = user.FullName, ID = user.ID, Status = SharedPCL.Enums.UserStatus.OK });
         }
-
-
-
 
         //// GET api/Users
         //public IQueryable<User> GetUsers()

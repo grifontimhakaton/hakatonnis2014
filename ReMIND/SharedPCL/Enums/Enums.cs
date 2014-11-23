@@ -6,11 +6,5 @@ using System.Threading.Tasks;
 
 namespace SharedPCL.Enums
 {
-    public enum CategoryTypes
-    {
-        Mathematics = 1,
-        Geography,
-        Medicine,
-        Art
-    }
+    public enum UserStatus { OK = 1, EmailExists, NotFound };
 }

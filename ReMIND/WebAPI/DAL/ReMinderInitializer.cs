@@ -18,8 +18,25 @@ namespace WebAPI.DAL
             //sqllocaldb.exe delete v11.0
             //sqllocaldb.exe start v11.0
 
-            //TODO
-            //Test Questions initialization
+
+            Subject s = new Subject();
+            s.SubjectTitle = "Fizika";
+            s.SubjectDescription = "Lorem Opsta Fizika Ipsum";
+
+            context.Subjects.Add(s);
+            context.SaveChanges();
+
+            User testUser = new User();
+            testUser.Email = "test@email.com";
+            testUser.FullName = "Mr. Test User";
+            testUser.PasswordHash = Helpers.MD5Helper.GetMd5Hash("123456aaa");
+
+            testUser.Subjects = new List<Subject>();
+            testUser.Subjects.Add(s);
+
+            context.Users.Add(testUser);
+            context.SaveChanges(); 
+
             var stream = System.IO.File.Open(System.Web.HttpContext.Current.Server.MapPath(@"~/TestData/pitanja_3.xlsx"), FileMode.Open, FileAccess.Read);
             var excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
             excelReader.IsFirstRowAsColumnNames = true;
@@ -34,6 +51,7 @@ namespace WebAPI.DAL
                     Question q = new Question();
                     q.QuestionText = row[0].ToString();
                     q.QuestionExplanation = row[5].ToString();
+                    q.Subject = s;
 
                     context.Questions.Add(q);
                     context.SaveChanges();

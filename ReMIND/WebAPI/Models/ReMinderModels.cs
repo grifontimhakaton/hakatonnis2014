@@ -19,7 +19,9 @@ namespace WebAPI.Models
 
         //links
         public virtual ICollection<QuestionAnswer> QuestionAnswers { get; set; }
-        public virtual ICollection<QuestionArea> QuestionAreas { get; set; }
+        public virtual Subject Subject { get; set; }
+        public virtual ICollection<User> Users { get; set; }
+        //public virtual ICollection<QuestionArea> QuestionAreas { get; set; }
     }
 
     public class QuestionAnswer
@@ -32,20 +34,21 @@ namespace WebAPI.Models
 
         //links
         public virtual Question Question { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 
-    public class QuestionArea
-    {
-        [Key]
-        public int ID { get; set; }
-        public string QuestionAreaTitle { get; set; }
-        public string QuestionAreaDescription { get; set; }
+    //public class QuestionArea
+    //{
+    //    [Key]
+    //    public int ID { get; set; }
+    //    public string QuestionAreaTitle { get; set; }
+    //    public string QuestionAreaDescription { get; set; }
 
-        //links
-        public virtual QuestionArea ParentArea { get; set; }
-        public virtual ICollection<Question> Questions { get; set; }
-        public virtual ICollection<Subject> Subjects { get; set; }
-    }
+    //    //links
+    //    public virtual QuestionArea ParentArea { get; set; }
+    //    public virtual ICollection<Question> Questions { get; set; }
+    //    public virtual ICollection<Subject> Subjects { get; set; }
+    //}
 
     public class Subject
     {
@@ -54,7 +57,8 @@ namespace WebAPI.Models
         public string SubjectTitle { get; set; }
         public string SubjectDescription { get; set; }
 
-        public virtual ICollection<QuestionArea> Questions { get; set; }
+        public virtual ICollection<Question> Questions { get; set; }
+        //public virtual ICollection<QuestionArea> Questions { get; set; }
         public virtual ICollection<User> Users { get; set; }
     }
 
@@ -68,8 +72,9 @@ namespace WebAPI.Models
 
         //links
         public virtual ICollection<Subject> Subjects { get; set; }
-        public virtual ICollection<QuestionArea> QuestionAreas { get; set; }
+        //public virtual ICollection<QuestionArea> QuestionAreas { get; set; }
         public virtual ICollection<QuestionAnswer> QuestionAnswers { get; set; }
+        public virtual ICollection<Question> Questions { get; set; }
     }
 
 }

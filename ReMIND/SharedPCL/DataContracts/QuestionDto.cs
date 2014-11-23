@@ -1,14 +1,21 @@
 ﻿using System.Collections.Generic;
-using SharedPCL.Enums;
 
 namespace SharedPCL.DataContracts
 {
-    public class QuestionDto
+    public class QuestionDTO
     {
-        public int Id { get; set; } // Remove if not needed
-        public string Text { get; set; }
-        public QuestionType QuestionType { get; set; }
-        public List<string> Answers { get; set; }
+        public int Id { get; set; }
+        public string QuestionText { get; set; }
+        public string QuestionTitle { get; set; }
+        public string QuestionExplanation { get; set; }
 
+        public List<QuestionAnswerDTO> QuestionAnswers { get; set; }
+    }
+
+    public class QuestionAnswerDTO
+    {
+        public int Id { get; set; }
+        public string QuestionAnswerText { get; set; }
+        public bool Correct { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SharedPCL.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +11,6 @@ namespace SharedPCL.DataContracts
     {
         public string FullName { get; set; }
         public int ID { get; set; }
+        public UserStatus Status { get; set; }
     }
 }
