@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-  <style name="ReMinderTheme" parent="android:Theme">
-      <item name="android:colorBackground">@color/menu_background</item>
+  <style name="ReMinderTheme" parent="android:Theme.Holo">
+    <item name="android:actionBarStyle">@style/ReMinder.ActionBar</item>
+  </style>
+
+  <style name="ReMinder.ActionBar" parent="android:Widget.Holo.ActionBar.Solid">
+    <item name="android:background">@color/action_bar_background</item>
   </style>
 </resources>

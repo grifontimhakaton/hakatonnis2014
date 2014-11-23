@@ -19,7 +19,7 @@ namespace Android.Helpers
         {
             ISharedPreferences localSettings = PreferenceManager.GetDefaultSharedPreferences(context);
             ISharedPreferencesEditor editor = localSettings.Edit();
-            editor.PutBoolean("RaiseNotification", false);
+            editor.PutBoolean(Helpers.Constants.RAISE_NOTIFICATION, false);
             editor.Apply();
         }
 
@@ -27,7 +27,7 @@ namespace Android.Helpers
         {
             ISharedPreferences localSettings = PreferenceManager.GetDefaultSharedPreferences(context);
             ISharedPreferencesEditor editor = localSettings.Edit();
-            editor.PutBoolean("RaiseNotification", true);
+            editor.PutBoolean(Helpers.Constants.RAISE_NOTIFICATION, true);
             editor.Apply();
         }
     }
