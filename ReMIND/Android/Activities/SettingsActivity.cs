@@ -29,6 +29,15 @@ namespace ReMinder.Activities
 
             adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             spinner.Adapter = adapter;
+
+            string[] items = new string[] { "Option 1", "Option 2", "Option 3" };
+
+            var ListAdapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItemChecked, items);
+
+            ListView lv = FindViewById<ListView>(Resource.Id.listView1);
+            lv.ChoiceMode = Android.Widget.ChoiceMode.Multiple;
+            lv.Adapter = ListAdapter;
+
         }
 
         private void spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)

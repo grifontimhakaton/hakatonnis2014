@@ -11,6 +11,8 @@ using Android.OS;
 using Android.Content.PM;
 using SharedPCL.DataContracts;
 using System.Collections.Generic;
+using System.Linq;
+using ReMinder.Adapters;
 
 namespace ReMinder.Activities
 {
@@ -18,15 +20,26 @@ namespace ReMinder.Activities
     public class QuestionActivity : Activity
     {
         private int userId;
+        private List<SubjectDTO> subjectList = new List<SubjectDTO>();
+        private List<QuestionDTO> questionList = new List<QuestionDTO>();
+
+        private TextView txtQuestion;
+        private ListView listAnswers;
+        private Button btnClose;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+            SetContentView(Resource.Layout.Question);
 
             ISharedPreferences localSettings = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
             userId = localSettings.GetInt(Helpers.Constants.USER_ID, 0);
 
-            List<QuestionDTO> questionList = new List<QuestionDTO>();
+            txtQuestion = (TextView)FindViewById(Resource.Id.txtQuestion);
+            listAnswers = (ListView)FindViewById(Resource.Id.listAnswers);
+            btnClose = (Button)FindViewById(Resource.Id.btnClose);
+
+            btnClose.Click += CloseReMinder;
 
             if(userId > 0)
             {
@@ -35,9 +48,22 @@ namespace ReMinder.Activities
                 {
                     questionList.AddRange(MethodHelper.GetQuestions(userId, subject.SubjectID));
                 }
-            }
 
-            SetContentView(Resource.Layout.Question);
+                if(questionList.Count > 0)
+                {
+                    var question = questionList[0];
+                    txtQuestion.Text = question.QuestionText;
+                    if (question.QuestionAnswers.Count > 1)
+                    {
+                        listAnswers.Adapter = new AnswerAdapter(this, question.QuestionAnswers.Select(x => x.QuestionAnswerText).ToArray());
+                        listAnswers.ItemClick += OnAnswerClicked;
+                    }
+                    else
+                    {
+                        //TODO Add data for answer to read user
+                    }
+                }
+            }
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -66,7 +92,6 @@ namespace ReMinder.Activities
             StartActivity(typeof(SettingsActivity));
         }
 
-
         protected override void OnPause()
         {
             base.OnPause();
@@ -77,6 +102,16 @@ namespace ReMinder.Activities
         {
             base.OnResume();
             NotificationHelper.OnResumeActivity(this.BaseContext);
+        }
+
+        private void OnAnswerClicked(object sender, EventArgs e)
+        {
+            var test = 1;
+        }
+
+        private void CloseReMinder(object sender, EventArgs e)
+        {
+            Finish();
         }
     }
 }

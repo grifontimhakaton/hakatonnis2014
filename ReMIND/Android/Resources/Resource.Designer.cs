@@ -186,17 +186,32 @@ namespace ReMinder
 			// aapt resource value: 0x7f090008
 			public const int listAnswers = 2131296264;
 			
+			// aapt resource value: 0x7f090013
+			public const int listView1 = 2131296275;
+			
+			// aapt resource value: 0x7f090016
+			public const int mainMenu = 2131296278;
+			
+			// aapt resource value: 0x7f090017
+			public const int overflowMenuItem = 2131296279;
+			
 			// aapt resource value: 0x7f090011
-			public const int mainMenu = 2131296273;
-			
-			// aapt resource value: 0x7f090012
-			public const int overflowMenuItem = 2131296274;
-			
-			// aapt resource value: 0x7f090010
-			public const int spinner1 = 2131296272;
+			public const int spinner1 = 2131296273;
 			
 			// aapt resource value: 0x7f09000f
 			public const int textView1 = 2131296271;
+			
+			// aapt resource value: 0x7f090010
+			public const int textView2 = 2131296272;
+			
+			// aapt resource value: 0x7f090012
+			public const int textView3 = 2131296274;
+			
+			// aapt resource value: 0x7f090014
+			public const int textView4 = 2131296276;
+			
+			// aapt resource value: 0x7f090015
+			public const int toggleButton1 = 2131296277;
 			
 			// aapt resource value: 0x7f090001
 			public const int txtEmail = 2131296257;

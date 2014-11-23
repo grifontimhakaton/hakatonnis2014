@@ -11,18 +11,39 @@
         android:id="@+id/textView1"
         android:layout_marginBottom="0.0dp"
         android:layout_marginLeft="0.0dp" />
+    <TextView
+        android:text="Timer"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2" />
     <Spinner
         android:layout_width="match_parent"
-        android:layout_height="171.2dp"
+        android:layout_height="61.7dp"
         android:id="@+id/spinner1"
-        android:layout_marginBottom="91.2dp"
         android:layout_marginTop="0.0dp" />
-    <Button
-        android:id="@+id/btnClose"
-        android:layout_width="372.3dp"
-        android:layout_height="110.6dp"
-        android:layout_weight="1"
-        android:text="@string/Close"
-        android:layout_marginTop="0.0dp"
-        android:layout_marginRight="29.5dp" />
+    <TextView
+        android:text="Subjects"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3" />
+    <ListView
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="58.9dp"
+        android:id="@+id/listView1"
+        android:layout_marginBottom="0.0dp"
+        android:layout_marginTop="0.0dp" />
+    <TextView
+        android:text="Vibration"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4" />
+    <ToggleButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toggleButton1" />
 </LinearLayout>
