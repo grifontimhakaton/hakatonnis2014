@@ -29,7 +29,7 @@ namespace Android.Services
         {
             //read prefs 
             ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences (this.BaseContext);
-            var alarmTimerType = prefs.GetInt("AlarmTimerType", 1);
+            var alarmTimerType = prefs.GetInt(Helpers.Constants.ALARM_TIMER_TYPE, 1);
             RemindedTimes = 0;
 
 
@@ -75,8 +75,8 @@ namespace Android.Services
         {
             RemindedTimes ++;
             ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
-            RaiseNotification = prefs.GetBoolean("RaiseNotification", false);
-            var alarmTimerType = (AlarmTimerType) prefs.GetInt("AlarmTimerType", 1);
+            RaiseNotification = prefs.GetBoolean(Helpers.Constants.RAISE_NOTIFICATION, false);
+            var alarmTimerType = (AlarmTimerType)prefs.GetInt(Helpers.Constants.ALARM_TIMER_TYPE, 1);
             if (!RaiseNotification || alarmTimerType == AlarmTimerType.None || alarmTimerType == AlarmTimerType.Unknown)
             {
                 return;

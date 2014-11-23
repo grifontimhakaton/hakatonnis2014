@@ -28,8 +28,8 @@ namespace Android.Activities
             //write
             ISharedPreferences localSettings = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
             ISharedPreferencesEditor editor = localSettings.Edit();
-            editor.PutInt("AlarmTimerType", (int) alarmTimerType);
-            editor.PutBoolean("RaiseNotification", true);
+            editor.PutInt(Helpers.Constants.ALARM_TIMER_TYPE, (int) alarmTimerType);
+            editor.PutBoolean(Helpers.Constants.RAISE_NOTIFICATION, true);
             editor.Apply();
             
             StartService(new Intent(this, typeof(AlarmService)));

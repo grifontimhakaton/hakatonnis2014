@@ -46,7 +46,7 @@ namespace Android
 		{
 			
 			// aapt resource value: 0x7f050000
-			public const int menu_background = 2131034112;
+			public const int action_bar_background = 2131034112;
 			
 			// aapt resource value: 0x7f050002
 			public const int textColor = 2131034114;
@@ -149,8 +149,8 @@ namespace Android
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f080006
-			public const int btnClose = 2131230726;
+			// aapt resource value: 0x7f080008
+			public const int btnClose = 2131230728;
 			
 			// aapt resource value: 0x7f080005
 			public const int btnLogin = 2131230725;
@@ -173,17 +173,17 @@ namespace Android
 			// aapt resource value: 0x7f080002
 			public const int txtPassword = 2131230722;
 			
-			// aapt resource value: 0x7f080008
-			public const int txtRepeatPassword = 2131230728;
-			
 			// aapt resource value: 0x7f080007
-			public const int txtUsername1 = 2131230727;
+			public const int txtRepeatPassword = 2131230727;
 			
 			// aapt resource value: 0x7f080004
 			public const int txtViewPassword = 2131230724;
 			
 			// aapt resource value: 0x7f080003
 			public const int txtViewRegister = 2131230723;
+			
+			// aapt resource value: 0x7f080008
+			public const int username = 2131230728;
 			
 			static Id()
 			{
@@ -299,6 +299,9 @@ namespace Android
 		
 		public partial class Style
 		{
+			
+			// aapt resource value: 0x7f060001
+			public const int ReMinder_ActionBar = 2131099649;
 			
 			// aapt resource value: 0x7f060000
 			public const int ReMinderTheme = 2131099648;

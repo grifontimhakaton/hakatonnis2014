@@ -15,5 +15,7 @@ namespace Android.Helpers
     public static class Constants
     {
         public const string USER_ID = "UserId";
+        public const string ALARM_TIMER_TYPE = "AlarmTimerType";
+        public const string RAISE_NOTIFICATION = "RaiseNotification";
     }
 }

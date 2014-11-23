@@ -9,15 +9,28 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Android.Content.PM;
+using SharedPCL.DataContracts;
+using System.Collections.Generic;
 
 namespace Android.Activities
 {
     [Activity(ScreenOrientation = ScreenOrientation.Portrait)]
     public class QuestionActivity : Activity
     {
+        private int userId;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+
+            ISharedPreferences localSettings = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
+            userId = localSettings.GetInt(Helpers.Constants.USER_ID, 0);
+
+            if(userId > 0)
+            {
+                List<SubjectDTO> subjectList = MethodHelper.GetUserSubjects(userId);
+            }
+
             SetContentView(Resource.Layout.Question);
         }
 
@@ -57,6 +70,9 @@ namespace Android.Activities
         protected override void OnResume()
         {
             base.OnResume();
+
+
+
             NotificationHelper.OnResumeActivity(this.BaseContext);
         }
     }
