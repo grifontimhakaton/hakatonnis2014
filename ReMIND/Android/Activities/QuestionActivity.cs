@@ -41,7 +41,6 @@ namespace ReMinder.Activities
             txtQuestion = (TextView)FindViewById(Resource.Id.txtQuestion);
 
             listAnswers = (ListView)FindViewById(Resource.Id.listAnswers);
-            listAnswers.ItemClick += OnAnswerClicked;
 
             btnClose = (Button)FindViewById(Resource.Id.btnClose);
             btnClose.Click += CloseReMinder;
@@ -139,11 +138,15 @@ namespace ReMinder.Activities
 
         private void BindQuestionWithAnswers()
         {
+            listAnswers.ItemClick -= OnAnswerClicked;
             var rnd = new Random();
 
             currentQuestion = questionList[rnd.Next(0, questionList.Count)];
             txtQuestion.Text = currentQuestion.QuestionText;
             RefitText(txtQuestion.Text, 700);
+
+            listAnswers.ItemClick += OnAnswerClicked;
+
             if (currentQuestion.QuestionAnswers.Count > 1)
             {
                 currentQuestion.QuestionAnswers = currentQuestion.QuestionAnswers.OrderBy(item => rnd.Next()).ToList();
@@ -176,6 +179,7 @@ namespace ReMinder.Activities
             //    textView.SetTextColor(Resources.GetColor(Resource.Color.textColor));
             //}
 
+            listAnswers.ItemClick -= OnAnswerClicked;
 
             if (MethodHelper.AnswerQuestion(questionAnswer.Id, userId))
             {
