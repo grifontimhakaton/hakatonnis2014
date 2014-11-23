@@ -46,16 +46,18 @@
             android:text="Subjects"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
             android:layout_weight="1"
+            android:gravity="left|center"
             android:textColor="@color/textColor" />
-        <ListView
-            android:id="@+id/listSubjectsOptions"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+        <Spinner
+            android:id="@+id/spinCategoryOptions"
+            android:gravity="center"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
-            android:textColor="@color/textColor" />
+            android:textSize="20dp"
+            android:textColor="@color/black" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"

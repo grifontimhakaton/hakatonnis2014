@@ -49,11 +49,15 @@ namespace ReMinder.Activities
                 subjectList = MethodHelper.GetUserSubjects(userId);
                 string[] items = subjectList.Select(subject => subject.SubjectName).ToArray();
 
-                var ListAdapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItemChecked, items);
+                Spinner categorySpinner = FindViewById<Spinner>(Resource.Id.spinCategoryOptions);
+                //var ListAdapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItemChecked, items);
+                var listAdapter = new ArrayAdapter<String>(this, Resource.Drawable.SpinnerTextView, items);
+                categorySpinner.Adapter = listAdapter;
+                categorySpinner.SetSelection(0);
 
-                ListView listSubjectsOptions = FindViewById<ListView>(Resource.Id.listSubjectsOptions);
-                listSubjectsOptions.ChoiceMode = Android.Widget.ChoiceMode.Multiple;
-                listSubjectsOptions.Adapter = ListAdapter;
+                //ListView listSubjectsOptions = FindViewById<ListView>(Resource.Id.listSubjectsOptions);
+                //listSubjectsOptions.ChoiceMode = Android.Widget.ChoiceMode.Multiple;
+                //listSubjectsOptions.Adapter = ListAdapter;
             }
             else
             {
