@@ -18,9 +18,6 @@ namespace Android.Activities
         EditText txtEmail;
         EditText txtPassword;
 
-        TextView txtViewRegister;
-        TextView txtViewPassword;
-
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -36,7 +33,7 @@ namespace Android.Activities
             }
             else
             {
-                SetContentView(Resource.Layout.Login);
+                SetContentView(Resource.Layout.Register);
 
                 txtEmail = (EditText)FindViewById(Resource.Id.txtEmail);
                 txtPassword = (EditText)FindViewById(Resource.Id.txtPassword);

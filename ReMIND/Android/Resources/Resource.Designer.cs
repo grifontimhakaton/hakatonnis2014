@@ -184,7 +184,10 @@ namespace Android
 			public const int Question = 2130903041;
 			
 			// aapt resource value: 0x7f030002
-			public const int Settings = 2130903042;
+			public const int Register = 2130903042;
+			
+			// aapt resource value: 0x7f030003
+			public const int Settings = 2130903043;
 			
 			static Layout()
 			{
