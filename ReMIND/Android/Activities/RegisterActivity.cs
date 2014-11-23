@@ -11,8 +11,8 @@ using Android.Content.PM;
 
 namespace Android.Activities
 {
-    [Activity(Label = "ReMinder", MainLauncher = true, NoHistory = true, ScreenOrientation = ScreenOrientation.Portrait)]
-    public class LoginActivity : Activity, View.IOnTouchListener
+    [Activity(ScreenOrientation = ScreenOrientation.Portrait)]
+    public class RegisterActivity : Activity
     {
         Button btnLogin;
         EditText txtEmail;
@@ -40,12 +40,6 @@ namespace Android.Activities
 
                 txtEmail = (EditText)FindViewById(Resource.Id.txtEmail);
                 txtPassword = (EditText)FindViewById(Resource.Id.txtPassword);
-
-                txtViewRegister = (TextView)FindViewById(Resource.Id.txtViewRegister);
-                txtViewPassword = (TextView)FindViewById(Resource.Id.txtViewPassword);
-
-                txtViewRegister.SetOnTouchListener(this);
-                txtViewPassword.SetOnTouchListener(this);
 
                 btnLogin = (Button)FindViewById(Resource.Id.btnLogin);
                 if (btnLogin != null)
@@ -105,23 +99,6 @@ namespace Android.Activities
         private void RedirectToQuestionActivity()
         {
             StartActivity(typeof(QuestionActivity));
-        }
-
-        bool View.IOnTouchListener.OnTouch(View v, MotionEvent e)
-        {
-            int viewId = v.Id;
-            if (viewId == Resource.Id.txtViewRegister)
-            {
-                StartActivity(typeof(QuestionActivity));
-            }
-            else if (viewId == Resource.Id.txtViewPassword)
-            {
-                RunOnUiThread(() =>
-                    {
-                        Toast.MakeText(this, Resource.String.NotImplemented, ToastLength.Long);
-                    });
-            }
-            return true;
         }
     }
 }
