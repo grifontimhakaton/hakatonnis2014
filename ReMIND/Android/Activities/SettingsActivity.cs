@@ -42,7 +42,8 @@ namespace ReMinder.Activities
 
                 Spinner spinner = FindViewById<Spinner>(Resource.Id.spinTimeOptions);
                 spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(spinner_ItemSelected);
-                var adapter = new ArrayAdapter<String>(this, Resource.Drawable.SpinnerTextView, spinnerValues);
+                var adapter = new ArrayAdapter<String>(this, Resource.Drawable.SpinnerTextView, spinnerStrings);
+
                 spinner.Adapter = adapter;
                 spinner.SetSelection(selectedPosition);
 
