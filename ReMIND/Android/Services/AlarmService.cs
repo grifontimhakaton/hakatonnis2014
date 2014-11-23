@@ -37,9 +37,7 @@ namespace ReMinder.Services
             _timer = new System.Threading.Timer((o) =>
             {
                 buildNotification(this);
-                //Log.Debug("SimpleService", "hello from simple service");
-            }
-                , null, 0, time);
+            }, null, 0, time);
         }
 
         private int GetTime(AlarmTimerType alarmTimerType)
@@ -74,10 +72,10 @@ namespace ReMinder.Services
 
         private void buildNotification(Context context)
         {
-            RemindedTimes ++;
+            RemindedTimes++;
             ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
             RaiseNotification = prefs.GetBoolean(Helpers.Constants.RAISE_NOTIFICATION, false);
-            var alarmTimerType = (AlarmTimerType) prefs.GetInt(Helpers.Constants.ALARM_TIMER_TYPE, 1);
+            var alarmTimerType = (AlarmTimerType)prefs.GetInt(Helpers.Constants.ALARM_TIMER_TYPE, 1);
             var isFromLoging = prefs.GetBoolean("IsFromLogin", false);
             if (!RaiseNotification || alarmTimerType == AlarmTimerType.None || isFromLoging)
             {
@@ -85,24 +83,20 @@ namespace ReMinder.Services
             }
 
             var category = prefs.GetString("Category", "Test");
-            var notificationManager = (NotificationManager) context.GetSystemService(Context.NotificationService);
+            var notificationManager = (NotificationManager)context.GetSystemService(Context.NotificationService);
             var builder = new Notification.Builder(context);
-            var intent = new Intent(context, typeof (QuestionActivity));
+            var intent = new Intent(context, typeof(LoginActivity));
             var pendingIntent = PendingIntent.GetActivity(context, 0, intent, 0);
 
             builder
                 .SetAutoCancel(true) // dismiss the notification from the notification area when the user clicks on it
                 .SetContentIntent(pendingIntent) // start up this activity when the user clicks the intent.
-                .SetContentTitle("ReMinded Bitch!!") // Set the title
+                .SetContentTitle("ReMind") // Set the title
                 .SetNumber(RemindedTimes) // Display the count in the Content Info
                 .SetSmallIcon(Resource.Drawable.reminder_icon) // This is the icon to display
                 .SetContentText(String.Format("New question from category: {0}", category))
                 .SetDefaults((NotificationDefaults.Sound | NotificationDefaults.Vibrate | NotificationDefaults.Lights)); // the message to display.
 
-
-            //Notification notification = builder.GetNotification();
-            //notificationManager.notify(R.drawable.ic_launcher, notification);
-            //var notificationManager = (NotificationManager)GetSystemService(Context.NotificationService);
             notificationManager.Notify(ButtonClickNotificationId, builder.Build());
             RemindedTimes = 0;
         }

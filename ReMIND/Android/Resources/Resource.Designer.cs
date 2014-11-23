@@ -129,34 +129,37 @@ namespace ReMinder
 			public const int logo_login = 2130837518;
 			
 			// aapt resource value: 0x7f02000f
-			public const int password = 2130837519;
+			public const int monoandroidsplash = 2130837519;
 			
 			// aapt resource value: 0x7f020010
-			public const int qna_bkg = 2130837520;
+			public const int password = 2130837520;
 			
 			// aapt resource value: 0x7f020011
-			public const int QuestionsCloseButton = 2130837521;
+			public const int qna_bkg = 2130837521;
 			
 			// aapt resource value: 0x7f020012
-			public const int QuestionTextView = 2130837522;
+			public const int QuestionsCloseButton = 2130837522;
 			
 			// aapt resource value: 0x7f020013
-			public const int register_bkg = 2130837523;
+			public const int QuestionTextView = 2130837523;
 			
 			// aapt resource value: 0x7f020014
-			public const int reminder_icon = 2130837524;
+			public const int register_bkg = 2130837524;
 			
 			// aapt resource value: 0x7f020015
-			public const int TransparentButton = 2130837525;
+			public const int reminder_icon = 2130837525;
 			
 			// aapt resource value: 0x7f020016
-			public const int TransparentButtonPressed = 2130837526;
+			public const int TransparentButton = 2130837526;
 			
 			// aapt resource value: 0x7f020017
-			public const int TransparentButtonSelected = 2130837527;
+			public const int TransparentButtonPressed = 2130837527;
 			
 			// aapt resource value: 0x7f020018
-			public const int user = 2130837528;
+			public const int TransparentButtonSelected = 2130837528;
+			
+			// aapt resource value: 0x7f020019
+			public const int user = 2130837529;
 			
 			static Drawable()
 			{
@@ -373,11 +376,14 @@ namespace ReMinder
 		public partial class Style
 		{
 			
-			// aapt resource value: 0x7f070001
-			public const int ReMinder_ActionBar = 2131165185;
-			
 			// aapt resource value: 0x7f070000
-			public const int ReMinderTheme = 2131165184;
+			public const int Mono_Android_Theme_Splash = 2131165184;
+			
+			// aapt resource value: 0x7f070002
+			public const int ReMinder_ActionBar = 2131165186;
+			
+			// aapt resource value: 0x7f070001
+			public const int ReMinderTheme = 2131165185;
 			
 			static Style()
 			{

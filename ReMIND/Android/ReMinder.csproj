@@ -80,7 +80,6 @@
     <Compile Include="Activities\RegisterActivity.cs" />
     <Compile Include="Activities\SettingsActivity.cs" />
     <Compile Include="Adapters\AnswerAdapter.cs" />
-    <Compile Include="BroadcastReceivers\NotificationSender.cs" />
     <Compile Include="Helpers\Constants.cs" />
     <Compile Include="Helpers\MD5Helper.cs" />
     <Compile Include="Helpers\MethodHelper.cs" />
@@ -215,6 +214,9 @@
       <Project>{0185f5f1-5b2d-4500-83e0-0ab118449a9d}</Project>
       <Name>SharedPCL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BroadcastReceivers\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
