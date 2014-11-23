@@ -149,7 +149,6 @@ namespace ReMinder.Activities
                 currentQuestion.QuestionAnswers = currentQuestion.QuestionAnswers.OrderBy(item => rnd.Next()).ToList();
 
                 listAnswers.Adapter = new AnswerAdapter(this, currentQuestion.QuestionAnswers.Select(x => x.QuestionAnswerText).ToArray());
-                
             }
             else
             {
@@ -160,20 +159,22 @@ namespace ReMinder.Activities
         private void OnAnswerClicked(object sender, Android.Widget.AdapterView.ItemClickEventArgs e)
         {
             var questionAnswer = currentQuestion.QuestionAnswers[e.Position];
-
+            TextView textView = null;
             if (!questionAnswer.Correct)
             {
-                e.View.SetBackgroundColor(Android.Graphics.Color.Red);
                 int correctAnswerIndex = currentQuestion.QuestionAnswers.FindIndex(item => item.Correct);
                 if (correctAnswerIndex > -1)
                 {
-                    e.Parent.GetChildAt(correctAnswerIndex).SetBackgroundColor(Android.Graphics.Color.Green); ;
+                    //TextView correctTextView = (TextView)e.Parent.GetChildAt(correctAnswerIndex).FindViewById(Resource.Id.txtAnswerText);
+                    //textView.SetTextColor(Android.Graphics.Color.Green);
                 }
             }
-            else
-            {
-                e.View.SetBackgroundColor(Android.Graphics.Color.Green); ;
-            }
+
+            //textView = (TextView)e.View.FindViewById(Resource.Id.txtAnswerText);
+            //if (textView != null)
+            //{
+            //    textView.SetTextColor(Resources.GetColor(Resource.Color.textColor));
+            //}
 
 
             if (MethodHelper.AnswerQuestion(questionAnswer.Id, userId))
