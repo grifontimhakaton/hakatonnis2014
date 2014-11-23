@@ -9,7 +9,6 @@ using SharedPCL.DataContracts;
 using Android.Helpers;
 using Android.Content.PM;
 using Android.Preferences;
-using SharedPCL.Enums;
 
 namespace Android.Activities
 {
