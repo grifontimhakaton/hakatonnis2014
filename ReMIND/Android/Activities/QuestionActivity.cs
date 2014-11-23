@@ -23,9 +23,12 @@ namespace ReMinder.Activities
         private List<SubjectDTO> subjectList = new List<SubjectDTO>();
         private List<QuestionDTO> questionList = new List<QuestionDTO>();
 
+        private QuestionDTO currentQuestion;
+
         private TextView txtQuestion;
         private ListView listAnswers;
         private Button btnClose;
+        private Button btnNextQuestion;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -36,34 +39,64 @@ namespace ReMinder.Activities
             userId = localSettings.GetInt(Helpers.Constants.USER_ID, 0);
 
             txtQuestion = (TextView)FindViewById(Resource.Id.txtQuestion);
-            listAnswers = (ListView)FindViewById(Resource.Id.listAnswers);
-            btnClose = (Button)FindViewById(Resource.Id.btnClose);
 
+            listAnswers = (ListView)FindViewById(Resource.Id.listAnswers);
+            listAnswers.ItemClick += OnAnswerClicked;
+
+            btnClose = (Button)FindViewById(Resource.Id.btnClose);
             btnClose.Click += CloseReMinder;
 
-            if(userId > 0)
+            btnNextQuestion = (Button)FindViewById(Resource.Id.btnNextQuestion);
+            btnNextQuestion.Click += BindNextQuestion;
+
+            if (userId > 0)
             {
                 List<SubjectDTO> subjectList = MethodHelper.GetUserSubjects(userId);
-                foreach (var subject in subjectList)
+                if (subjectList.Count > 0)
                 {
-                    questionList.AddRange(MethodHelper.GetQuestions(userId, subject.SubjectID));
-                }
+                    foreach (var subject in subjectList)
+                    {
+                        questionList.AddRange(MethodHelper.GetQuestions(userId, subject.SubjectID));
+                    }
 
-                if(questionList.Count > 0)
+                    if (questionList.Count > 0)
+                    {
+                        BindQuestionWithAnswers();
+                    }
+                }
+                else
                 {
-                    var question = questionList[0];
-                    txtQuestion.Text = question.QuestionText;
-                    if (question.QuestionAnswers.Count > 1)
-                    {
-                        listAnswers.Adapter = new AnswerAdapter(this, question.QuestionAnswers.Select(x => x.QuestionAnswerText).ToArray());
-                        listAnswers.ItemClick += OnAnswerClicked;
-                    }
-                    else
-                    {
-                        //TODO Add data for answer to read user
-                    }
+                    StartActivity(typeof(SettingsActivity));
                 }
             }
+        }
+
+        private void RefitText(String text, int textWidth)
+        {
+            if (textWidth <= 0)
+                return;
+            var mTestPaint = new Android.Graphics.Paint();
+            mTestPaint.Set(txtQuestion.Paint);
+
+            int targetWidth = textWidth - txtQuestion.PaddingLeft - txtQuestion.PaddingRight;
+            float hi = 100;
+            float lo = 2;
+            float threshold = 0.5f; // How close we have to be
+
+            mTestPaint.Set(txtQuestion.Paint);
+
+            while ((hi - lo) > threshold)
+            {
+                float size = (hi + lo)/2;
+                mTestPaint.TextSize = size;
+                if (mTestPaint.MeasureText(text) >= targetWidth)
+                    hi = size; // too big
+                else
+                    lo = size; // too small
+            }
+            // Use lo so that we undershoot rather than overshoot
+            //txtQuestion.TextSize = (Android.Util.TypedValue.ComplexToDimensionPixelSize(), lo);
+            txtQuestion.TextSize =  (int)lo;
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -104,9 +137,54 @@ namespace ReMinder.Activities
             NotificationHelper.OnResumeActivity(this.BaseContext);
         }
 
-        private void OnAnswerClicked(object sender, EventArgs e)
+        private void BindQuestionWithAnswers()
         {
-            var test = 1;
+            var rnd = new Random();
+
+            currentQuestion = questionList[rnd.Next(0, questionList.Count)];
+            txtQuestion.Text = currentQuestion.QuestionText;
+            RefitText(txtQuestion.Text, 700);
+            if (currentQuestion.QuestionAnswers.Count > 1)
+            {
+                currentQuestion.QuestionAnswers = currentQuestion.QuestionAnswers.OrderBy(item => rnd.Next()).ToList();
+
+                listAnswers.Adapter = new AnswerAdapter(this, currentQuestion.QuestionAnswers.Select(x => x.QuestionAnswerText).ToArray());
+                
+            }
+            else
+            {
+                //TODO Add data for answer to read user
+            }
+        }
+
+        private void OnAnswerClicked(object sender, Android.Widget.AdapterView.ItemClickEventArgs e)
+        {
+            var questionAnswer = currentQuestion.QuestionAnswers[e.Position];
+
+            if (!questionAnswer.Correct)
+            {
+                e.View.SetBackgroundColor(Android.Graphics.Color.Red);
+                int correctAnswerIndex = currentQuestion.QuestionAnswers.FindIndex(item => item.Correct);
+                if (correctAnswerIndex > -1)
+                {
+                    e.Parent.GetChildAt(correctAnswerIndex).SetBackgroundColor(Android.Graphics.Color.Green); ;
+                }
+            }
+            else
+            {
+                e.View.SetBackgroundColor(Android.Graphics.Color.Green); ;
+            }
+
+
+            if (MethodHelper.AnswerQuestion(questionAnswer.Id, userId))
+            {
+                questionList.Remove(currentQuestion);
+            }
+        }
+
+        private void BindNextQuestion(object sender, EventArgs e)
+        {
+            BindQuestionWithAnswers();
         }
 
         private void CloseReMinder(object sender, EventArgs e)
