@@ -39,7 +39,9 @@ namespace ReMinder.Activities
             userId = localSettings.GetInt(Helpers.Constants.USER_ID, 0);
 
             txtQuestion = (TextView)FindViewById(Resource.Id.txtQuestion);
+
             listAnswers = (ListView)FindViewById(Resource.Id.listAnswers);
+            listAnswers.ItemClick += OnAnswerClicked;
 
             btnClose = (Button)FindViewById(Resource.Id.btnClose);
             btnClose.Click += CloseReMinder;
@@ -47,7 +49,7 @@ namespace ReMinder.Activities
             btnNextQuestion = (Button)FindViewById(Resource.Id.btnNextQuestion);
             btnNextQuestion.Click += BindNextQuestion;
 
-            if(userId > 0)
+            if (userId > 0)
             {
                 List<SubjectDTO> subjectList = MethodHelper.GetUserSubjects(userId);
                 foreach (var subject in subjectList)
@@ -55,12 +57,12 @@ namespace ReMinder.Activities
                     questionList.AddRange(MethodHelper.GetQuestions(userId, subject.SubjectID));
                 }
 
-                if(questionList.Count > 0)
+                if (questionList.Count > 0)
                 {
                     BindQuestionWithAnswers();
-                    }
-                    }
                 }
+            }
+        }
 
         private void RefitText(String text, int textWidth)
         {
@@ -140,7 +142,7 @@ namespace ReMinder.Activities
                 currentQuestion.QuestionAnswers = currentQuestion.QuestionAnswers.OrderBy(item => rnd.Next()).ToList();
 
                 listAnswers.Adapter = new AnswerAdapter(this, currentQuestion.QuestionAnswers.Select(x => x.QuestionAnswerText).ToArray());
-                listAnswers.ItemClick += OnAnswerClicked;
+                
             }
             else
             {
@@ -151,19 +153,22 @@ namespace ReMinder.Activities
         private void OnAnswerClicked(object sender, Android.Widget.AdapterView.ItemClickEventArgs e)
         {
             var questionAnswer = currentQuestion.QuestionAnswers[e.Position];
-            View correctItem;
+
             if (!questionAnswer.Correct)
             {
                 e.View.SetBackgroundColor(Android.Graphics.Color.Red);
                 int correctAnswerIndex = currentQuestion.QuestionAnswers.FindIndex(item => item.Correct);
-                correctItem = e.Parent.GetChildAt(correctAnswerIndex);
+                if (correctAnswerIndex > -1)
+                {
+                    e.Parent.GetChildAt(correctAnswerIndex).SetBackgroundColor(Android.Graphics.Color.Green); ;
+                }
             }
             else
             {
-                correctItem = e.View;
+                e.View.SetBackgroundColor(Android.Graphics.Color.Green); ;
             }
 
-            correctItem.SetBackgroundColor(Android.Graphics.Color.Green);
+
             if (MethodHelper.AnswerQuestion(questionAnswer.Id, userId))
             {
                 questionList.Remove(currentQuestion);
