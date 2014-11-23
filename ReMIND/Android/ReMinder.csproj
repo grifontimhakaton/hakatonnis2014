@@ -212,6 +212,7 @@
     <AndroidResource Include="Resources\drawable\AnswerListCustomColor.xml" />
     <AndroidResource Include="Resources\drawable\QuestionSingleRowStylePurple.xml" />
     <AndroidResource Include="Resources\drawable\ActionBarLayout.xml" />
+    <AndroidResource Include="Resources\drawable\SpinnerTextView.xml" />
     <Content Include="Scripts\json-serialize.js" />
     <Content Include="Scripts\json-serialize.min.js" />
   </ItemGroup>

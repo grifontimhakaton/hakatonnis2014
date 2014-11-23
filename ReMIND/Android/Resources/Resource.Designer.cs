@@ -146,16 +146,19 @@ namespace ReMinder
 			public const int reminder_icon = 2130837528;
 			
 			// aapt resource value: 0x7f020019
-			public const int TransparentButton = 2130837529;
+			public const int SpinnerTextView = 2130837529;
 			
 			// aapt resource value: 0x7f02001a
-			public const int TransparentButtonPressed = 2130837530;
+			public const int TransparentButton = 2130837530;
 			
 			// aapt resource value: 0x7f02001b
-			public const int TransparentButtonSelected = 2130837531;
+			public const int TransparentButtonPressed = 2130837531;
 			
 			// aapt resource value: 0x7f02001c
-			public const int user = 2130837532;
+			public const int TransparentButtonSelected = 2130837532;
+			
+			// aapt resource value: 0x7f02001d
+			public const int user = 2130837533;
 			
 			static Drawable()
 			{
@@ -197,11 +200,11 @@ namespace ReMinder
 			// aapt resource value: 0x7f080016
 			public const int listSubjectsOptions = 2131230742;
 			
-			// aapt resource value: 0x7f08001a
-			public const int mainMenu = 2131230746;
-			
 			// aapt resource value: 0x7f08001b
-			public const int overflowMenuItem = 2131230747;
+			public const int mainMenu = 2131230747;
+			
+			// aapt resource value: 0x7f08001c
+			public const int overflowMenuItem = 2131230748;
 			
 			// aapt resource value: 0x7f080014
 			public const int spinTimeOptions = 2131230740;
@@ -253,6 +256,9 @@ namespace ReMinder
 			
 			// aapt resource value: 0x7f080006
 			public const int txtViewRegister = 2131230726;
+			
+			// aapt resource value: 0x7f08001a
+			public const int txtViewSpinner = 2131230746;
 			
 			static Id()
 			{
