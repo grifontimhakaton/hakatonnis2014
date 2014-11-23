@@ -52,14 +52,21 @@ namespace ReMinder.Activities
             if (userId > 0)
             {
                 List<SubjectDTO> subjectList = MethodHelper.GetUserSubjects(userId);
-                foreach (var subject in subjectList)
+                if (subjectList.Count > 0)
                 {
-                    questionList.AddRange(MethodHelper.GetQuestions(userId, subject.SubjectID));
-                }
+                    foreach (var subject in subjectList)
+                    {
+                        questionList.AddRange(MethodHelper.GetQuestions(userId, subject.SubjectID));
+                    }
 
-                if (questionList.Count > 0)
+                    if (questionList.Count > 0)
+                    {
+                        BindQuestionWithAnswers();
+                    }
+                }
+                else
                 {
-                    BindQuestionWithAnswers();
+                    StartActivity(typeof(SettingsActivity));
                 }
             }
         }
