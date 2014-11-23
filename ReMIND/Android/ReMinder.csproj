@@ -106,7 +106,9 @@
     <AndroidResource Include="Resources\layout\Question.axml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\values\Strings.xml" />
+    <AndroidResource Include="Resources\values\Strings.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\AndroidManifest.xml">
@@ -206,6 +208,8 @@
     <AndroidResource Include="Resources\drawable\TransparentButtonSelected.xml" />
     <AndroidResource Include="Resources\drawable\QuestionTextView.xml" />
     <AndroidResource Include="Resources\drawable\QuestionsCloseButton.xml" />
+    <AndroidResource Include="Resources\drawable\QuestionSingleRowStyle.xml" />
+    <AndroidResource Include="Resources\drawable\AnswerListCustomColor.xml" />
     <Content Include="Scripts\json-serialize.js" />
     <Content Include="Scripts\json-serialize.min.js" />
   </ItemGroup>

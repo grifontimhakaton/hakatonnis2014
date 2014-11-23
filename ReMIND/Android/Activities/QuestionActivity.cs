@@ -159,15 +159,22 @@ namespace ReMinder.Activities
         private void OnAnswerClicked(object sender, Android.Widget.AdapterView.ItemClickEventArgs e)
         {
             var questionAnswer = currentQuestion.QuestionAnswers[e.Position];
-            TextView textView = null;
+            
+            var selectedRowImage = (ImageView)e.Parent.GetChildAt(e.Position).FindViewById(Resource.Id.imgCheckmark);
             if (!questionAnswer.Correct)
             {
-                int correctAnswerIndex = currentQuestion.QuestionAnswers.FindIndex(item => item.Correct);
-                if (correctAnswerIndex > -1)
-                {
+                selectedRowImage.SetImageResource(Resource.Drawable.crossmark);
+                
+                //int correctAnswerIndex = currentQuestion.QuestionAnswers.FindIndex(item => item.Correct);
+                //if (correctAnswerIndex > -1)
+                //{
                     //TextView correctTextView = (TextView)e.Parent.GetChildAt(correctAnswerIndex).FindViewById(Resource.Id.txtAnswerText);
                     //textView.SetTextColor(Android.Graphics.Color.Green);
-                }
+                //}
+            }
+            else
+            {
+                selectedRowImage.SetImageResource(Resource.Drawable.checkmark);
             }
 
             //textView = (TextView)e.View.FindViewById(Resource.Id.txtAnswerText);
