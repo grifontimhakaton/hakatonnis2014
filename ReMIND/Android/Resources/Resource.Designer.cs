@@ -197,14 +197,14 @@ namespace ReMinder
 			// aapt resource value: 0x7f08000b
 			public const int listAnswers = 2131230731;
 			
-			// aapt resource value: 0x7f080016
-			public const int listSubjectsOptions = 2131230742;
-			
 			// aapt resource value: 0x7f08001b
 			public const int mainMenu = 2131230747;
 			
 			// aapt resource value: 0x7f08001c
 			public const int overflowMenuItem = 2131230748;
+			
+			// aapt resource value: 0x7f080016
+			public const int spinCategoryOptions = 2131230742;
 			
 			// aapt resource value: 0x7f080014
 			public const int spinTimeOptions = 2131230740;
