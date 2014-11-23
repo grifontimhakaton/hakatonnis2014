@@ -17,12 +17,4 @@
         android:id="@+id/spinner1"
         android:layout_marginBottom="91.2dp"
         android:layout_marginTop="0.0dp" />
-    <Button
-        android:id="@+id/btnClose"
-        android:layout_width="372.3dp"
-        android:layout_height="110.6dp"
-        android:layout_weight="1"
-        android:text="@string/Close"
-        android:layout_marginTop="0.0dp"
-        android:layout_marginRight="29.5dp" />
 </LinearLayout>

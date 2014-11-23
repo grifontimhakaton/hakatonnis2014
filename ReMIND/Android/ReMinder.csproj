@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="Activities\RegisterActivity.cs" />
     <Compile Include="Activities\SettingsActivity.cs" />
+    <Compile Include="Adapters\AnswerAdapter.cs" />
     <Compile Include="BroadcastReceivers\NotificationSender.cs" />
     <Compile Include="Helpers\Constants.cs" />
     <Compile Include="Helpers\MD5Helper.cs" />
