@@ -168,80 +168,86 @@ namespace ReMinder
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f09000a
-			public const int btnClose = 2131296266;
-			
-			// aapt resource value: 0x7f090006
-			public const int btnLogin = 2131296262;
+			// aapt resource value: 0x7f09000c
+			public const int btnClose = 2131296268;
 			
 			// aapt resource value: 0x7f090008
-			public const int btnNextQuestion = 2131296264;
+			public const int btnLogin = 2131296264;
 			
-			// aapt resource value: 0x7f09000f
-			public const int btnRegister = 2131296271;
-			
-			// aapt resource value: 0x7f090001
-			public const int imgLoginLogo = 2131296257;
-			
-			// aapt resource value: 0x7f090009
-			public const int listAnswers = 2131296265;
-			
-			// aapt resource value: 0x7f090014
-			public const int listView1 = 2131296276;
-			
-			// aapt resource value: 0x7f090017
-			public const int mainMenu = 2131296279;
-			
-			// aapt resource value: 0x7f090018
-			public const int overflowMenuItem = 2131296280;
-			
-			// aapt resource value: 0x7f090000
-			public const int questionRowText = 2131296256;
-			
-			// aapt resource value: 0x7f090012
-			public const int spinner1 = 2131296274;
-			
-			// aapt resource value: 0x7f090010
-			public const int textView1 = 2131296272;
+			// aapt resource value: 0x7f09000a
+			public const int btnNextQuestion = 2131296266;
 			
 			// aapt resource value: 0x7f090011
-			public const int textView2 = 2131296273;
-			
-			// aapt resource value: 0x7f090013
-			public const int textView3 = 2131296275;
-			
-			// aapt resource value: 0x7f090015
-			public const int textView4 = 2131296277;
-			
-			// aapt resource value: 0x7f090016
-			public const int toggleButton1 = 2131296278;
+			public const int btnRegister = 2131296273;
 			
 			// aapt resource value: 0x7f090002
-			public const int txtEmail = 2131296258;
-			
-			// aapt resource value: 0x7f09000b
-			public const int txtNewEmail = 2131296267;
-			
-			// aapt resource value: 0x7f09000d
-			public const int txtNewPassword = 2131296269;
-			
-			// aapt resource value: 0x7f09000c
-			public const int txtNewUsername = 2131296268;
+			public const int imgCheckmark = 2131296258;
 			
 			// aapt resource value: 0x7f090003
-			public const int txtPassword = 2131296259;
+			public const int imgLoginLogo = 2131296259;
 			
-			// aapt resource value: 0x7f090007
-			public const int txtQuestion = 2131296263;
+			// aapt resource value: 0x7f09000b
+			public const int listAnswers = 2131296267;
 			
-			// aapt resource value: 0x7f09000e
-			public const int txtRepeatPassword = 2131296270;
+			// aapt resource value: 0x7f090016
+			public const int listView1 = 2131296278;
 			
-			// aapt resource value: 0x7f090005
-			public const int txtViewPassword = 2131296261;
+			// aapt resource value: 0x7f090019
+			public const int mainMenu = 2131296281;
+			
+			// aapt resource value: 0x7f09001a
+			public const int overflowMenuItem = 2131296282;
+			
+			// aapt resource value: 0x7f090014
+			public const int spinner1 = 2131296276;
+			
+			// aapt resource value: 0x7f090012
+			public const int textView1 = 2131296274;
+			
+			// aapt resource value: 0x7f090013
+			public const int textView2 = 2131296275;
+			
+			// aapt resource value: 0x7f090015
+			public const int textView3 = 2131296277;
+			
+			// aapt resource value: 0x7f090017
+			public const int textView4 = 2131296279;
+			
+			// aapt resource value: 0x7f090018
+			public const int toggleButton1 = 2131296280;
+			
+			// aapt resource value: 0x7f090000
+			public const int txtAnswerEnum = 2131296256;
+			
+			// aapt resource value: 0x7f090001
+			public const int txtAnswerText = 2131296257;
 			
 			// aapt resource value: 0x7f090004
-			public const int txtViewRegister = 2131296260;
+			public const int txtEmail = 2131296260;
+			
+			// aapt resource value: 0x7f09000d
+			public const int txtNewEmail = 2131296269;
+			
+			// aapt resource value: 0x7f09000f
+			public const int txtNewPassword = 2131296271;
+			
+			// aapt resource value: 0x7f09000e
+			public const int txtNewUsername = 2131296270;
+			
+			// aapt resource value: 0x7f090005
+			public const int txtPassword = 2131296261;
+			
+			// aapt resource value: 0x7f090009
+			public const int txtQuestion = 2131296265;
+			
+			// aapt resource value: 0x7f090010
+			public const int txtRepeatPassword = 2131296272;
+			
+			// aapt resource value: 0x7f090007
+			public const int txtViewPassword = 2131296263;
+			
+			// aapt resource value: 0x7f090006
+			public const int txtViewRegister = 2131296262;
 			
 			static Id()
 			{
