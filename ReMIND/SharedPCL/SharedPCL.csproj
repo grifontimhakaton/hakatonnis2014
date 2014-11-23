@@ -37,6 +37,7 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataContracts\EventDTO.cs" />
     <Compile Include="DataContracts\GenericDTO.cs" />
     <Compile Include="DataContracts\QuestionDto.cs" />
     <Compile Include="DataContracts\SubjectDTO.cs" />

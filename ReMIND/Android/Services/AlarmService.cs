@@ -29,15 +29,14 @@ namespace Android.Services
         {
             //read prefs 
             ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences (this.BaseContext);
-            var alarmTimerType = prefs.GetInt("AlarmTimerType", 0);
-            RaiseNotification = prefs.GetBoolean("RaiseNotification", false);
-            var category = "Test";
+            var alarmTimerType = prefs.GetInt("AlarmTimerType", 1);
+            RemindedTimes = 0;
 
 
             var time = GetTime((AlarmTimerType) alarmTimerType);
             _timer = new System.Threading.Timer((o) =>
             {
-                buildNotification(this, category);
+                buildNotification(this);
                 //Log.Debug("SimpleService", "hello from simple service");
             }
             , null, 0, time);
@@ -71,25 +70,31 @@ namespace Android.Services
         }
 
         private static readonly int ButtonClickNotificationId = 1000;
-        private void buildNotification(Context context, string category)
+        private static int RemindedTimes { get; set; }
+        private void buildNotification(Context context)
         {
-            if (!RaiseNotification)
+            RemindedTimes ++;
+            ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
+            RaiseNotification = prefs.GetBoolean("RaiseNotification", false);
+            var alarmTimerType = (AlarmTimerType) prefs.GetInt("AlarmTimerType", 1);
+            if (!RaiseNotification || alarmTimerType == AlarmTimerType.None || alarmTimerType == AlarmTimerType.Unknown)
             {
                 return;
             }
 
-            NotificationManager notificationManager = (NotificationManager)context.GetSystemService(Context.NotificationService);
-            Notification.Builder builder = new Notification.Builder(context);
-            Intent intent = new Intent(context, typeof(QuestionActivity));
-            PendingIntent pendingIntent = PendingIntent.GetActivity(context, 0, intent, 0);
+            var category = prefs.GetString("Category", "Test");
+            var notificationManager = (NotificationManager)context.GetSystemService(Context.NotificationService);
+            var builder = new Notification.Builder(context);
+            var intent = new Intent(context, typeof(QuestionActivity));
+            var pendingIntent = PendingIntent.GetActivity(context, 0, intent, 0);
 
             builder
                 .SetAutoCancel(true) // dismiss the notification from the notification area when the user clicks on it
                 .SetContentIntent(pendingIntent) // start up this activity when the user clicks the intent.
                 .SetContentTitle("ReMinded Bitch!!") // Set the title
-                //.SetNumber(_count) // Display the count in the Content Info
+                .SetNumber(RemindedTimes) // Display the count in the Content Info
                 .SetSmallIcon(Resource.Drawable.reminder_icon) // This is the icon to display
-                .SetContentText(String.Format("New questions has arrived from Category: {0}", category))
+                .SetContentText(String.Format("New question from category: {0}", category))
                 .SetDefaults((NotificationDefaults.Sound | NotificationDefaults.Vibrate)); // the message to display.
 
 
@@ -97,6 +102,7 @@ namespace Android.Services
             //notificationManager.notify(R.drawable.ic_launcher, notification);
             //var notificationManager = (NotificationManager)GetSystemService(Context.NotificationService);
             notificationManager.Notify(ButtonClickNotificationId, builder.Build());
+            RemindedTimes = 0;
         }
     }
 }
