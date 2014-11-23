@@ -24,6 +24,8 @@ namespace Android.Activities
         TextView txtViewRegister;
         TextView txtViewPassword;
 
+        ISharedPreferences localSettings;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -31,11 +33,9 @@ namespace Android.Activities
             Window.SetFlags(WindowManagerFlags.Fullscreen, WindowManagerFlags.Fullscreen);
             RequestWindowFeature(WindowFeatures.NoTitle);
 
-            StartNotifications(AlarmTimerType.Unknown);
-
-            bool isUserLoggedIn = false;
-            if (isUserLoggedIn)
+            if (IsUserLoggedIn())
             {
+                StartNotifications(AlarmTimerType.Unknown);
                 RedirectToQuestionActivity();
             }
             else
@@ -67,6 +67,11 @@ namespace Android.Activities
 
                 if (currentUser != null)
                 {
+                    localSettings = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
+                    ISharedPreferencesEditor editor = localSettings.Edit();
+                    editor.PutInt(Helpers.Constants.USER_ID, currentUser.ID);
+                    editor.Apply();
+
                     btnLogin.Click -= LoginUser;
                     StartNotifications(AlarmTimerType.Unknown);
                     RedirectToQuestionActivity();
@@ -79,6 +84,13 @@ namespace Android.Activities
                     });
                 }
             }
+        }
+
+        private bool IsUserLoggedIn()
+        {
+            localSettings = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
+            return localSettings.GetInt(Helpers.Constants.USER_ID, 0) > 0;
+            //return true;
         }
 
         private bool ValidateFields()
@@ -133,10 +145,10 @@ namespace Android.Activities
         {
             StopService(new Intent(this, typeof(AlarmService)));
             //write
-            ISharedPreferences localSettings = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
+            localSettings = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
             ISharedPreferencesEditor editor = localSettings.Edit();
-            editor.PutInt("AlarmTimerType", (int)alarmTimerType);
-            editor.PutBoolean("RaiseNotification", false);
+            editor.PutInt(Helpers.Constants.ALARM_TIMER_TYPE, (int)alarmTimerType);
+            editor.PutBoolean(Helpers.Constants.RAISE_NOTIFICATION, false);
             editor.Apply();
 
             StartService(new Intent(this, typeof(AlarmService)));
