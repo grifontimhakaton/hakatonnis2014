@@ -7,10 +7,11 @@ using Android.Widget;
 using Android.OS;
 using SharedPCL.DataContracts;
 using Android.Helpers;
+using Android.Content.PM;
 
 namespace Android.Activities
 {
-    [Activity(Label = "ReMinder", MainLauncher = true, Icon = "@drawable/icon", NoHistory = true)]
+    [Activity(Label = "ReMinder", MainLauncher = true, NoHistory = true, ScreenOrientation = ScreenOrientation.Portrait)]
     public class LoginActivity : Activity
     {
         Button btnLogin;
@@ -46,7 +47,7 @@ namespace Android.Activities
         {
             if (ValidateFields())
             {
-                UserDTO currentUser = MethodHelper.LoginOrRegister(txtEmail.Text, txtPassword.Text);
+                UserDTO currentUser = MethodHelper.LoginOrRegister(txtEmail.Text, MD5Helper.GetMd5Hash(txtPassword.Text));
 
                 if (currentUser != null)
                 {
@@ -55,7 +56,10 @@ namespace Android.Activities
                 }
                 else
                 {
-                    //TODO Notify of error
+                    this.RunOnUiThread(() =>
+                    {
+                        Toast.MakeText(this, Resource.String.ErrorWhileLogin, ToastLength.Long);
+                    });
                 }
             }
         }

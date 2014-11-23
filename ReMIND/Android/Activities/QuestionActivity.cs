@@ -5,10 +5,11 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Android.Content.PM;
 
 namespace Android.Activities
 {
-    [Activity]
+    [Activity(ScreenOrientation = ScreenOrientation.Portrait)]
     public class QuestionActivity : Activity
     {
         protected override void OnCreate(Bundle bundle)
@@ -19,31 +20,28 @@ namespace Android.Activities
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
-            MenuInflater.Inflate(Resource.Menu.mainmenu, menu);
+            MenuInflater.Inflate(Resource.Menu.mainMenu, menu);
 
             return base.OnCreateOptionsMenu(menu);
         }
 
-        //public override bool OnCreateOptionsMenu(IMenu menu)
-        //{
-        //    
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            OpenSettingsActivity();
 
-        //    //var shareMenuItem = menu.FindItem(Resource.Id.shareMenuItem);
-        //    //var shareActionProvider =
-        //    //   (ShareActionProvider)shareMenuItem.ActionProvider;
-        //    //shareActionProvider.SetShareIntent(CreateIntent());
-        //    return true;
-        //}
+            return base.OnOptionsItemSelected(item);
+        }
 
         public override bool OnMenuOpened(int featureId, IMenu menu)
         {
-            StartActivity(typeof(SettingsActivity));
+            OpenSettingsActivity();
+            
             return base.OnMenuOpened(featureId, menu);
         }
 
-        private void OpenSettingsActivity(object sender, EventArgs e)
+        private void OpenSettingsActivity()
         {
-            Toast.MakeText(this, "Tada", ToastLength.Short);
+            StartActivity(typeof(SettingsActivity));
         }
     }
 }
