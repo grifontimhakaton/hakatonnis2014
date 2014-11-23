@@ -21,6 +21,9 @@ namespace ReMinder.Activities
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.Settings);
 
+            //TEST
+            //END TEST
+
             Spinner spinner = FindViewById<Spinner>(Resource.Id.spinner1);
 
             spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(spinner_ItemSelected);

@@ -54,6 +54,27 @@ namespace ReMinder.Helpers
             }
         }
 
+        public static bool AnswerQuestion(int answerID, int userID)
+        {
+            try
+            {
+                var client = new HttpClient(new NativeMessageHandler());
+                HttpResponseMessage response = client.GetAsync(string.Format("{0}api/Questions/AnswerQuestion?userID={1}&answerID={2}", baseApiUrl, userID, answerID)).Result;
+
+                response.EnsureSuccessStatusCode();
+                HttpContent content = response.Content;
+
+                var result = content.ReadAsStringAsync().Result;
+                var sucess = JsonConvert.DeserializeObject<bool>(result);
+
+                return sucess;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         public static UserDTO LoginOrRegister(string username, string password)
         {
             return LoginOrRegister(username, string.Empty, password);
