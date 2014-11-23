@@ -27,86 +27,30 @@ namespace WebAPI.Controllers
         // GET api/Subjects
         public List<SubjectDTO> GetUserSubjects(int userID)
         {
-            return db.Subjects.Select(x => new SubjectDTO() { SubjectID = x.ID, SubjectName = x.SubjectTitle, UserSelected = x.Users.Where(y => y.ID == x.ID).Count() == 1 }).ToList();            
+            return db.Subjects.Select(x => new SubjectDTO() { SubjectID = x.ID, SubjectName = x.SubjectTitle, UserSelected = x.Users.Where(y => y.ID == userID).Count() > 0 }).ToList();            
         }
 
-        //// GET api/Subjects/5
-        //[ResponseType(typeof(Subject))]
-        //public IHttpActionResult GetSubject(int id)
-        //{
-        //    Subject subject = db.Subjects.Find(id);
-        //    if (subject == null)
-        //    {
-        //        return NotFound();
-        //    }
+        [HttpGet]
+        [ResponseType(typeof(bool))]
+        public IHttpActionResult SelectSubject(int subjectID,int userID)
+        {
+            Subject subject = db.Subjects.Find(subjectID);
+            User user = db.Users.Include(x => x.Subjects).Where(y => y.ID == userID).FirstOrDefault();
+            if (subject == null || user == null)
+            {
+                return Ok(false);
+            }
 
-        //    return Ok(subject);
-        //}
+            if (user.Subjects == null)
+            {
+                user.Subjects = new List<Subject>();
+            }
 
-        //// PUT api/Subjects/5
-        //public IHttpActionResult PutSubject(int id, Subject subject)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
+            user.Subjects.Add(subject);
+            db.SaveChanges();
 
-        //    if (id != subject.ID)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    db.Entry(subject).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        db.SaveChanges();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!SubjectExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return StatusCode(HttpStatusCode.NoContent);
-        //}
-
-        //// POST api/Subjects
-        //[ResponseType(typeof(Subject))]
-        //public IHttpActionResult PostSubject(Subject subject)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    db.Subjects.Add(subject);
-        //    db.SaveChanges();
-
-        //    return CreatedAtRoute("DefaultApi", new { id = subject.ID }, subject);
-        //}
-
-        //// DELETE api/Subjects/5
-        //[ResponseType(typeof(Subject))]
-        //public IHttpActionResult DeleteSubject(int id)
-        //{
-        //    Subject subject = db.Subjects.Find(id);
-        //    if (subject == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    db.Subjects.Remove(subject);
-        //    db.SaveChanges();
-
-        //    return Ok(subject);
-        //}
+            return Ok(true);
+        }
 
         protected override void Dispose(bool disposing)
         {
