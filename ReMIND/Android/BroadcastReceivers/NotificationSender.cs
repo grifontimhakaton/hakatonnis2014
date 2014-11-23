@@ -54,7 +54,7 @@ namespace Android.BroadcastReceivers
                 .SetContentIntent(pendingIntent) // start up this activity when the user clicks the intent.
                 .SetContentTitle("ReMinded Bitch!!") // Set the title
                 //.SetNumber(_count) // Display the count in the Content Info
-                .SetSmallIcon(Resource.Drawable.Icon) // This is the icon to display
+                .SetSmallIcon(Resource.Drawable.reminder_icon) // This is the icon to display
                 .SetContentText(String.Format("New questions has arrived. Snoozed {0} times.", _count))
                 .SetDefaults((NotificationDefaults.Sound | NotificationDefaults.Vibrate)); // the message to display.
 
