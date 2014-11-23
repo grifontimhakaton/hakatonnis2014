@@ -10,7 +10,7 @@ namespace Android.Helpers
     public static class MethodHelper
     {
         private static string baseApiUrl = "http://hakaton.azurewebsites.net/";
-        public static List<QuestionDto> GetQuestions(int userId)
+        public static List<QuestionDTO> GetQuestions(int userId)
         {
             try
             {
@@ -22,7 +22,7 @@ namespace Android.Helpers
                 HttpContent content = response.Content;
                 
                 var result = content.ReadAsStringAsync().Result;
-                var questions = JsonConvert.DeserializeObject<List<QuestionDto>>(result);
+                var questions = JsonConvert.DeserializeObject<List<QuestionDTO>>(result);
                 
                 return questions;
             }

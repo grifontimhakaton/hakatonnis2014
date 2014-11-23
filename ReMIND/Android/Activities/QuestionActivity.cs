@@ -1,7 +1,10 @@
 ﻿using System;
 using Android.App;
 using Android.Content;
+using Android.Helpers;
+using Android.Preferences;
 using Android.Runtime;
+using Android.Services;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
@@ -42,6 +45,19 @@ namespace Android.Activities
         private void OpenSettingsActivity()
         {
             StartActivity(typeof(SettingsActivity));
+        }
+
+
+        protected override void OnPause()
+        {
+            base.OnPause();
+            NotificationHelper.OnPauseActivity(this.BaseContext);
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+            NotificationHelper.OnResumeActivity(this.BaseContext);
         }
     }
 }
