@@ -11,6 +11,7 @@ using WebAPI.DAL;
 
 namespace WebAPI.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
         private ReMinderContext db = new ReMinderContext();
