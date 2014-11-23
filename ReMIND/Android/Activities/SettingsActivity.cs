@@ -61,8 +61,6 @@ namespace ReMinder.Activities
                 toggleVibrationOption = FindViewById<ToggleButton>(Resource.Id.toggleVibrationOptions);
                 toggleVibrationOption.Click += ToggleVibrationOptionButton;
 
-
-
                 //ListView listSubjectsOptions = FindViewById<ListView>(Resource.Id.listSubjectsOptions);
                 //listSubjectsOptions.ChoiceMode = Android.Widget.ChoiceMode.Multiple;
                 //listSubjectsOptions.Adapter = ListAdapter;
