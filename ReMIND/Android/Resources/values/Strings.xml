@@ -2,12 +2,13 @@
 <resources>
   <string name="Login">SIGN IN</string>
   <string name="Register">Register</string>
+  <string name="CreateAccount">Create Account</string>
   <string name="NotImplemented">Feature Not Implemented</string>
   <string name="Close">Close</string>
   <string name="Continue">Continue</string>
   <string name="ApplicationName">ReMinder</string>
 
-  <string name="EmailHint">username</string>
+  <string name="EmailHint">email</string>
   <string name="EmailValidationError">Email field is required</string>
 
   <string name="Password">Password?</string>
