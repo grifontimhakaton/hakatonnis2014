@@ -37,11 +37,11 @@ namespace ReMinder.Activities
 
             ISharedPreferences localSettings = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
             userId = localSettings.GetInt(Helpers.Constants.USER_ID, 0);
-
+            if (userId > 0)
+            {
             txtQuestion = (TextView)FindViewById(Resource.Id.txtQuestion);
 
             listAnswers = (ListView)FindViewById(Resource.Id.listAnswers);
-            listAnswers.ItemClick += OnAnswerClicked;
 
             btnClose = (Button)FindViewById(Resource.Id.btnClose);
             btnClose.Click += CloseReMinder;
@@ -49,12 +49,12 @@ namespace ReMinder.Activities
             btnNextQuestion = (Button)FindViewById(Resource.Id.btnNextQuestion);
             btnNextQuestion.Click += BindNextQuestion;
 
-            if (userId > 0)
-            {
+
                 List<SubjectDTO> subjectList = MethodHelper.GetUserSubjects(userId);
-                if (subjectList.Count > 0)
+                List<SubjectDTO> userSubjects = subjectList.FindAll(subject => subject.UserSelected);
+                if (userSubjects.Count > 0)
                 {
-                    foreach (var subject in subjectList)
+                    foreach (var subject in userSubjects)
                     {
                         questionList.AddRange(MethodHelper.GetQuestions(userId, subject.SubjectID));
                     }
@@ -68,6 +68,10 @@ namespace ReMinder.Activities
                 {
                     StartActivity(typeof(SettingsActivity));
                 }
+            }
+            else
+            {
+                StartActivity(typeof(LoginActivity));
             }
         }
 
@@ -139,11 +143,15 @@ namespace ReMinder.Activities
 
         private void BindQuestionWithAnswers()
         {
+            listAnswers.ItemClick -= OnAnswerClicked;
             var rnd = new Random();
 
             currentQuestion = questionList[rnd.Next(0, questionList.Count)];
             txtQuestion.Text = currentQuestion.QuestionText;
             RefitText(txtQuestion.Text, 700);
+
+            listAnswers.ItemClick += OnAnswerClicked;
+
             if (currentQuestion.QuestionAnswers.Count > 1)
             {
                 currentQuestion.QuestionAnswers = currentQuestion.QuestionAnswers.OrderBy(item => rnd.Next()).ToList();
@@ -171,7 +179,7 @@ namespace ReMinder.Activities
                     //TextView correctTextView = (TextView)e.Parent.GetChildAt(correctAnswerIndex).FindViewById(Resource.Id.txtAnswerText);
                     //textView.SetTextColor(Android.Graphics.Color.Green);
                 //}
-            }
+                }
             else
             {
                 selectedRowImage.SetImageResource(Resource.Drawable.checkmark);
@@ -183,6 +191,7 @@ namespace ReMinder.Activities
             //    textView.SetTextColor(Resources.GetColor(Resource.Color.textColor));
             //}
 
+            listAnswers.ItemClick -= OnAnswerClicked;
 
             if (MethodHelper.AnswerQuestion(questionAnswer.Id, userId))
             {
