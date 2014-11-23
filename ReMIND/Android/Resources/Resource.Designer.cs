@@ -48,6 +48,9 @@ namespace ReMinder
 		public partial class Attribute
 		{
 			
+			// aapt resource value: 0x7f010000
+			public const int minTextSize = 2130771968;
+			
 			static Attribute()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -397,6 +400,25 @@ namespace ReMinder
 			}
 			
 			private Style()
+			{
+			}
+		}
+		
+		public partial class Styleable
+		{
+			
+			public static int[] AutoResizeTextView = new int[] {
+					2130771968};
+			
+			// aapt resource value: 0
+			public const int AutoResizeTextView_minTextSize = 0;
+			
+			static Styleable()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Styleable()
 			{
 			}
 		}
