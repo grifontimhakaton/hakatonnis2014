@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="Login">Login</string>
+  <string name="Login">SIGN IN</string>
+  <string name="Register">Register</string>
   <string name="Finish">Finish</string>
   <string name="Continue">Continue</string>
   <string name="ApplicationName">ReMinder</string>
 
-  <string name="EmailHint">Email</string>
+  <string name="EmailHint">username</string>
   <string name="EmailValidationError">Email field is required</string>
 
-  <string name="PasswordHint">Password</string>
+  <string name="Password">Password?</string>
+  <string name="PasswordHint">password</string>
   <string name="PasswordValidationError">Password field is required</string>
 
   <string name="ErrorWhileLogin">Incorrect username or password</string>
