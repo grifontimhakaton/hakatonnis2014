@@ -25,6 +25,7 @@
         android:paddingLeft="3dip"
         android:paddingRight="3dip"
         android:textColor="@color/textColor"
+        android:textCursorDrawable="@null"
         android:id="@+id/txtEmail" />
     <EditText
         android:id="@+id/txtPassword"
@@ -38,6 +39,7 @@
         android:paddingRight="3dip"
         android:drawableLeft="@drawable/password"
         android:textColor="@color/textColor"
+        android:textCursorDrawable="@null"
         android:background="@color/white" />
     <LinearLayout
         android:orientation="horizontal"

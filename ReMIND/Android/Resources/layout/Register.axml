@@ -25,6 +25,7 @@
         android:drawablePadding="5dip"
         android:paddingLeft="3dip"
         android:paddingRight="3dip"
+        android:textCursorDrawable="@null"
         android:textColor="@color/textColor"
         android:background="@color/white" />
 <!--android:background="@drawable/user" />-->
@@ -38,6 +39,7 @@
         android:drawablePadding="5dip"
         android:paddingLeft="3dip"
         android:paddingRight="3dip"
+        android:textCursorDrawable="@null"
         android:textColor="@color/textColor"
         android:id="@+id/username" />
     <EditText
@@ -50,6 +52,7 @@
         android:drawablePadding="5dip"
         android:paddingLeft="3dip"
         android:paddingRight="3dip"
+        android:textCursorDrawable="@null"
         android:drawableLeft="@drawable/password"
         android:textColor="@color/textColor"
         android:background="@color/white" />
@@ -64,6 +67,7 @@
         android:drawableLeft="@drawable/password"
         android:drawablePadding="5dip"
         android:paddingLeft="3dip"
+        android:textCursorDrawable="@null"
         android:paddingRight="3dip"
         android:textColor="@color/textColor"
         android:background="@color/white" />
