@@ -110,5 +110,27 @@ namespace ReMinder.Helpers
                 return null;
             }
         }
+
+        public static List<EventDTO> GetEvents()
+        {
+            try
+            {
+                var client = new HttpClient(new NativeMessageHandler());
+                HttpResponseMessage response = client.GetAsync(string.Format("{0}api/Events/GetEvents", baseApiUrl)).Result;
+
+                response.EnsureSuccessStatusCode();
+                HttpContent content = response.Content;
+
+                var result = content.ReadAsStringAsync().Result;
+                var events = JsonConvert.DeserializeObject<List<EventDTO>>(result);
+
+                return events;
+            }
+            catch (Exception ex)
+            {
+                var errorResult = ex.Message;
+                return null;
+            }
+        }
     }
 }
