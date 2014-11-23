@@ -2,4 +2,5 @@
 <resources>
   <color name="menu_background">#c922a8</color>
   <color name="white">#ffffff</color>
+  <color name="textColor">#3F3F3F</color>
 </resources>
