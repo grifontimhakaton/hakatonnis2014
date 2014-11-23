@@ -10,14 +10,13 @@ namespace ReMinder.Helpers
     public static class MethodHelper
     {
         private static string baseApiUrl = "http://hakaton.azurewebsites.net/";
-        public static List<QuestionDTO> GetQuestions(int userId)
+        public static List<QuestionDTO> GetQuestions(int userId, int subjectId)
         {
             try
             {
                 var client = new HttpClient(new NativeMessageHandler());
-                //HttpResponseMessage response = client.GetAsync(string.Format("{0}api/Questions/GetQuestionsDTO?userId={1}", baseApiUrl, userId)).Result;
-                HttpResponseMessage response = client.GetAsync(string.Format("{0}api/Questions/GetQuestionsDTO", baseApiUrl)).Result;
-              
+                HttpResponseMessage response = client.GetAsync(string.Format("{0}api/Questions/GetUserQuestions?userID={1}&subjectID={2}", baseApiUrl, userId, subjectId)).Result;
+
                 response.EnsureSuccessStatusCode();
                 HttpContent content = response.Content;
                 

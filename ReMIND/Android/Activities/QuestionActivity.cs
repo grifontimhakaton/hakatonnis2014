@@ -26,9 +26,15 @@ namespace ReMinder.Activities
             ISharedPreferences localSettings = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
             userId = localSettings.GetInt(Helpers.Constants.USER_ID, 0);
 
+            List<QuestionDTO> questionList = new List<QuestionDTO>();
+
             if(userId > 0)
             {
                 List<SubjectDTO> subjectList = MethodHelper.GetUserSubjects(userId);
+                foreach (var subject in subjectList)
+                {
+                    questionList.AddRange(MethodHelper.GetQuestions(userId, subject.SubjectID));
+                }
             }
 
             SetContentView(Resource.Layout.Question);
@@ -70,9 +76,6 @@ namespace ReMinder.Activities
         protected override void OnResume()
         {
             base.OnResume();
-
-
-
             NotificationHelper.OnResumeActivity(this.BaseContext);
         }
     }
