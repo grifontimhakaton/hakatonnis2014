@@ -37,23 +37,24 @@ namespace ReMinder.Activities
 
             ISharedPreferences localSettings = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
             userId = localSettings.GetInt(Helpers.Constants.USER_ID, 0);
-
-            txtQuestion = (TextView)FindViewById(Resource.Id.txtQuestion);
-
-            listAnswers = (ListView)FindViewById(Resource.Id.listAnswers);
-
-            btnClose = (Button)FindViewById(Resource.Id.btnClose);
-            btnClose.Click += CloseReMinder;
-
-            btnNextQuestion = (Button)FindViewById(Resource.Id.btnNextQuestion);
-            btnNextQuestion.Click += BindNextQuestion;
-
             if (userId > 0)
             {
+                txtQuestion = (TextView)FindViewById(Resource.Id.txtQuestion);
+
+                listAnswers = (ListView)FindViewById(Resource.Id.listAnswers);
+
+                btnClose = (Button)FindViewById(Resource.Id.btnClose);
+                btnClose.Click += CloseReMinder;
+
+                btnNextQuestion = (Button)FindViewById(Resource.Id.btnNextQuestion);
+                btnNextQuestion.Click += BindNextQuestion;
+
+
                 List<SubjectDTO> subjectList = MethodHelper.GetUserSubjects(userId);
-                if (subjectList.Count > 0)
+                List<SubjectDTO> userSubjects = subjectList.FindAll(subject => subject.UserSelected);
+                if (userSubjects.Count > 0)
                 {
-                    foreach (var subject in subjectList)
+                    foreach (var subject in userSubjects)
                     {
                         questionList.AddRange(MethodHelper.GetQuestions(userId, subject.SubjectID));
                     }
@@ -67,6 +68,10 @@ namespace ReMinder.Activities
                 {
                     StartActivity(typeof(SettingsActivity));
                 }
+            }
+            else
+            {
+                StartActivity(typeof(LoginActivity));
             }
         }
 
