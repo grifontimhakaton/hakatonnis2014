@@ -59,7 +59,7 @@ namespace ReMinder.Services
                 case AlarmTimerType.Twenty:
                     return 1000*60*20;
                 default:
-                    return 1000*5;
+                    return 1000*10;
             }
         }
 
