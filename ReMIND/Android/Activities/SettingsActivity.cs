@@ -39,8 +39,8 @@ namespace ReMinder.Activities
             if (userId > 0)
             {
                 spinnerValues = Enum.GetValues(typeof(AlarmTimerType)).Cast<AlarmTimerType>().Select(x => (int)x).ToArray();
-                var alarmTimerType = localSettings.GetInt(Helpers.Constants.ALARM_TIMER_TYPE, (int)AlarmTimerType.None);
-                int selectedPosition = Array.IndexOf(spinnerValues, alarmTimerType);
+                var alarmTimerType = Core.ApplicationActivityManager.AlarmTimerType;
+                int selectedPosition = Array.IndexOf(spinnerValues, (int)alarmTimerType);
 
                 var spinnerStrings = spinnerValues.Select(x => string.Format("Every {0} mins", (int)x)).ToArray();
 

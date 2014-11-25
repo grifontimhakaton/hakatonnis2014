@@ -20,7 +20,7 @@
         android:textColor="@drawable/SelectorColorAnswerListItem"
         android:paddingLeft="5dp"
         android:gravity="left|center"
-        android:background="@drawable/ShapeQuestionSingleRowStyle"
+        android:background="@drawable/SelectorTextViewAnswerListItem"
         android:text="Lorem Ipsum Dolor sit amet, onsectetur elit." />
     <ImageView
         android:id="@+id/imgCheckmark"

@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using System.Threading;
+using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
@@ -238,18 +239,13 @@ namespace ReMinder.Activities
                 selectedRowImage.SetImageResource(Resource.Drawable.checkmark);
             }
 
-            //textView = (TextView)e.View.FindViewById(Resource.Id.txtAnswerText);
-            //if (textView != null)
-            //{
-            //    textView.SetTextColor(Resources.GetColor(Resource.Color.textColor));
-            //}
-
             listAnswers.ItemClick -= OnAnswerClicked;
 
-            if (MethodHelper.AnswerQuestion(questionAnswer.Id, userId))
-            {
-                questionList.Remove(currentQuestion);
-            }
+            // Call is making app slow...
+            //if (MethodHelper.AnswerQuestion(questionAnswer.Id, userId))
+            //{
+            //    questionList.Remove(currentQuestion);
+            //}
         }
 
         private void BindNextQuestion(object sender, EventArgs e)

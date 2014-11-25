@@ -143,34 +143,37 @@ namespace ReMinder
 			public const int SelectorColorWhiteToPurple = 2130837527;
 			
 			// aapt resource value: 0x7f020018
-			public const int ShapeQuestionsCloseButton = 2130837528;
+			public const int SelectorTextViewAnswerListItem = 2130837528;
 			
 			// aapt resource value: 0x7f020019
-			public const int ShapeQuestionSingleRowStyle = 2130837529;
+			public const int ShapeQuestionsCloseButton = 2130837529;
 			
 			// aapt resource value: 0x7f02001a
-			public const int ShapeQuestionSingleRowStylePurple = 2130837530;
+			public const int ShapeQuestionSingleRowStyle = 2130837530;
 			
 			// aapt resource value: 0x7f02001b
-			public const int ShapeQuestionTextView = 2130837531;
+			public const int ShapeQuestionSingleRowStylePurple = 2130837531;
 			
 			// aapt resource value: 0x7f02001c
-			public const int ShapeTransparentButton = 2130837532;
+			public const int ShapeQuestionTextView = 2130837532;
 			
 			// aapt resource value: 0x7f02001d
-			public const int ShapeTransparentButtonPressed = 2130837533;
+			public const int ShapeTransparentButton = 2130837533;
 			
 			// aapt resource value: 0x7f02001e
-			public const int ShapeTransparentButtonSelected = 2130837534;
+			public const int ShapeTransparentButtonPressed = 2130837534;
 			
 			// aapt resource value: 0x7f02001f
-			public const int ShapeTransparentButtonToogleVibration = 2130837535;
+			public const int ShapeTransparentButtonSelected = 2130837535;
 			
 			// aapt resource value: 0x7f020020
-			public const int SpinnerTextView = 2130837536;
+			public const int ShapeTransparentButtonToogleVibration = 2130837536;
 			
 			// aapt resource value: 0x7f020021
-			public const int user = 2130837537;
+			public const int SpinnerTextView = 2130837537;
+			
+			// aapt resource value: 0x7f020022
+			public const int user = 2130837538;
 			
 			static Drawable()
 			{
