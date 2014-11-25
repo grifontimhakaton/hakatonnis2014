@@ -80,6 +80,7 @@
     <Compile Include="Activities\RegisterActivity.cs" />
     <Compile Include="Activities\SettingsActivity.cs" />
     <Compile Include="Adapters\AnswerAdapter.cs" />
+    <Compile Include="Core\ApplicationActivityManager.cs" />
     <Compile Include="Helpers\Constants.cs" />
     <Compile Include="Helpers\MD5Helper.cs" />
     <Compile Include="Helpers\MethodHelper.cs" />
@@ -202,16 +203,18 @@
     </AndroidResource>
     <AndroidResource Include="Resources\values\colors.xml" />
     <AndroidResource Include="Resources\values\Themes.xml" />
-    <AndroidResource Include="Resources\drawable\TransparentButton.xml" />
-    <AndroidResource Include="Resources\drawable\CreateAccountSelector.xml" />
-    <AndroidResource Include="Resources\drawable\TransparentButtonPressed.xml" />
-    <AndroidResource Include="Resources\drawable\TransparentButtonSelected.xml" />
-    <AndroidResource Include="Resources\drawable\QuestionTextView.xml" />
-    <AndroidResource Include="Resources\drawable\QuestionsCloseButton.xml" />
-    <AndroidResource Include="Resources\drawable\QuestionSingleRowStyle.xml" />
-    <AndroidResource Include="Resources\drawable\AnswerListCustomColor.xml" />
-    <AndroidResource Include="Resources\drawable\QuestionSingleRowStylePurple.xml" />
-    <AndroidResource Include="Resources\drawable\ActionBarLayout.xml" />
+    <AndroidResource Include="Resources\drawable\ShapeTransparentButton.xml" />
+    <AndroidResource Include="Resources\drawable\SelectorButtonCreateAccountLogin.xml" />
+    <AndroidResource Include="Resources\drawable\ShapeTransparentButtonPressed.xml" />
+    <AndroidResource Include="Resources\drawable\ShapeTransparentButtonSelected.xml" />
+    <AndroidResource Include="Resources\drawable\ShapeQuestionTextView.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\ShapeQuestionsCloseButton.xml" />
+    <AndroidResource Include="Resources\drawable\ShapeQuestionSingleRowStyle.xml" />
+    <AndroidResource Include="Resources\drawable\SelectorColorAnswerListItem.xml" />
+    <AndroidResource Include="Resources\drawable\ShapeQuestionSingleRowStylePurple.xml" />
+    <AndroidResource Include="Resources\drawable\LayoutActionBar.xml" />
     <AndroidResource Include="Resources\drawable\SpinnerTextView.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\OFF.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ON.png" />
@@ -223,7 +226,8 @@
     <AndroidResource Include="Resources\drawable-xhdpi\ON.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\OFF.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ON.png" />
-    <AndroidResource Include="Resources\drawable\TransparentToogleVibrationButton.xml" />
+    <AndroidResource Include="Resources\drawable\ShapeTransparentButtonToogleVibration.xml" />
+    <AndroidResource Include="Resources\drawable\SelectorColorWhiteToPurple.xml" />
     <Content Include="Scripts\json-serialize.js" />
     <Content Include="Scripts\json-serialize.min.js" />
   </ItemGroup>

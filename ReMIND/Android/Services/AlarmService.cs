@@ -1,4 +1,6 @@
 using System;
+using System.Security.Policy;
+using Android.Content.PM;
 using ReMinder.Activities;
 using Android.App;
 using Android.Content;
@@ -14,7 +16,6 @@ namespace ReMinder.Services
     public class AlarmService : Android.App.Service
     {
         private System.Threading.Timer _timer;
-        private bool RaiseNotification { get; set; }
 
         public override void OnStart(Android.Content.Intent intent, int startId)
         {
@@ -48,9 +49,11 @@ namespace ReMinder.Services
             }
         }
 
+
         private int GetTime(AlarmTimerType alarmTimerType)
         {
-            return (int)alarmTimerType * 60 * 1000;
+            return 50;
+            //return (int)alarmTimerType * 60 * 1000;
         }
 
         public override Android.OS.IBinder OnBind(Android.Content.Intent intent)
@@ -65,16 +68,13 @@ namespace ReMinder.Services
         private void buildNotification(Context context)
         {
             RemindedTimes++;
-            ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
-            RaiseNotification = prefs.GetBoolean(Helpers.Constants.RAISE_NOTIFICATION, false);
-            var alarmTimerType = (AlarmTimerType)prefs.GetInt(Helpers.Constants.ALARM_TIMER_TYPE, (int)AlarmTimerType.None);
-            var isFromLoging = prefs.GetBoolean("IsFromLogin", false);
-            if (!RaiseNotification || alarmTimerType == AlarmTimerType.None || isFromLoging)
+
+            if (Core.ApplicationActivityManager.IsQuestionActive || Core.ApplicationActivityManager.IsSettingsActive || Core.ApplicationActivityManager.IsActivityLoading)
             {
                 return;
             }
 
-            var subject = prefs.GetString(Helpers.Constants.USER_SUBJECTS, "More");
+            var subject = "mm";//prefs.GetString(Helpers.Constants.USER_SUBJECTS, "More");
             try
             {
                 List<SubjectDTO> userSubjectList = JsonConvert.DeserializeObject<List<SubjectDTO>>(subject);
@@ -90,7 +90,7 @@ namespace ReMinder.Services
 
             var notificationManager = (NotificationManager)context.GetSystemService(Context.NotificationService);
             var builder = new Notification.Builder(context);
-            var intent = new Intent(context, typeof(LoginActivity));
+            var intent = new Intent(context, typeof(QuestionActivity));
             var pendingIntent = PendingIntent.GetActivity(context, 0, intent, 0);
 
             builder

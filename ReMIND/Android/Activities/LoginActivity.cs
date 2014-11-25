@@ -28,6 +28,7 @@ namespace ReMinder.Activities
 
         protected override void OnCreate(Bundle bundle)
         {
+            Core.ApplicationActivityManager.IsQuestionActive = true; // HACK!! Because of first activity
             base.OnCreate(bundle);
 
             Window.SetFlags(WindowManagerFlags.Fullscreen, WindowManagerFlags.Fullscreen);
@@ -35,8 +36,8 @@ namespace ReMinder.Activities
 
             if (IsUserLoggedIn())
             {
-                StartNotifications(AlarmTimerType.None);
                 RedirectToQuestionActivity();
+                StartNotifications(AlarmTimerType.None);
             }
             else
             {
@@ -75,8 +76,8 @@ namespace ReMinder.Activities
                     editor.Apply();
 
                     btnLogin.Click -= LoginUser;
-                    StartNotifications(AlarmTimerType.None);
                     RedirectToQuestionActivity();
+                    StartNotifications(AlarmTimerType.None);
                 }
                 else
                 {

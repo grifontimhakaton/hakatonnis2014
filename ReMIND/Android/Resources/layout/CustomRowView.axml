@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:layout_weight="0"
         android:textSize="30dp"
-        android:textColor="@drawable/AnswerListCustomColor"
+        android:textColor="@drawable/SelectorColorAnswerListItem"
         android:text="A" />
     <TextView
         android:id="@+id/txtAnswerText"
@@ -17,10 +17,10 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:textSize="20dp"
-        android:textColor="@drawable/AnswerListCustomColor"
+        android:textColor="@drawable/SelectorColorAnswerListItem"
         android:paddingLeft="5dp"
         android:gravity="left|center"
-        android:background="@drawable/QuestionSingleRowStyle"
+        android:background="@drawable/ShapeQuestionSingleRowStyle"
         android:text="Lorem Ipsum Dolor sit amet, onsectetur elit." />
     <ImageView
         android:id="@+id/imgCheckmark"

@@ -75,7 +75,7 @@
             android:textColor="@color/textColor" />
         <ToggleButton
             android:id="@+id/toggleVibrationOptions"
-            android:background="@drawable/TransparentToogleVibrationButton"
+            android:background="@drawable/ShapeTransparentButtonToogleVibration"
             android:gravity="center"
             android:layout_width="80dp"
             android:layout_height="40dp"

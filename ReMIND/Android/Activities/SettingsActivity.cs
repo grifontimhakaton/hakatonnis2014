@@ -29,6 +29,8 @@ namespace ReMinder.Activities
 
         protected override void OnCreate(Bundle bundle)
         {
+            Core.ApplicationActivityManager.IsSettingsActive = true;
+            
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.Settings);
 
@@ -105,14 +107,27 @@ namespace ReMinder.Activities
 
         protected override void OnPause()
         {
+            Core.ApplicationActivityManager.IsActivityLoading = true;
             base.OnPause();
-            NotificationHelper.OnPauseActivity(this.BaseContext);
+            Core.ApplicationActivityManager.IsSettingsActive = false;
         }
 
         protected override void OnResume()
         {
+            Core.ApplicationActivityManager.IsSettingsActive = true;
             base.OnResume();
-            NotificationHelper.OnResumeActivity(this.BaseContext);
+            Core.ApplicationActivityManager.IsActivityLoading = false;
+        }
+
+        protected override void OnStop()
+        {
+            base.OnStop();
+            Core.ApplicationActivityManager.IsActivityLoading = false;
+        }
+
+        protected override void OnStart()
+        {
+            base.OnStart();
         }
     }
 }

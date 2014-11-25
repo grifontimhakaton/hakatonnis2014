@@ -8,10 +8,12 @@ using Android.Widget;
 using Newtonsoft.Json;
 using ReMinder.Adapters;
 using ReMinder.Helpers;
+using ReMinder.Services;
 using SharedPCL.DataContracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using SharedPCL.Enums;
 
 namespace ReMinder.Activities
 {
@@ -33,7 +35,9 @@ namespace ReMinder.Activities
 
         protected override void OnCreate(Bundle bundle)
         {
+            Core.ApplicationActivityManager.IsQuestionActive = true;
             base.OnCreate(bundle);
+            
             SetContentView(Resource.Layout.Question);
 
             localSettings = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
@@ -137,12 +141,14 @@ namespace ReMinder.Activities
 
         protected override void OnPause()
         {
+            Core.ApplicationActivityManager.IsActivityLoading = true;
             base.OnPause();
-            NotificationHelper.OnPauseActivity(this.BaseContext);
+            Core.ApplicationActivityManager.IsQuestionActive = false;
         }
 
         protected override void OnResume()
         {
+            Core.ApplicationActivityManager.IsQuestionActive = true;
             base.OnResume();
 
             localSettings = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
@@ -175,7 +181,7 @@ namespace ReMinder.Activities
             {
                 StartActivity(typeof(SettingsActivity));
             }
-            NotificationHelper.OnResumeActivity(this.BaseContext);
+            Core.ApplicationActivityManager.IsActivityLoading = false;
         }
 
         private void BindQuestionWithAnswers()
@@ -211,7 +217,7 @@ namespace ReMinder.Activities
 
             var textViewAnswer = (TextView)e.Parent.GetChildAt(e.Position).FindViewById(Resource.Id.txtAnswerText);
             textViewAnswer.SetTextColor(Resources.GetColor(Resource.Color.action_bar_background));
-            textViewAnswer.SetBackgroundDrawable(Resources.GetDrawable(Resource.Drawable.QuestionSingleRowStylePurple));
+            textViewAnswer.SetBackgroundDrawable(Resources.GetDrawable(Resource.Drawable.ShapeQuestionSingleRowStylePurple));
             var scale = Resources.DisplayMetrics.Density;
             var padding_5dp = (int)(5 * scale + 0.5f);
             textViewAnswer.SetPadding(padding_5dp, 0, 0, 0);
@@ -254,6 +260,17 @@ namespace ReMinder.Activities
         private void CloseReMinder(object sender, EventArgs e)
         {
             Finish();
+        }
+
+        protected override void OnStop()
+        {
+            base.OnStop();
+            Core.ApplicationActivityManager.IsActivityLoading = false;
+        }
+
+        protected override void OnStart()
+        {
+            base.OnStart();
         }
     }
 }

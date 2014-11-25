@@ -24,6 +24,7 @@ namespace ReMinder.Activities
 
         protected override void OnCreate(Bundle bundle)
         {
+            Core.ApplicationActivityManager.IsQuestionActive = true; // HACK!! Because of first activity
             base.OnCreate(bundle);
 
             Window.SetFlags(WindowManagerFlags.Fullscreen, WindowManagerFlags.Fullscreen);
