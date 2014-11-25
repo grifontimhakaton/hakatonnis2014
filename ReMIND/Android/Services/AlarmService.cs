@@ -52,7 +52,7 @@ namespace ReMinder.Services
 
         private int GetTime(AlarmTimerType alarmTimerType)
         {
-            return 50;
+            return 3000;
             //return (int)alarmTimerType * 60 * 1000;
         }
 
@@ -90,7 +90,7 @@ namespace ReMinder.Services
 
             var notificationManager = (NotificationManager)context.GetSystemService(Context.NotificationService);
             var builder = new Notification.Builder(context);
-            var intent = new Intent(context, typeof(QuestionActivity));
+            var intent = new Intent(context, typeof(LoginActivity));
             var pendingIntent = PendingIntent.GetActivity(context, 0, intent, 0);
 
             builder
