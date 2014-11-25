@@ -35,11 +35,9 @@ namespace ReMinder.Services
         public void DoStuff()
         {
             //read prefs 
-            ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
-            var alarmTimerType = prefs.GetInt(Helpers.Constants.ALARM_TIMER_TYPE, (int)AlarmTimerType.None);
             RemindedTimes = 0;
 
-            var time = GetTime((AlarmTimerType) alarmTimerType);
+            var time = GetTime(Core.ApplicationActivityManager.AlarmTimerType);
             if (time > 0)
             {
                 _timer = new System.Threading.Timer((o) =>
@@ -52,8 +50,8 @@ namespace ReMinder.Services
 
         private int GetTime(AlarmTimerType alarmTimerType)
         {
-            return 3000;
-            //return (int)alarmTimerType * 60 * 1000;
+            //return 3000;
+            return (int) alarmTimerType*60*1000;
         }
 
         public override Android.OS.IBinder OnBind(Android.Content.Intent intent)

@@ -95,13 +95,7 @@ namespace ReMinder.Activities
         private void ChangeAlarmTimes(int alarmTimerPeriods)
         {
             StopService(new Intent(this, typeof(AlarmService)));
-            //write
-            localSettings = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
-            ISharedPreferencesEditor editor = localSettings.Edit();
-            editor.PutInt(Helpers.Constants.ALARM_TIMER_TYPE, alarmTimerPeriods);
-            editor.PutBoolean(Helpers.Constants.RAISE_NOTIFICATION, true);
-            editor.Apply();
-            
+            Core.ApplicationActivityManager.AlarmTimerType = (AlarmTimerType) alarmTimerPeriods;
             StartService(new Intent(this, typeof(AlarmService)));
         }
 
