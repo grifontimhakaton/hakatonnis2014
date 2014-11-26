@@ -3,7 +3,7 @@
     public enum AlarmTimerType
     {
         None = 0,
-        Two = 2,
+        Two = 1,
         Five = 5,
         Ten = 10,
         Fifteen = 15,

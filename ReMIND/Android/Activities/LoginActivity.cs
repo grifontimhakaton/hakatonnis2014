@@ -2,7 +2,6 @@
 using Android.App;
 using Android.Content;
 using Android.Preferences;
-using Android.Runtime;
 using ReMinder.Services;
 using Android.Views;
 using Android.Widget;
@@ -28,7 +27,8 @@ namespace ReMinder.Activities
 
         protected override void OnCreate(Bundle bundle)
         {
-            Core.ApplicationActivityManager.IsQuestionActive = true; // HACK!! Because of first activity
+            //Core.ApplicationActivityManager.Instance.IsQuestionActive = true; // HACK!! Because of first activity
+            Core.ApplicationActivityManager.Instance.SetSetting(this.BaseContext, Core.SettingType.IsQuestionActive, true);
             base.OnCreate(bundle);
 
             Window.SetFlags(WindowManagerFlags.Fullscreen, WindowManagerFlags.Fullscreen);
@@ -147,13 +147,10 @@ namespace ReMinder.Activities
         private void StartNotifications(AlarmTimerType alarmTimerType)
         {
             StopService(new Intent(this, typeof(AlarmService)));
-            //write
-            localSettings = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
-            ISharedPreferencesEditor editor = localSettings.Edit();
-            editor.PutInt(Helpers.Constants.ALARM_TIMER_TYPE, (int)alarmTimerType);
-            editor.PutBoolean(Helpers.Constants.RAISE_NOTIFICATION, false);
-            editor.PutBoolean("IsFromLogin", true);
-            editor.Apply();
+            if (!Core.ApplicationActivityManager.Instance.SettingExists(this.BaseContext, Core.SettingType.AlarmTimerType))
+            {
+                Core.ApplicationActivityManager.Instance.SetSetting(this.BaseContext, Core.SettingType.AlarmTimerType, AlarmTimerType.None);
+            }
 
             StartService(new Intent(this, typeof(AlarmService)));
         }

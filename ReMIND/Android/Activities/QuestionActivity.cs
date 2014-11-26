@@ -6,6 +6,7 @@ using Android.OS;
 using Android.Preferences;
 using Android.Views;
 using Android.Widget;
+using Java.Lang;
 using Newtonsoft.Json;
 using ReMinder.Adapters;
 using ReMinder.Helpers;
@@ -15,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using SharedPCL.Enums;
+using Exception = System.Exception;
 
 namespace ReMinder.Activities
 {
@@ -36,7 +38,8 @@ namespace ReMinder.Activities
 
         protected override void OnCreate(Bundle bundle)
         {
-            Core.ApplicationActivityManager.IsQuestionActive = true;
+            //Core.ApplicationActivityManager.Instance.IsQuestionActive = true;
+            Core.ApplicationActivityManager.Instance.SetSetting(this.BaseContext, Core.SettingType.IsQuestionActive, true);
             base.OnCreate(bundle);
             
             SetContentView(Resource.Layout.Question);
@@ -142,14 +145,17 @@ namespace ReMinder.Activities
 
         protected override void OnPause()
         {
-            Core.ApplicationActivityManager.IsActivityLoading = true;
+            //Core.ApplicationActivityManager.Instance.IsActivityLoading = true;
+            Core.ApplicationActivityManager.Instance.SetSetting(this.BaseContext, Core.SettingType.IsActivityLoading, true);
             base.OnPause();
-            Core.ApplicationActivityManager.IsQuestionActive = false;
+            //Core.ApplicationActivityManager.Instance.IsQuestionActive = false;
+            Core.ApplicationActivityManager.Instance.SetSetting(this.BaseContext, Core.SettingType.IsQuestionActive, false);
         }
 
         protected override void OnResume()
         {
-            Core.ApplicationActivityManager.IsQuestionActive = true;
+            //Core.ApplicationActivityManager.Instance.IsQuestionActive = true;
+            Core.ApplicationActivityManager.Instance.SetSetting(this.BaseContext, Core.SettingType.IsQuestionActive, true);
             base.OnResume();
 
             localSettings = PreferenceManager.GetDefaultSharedPreferences(this.BaseContext);
@@ -182,7 +188,9 @@ namespace ReMinder.Activities
             {
                 StartActivity(typeof(SettingsActivity));
             }
-            Core.ApplicationActivityManager.IsActivityLoading = false;
+
+            //Core.ApplicationActivityManager.Instance.IsActivityLoading = false;
+            Core.ApplicationActivityManager.Instance.SetSetting(this.BaseContext, Core.SettingType.IsActivityLoading, false);
         }
 
         private void BindQuestionWithAnswers()
@@ -241,11 +249,21 @@ namespace ReMinder.Activities
 
             listAnswers.ItemClick -= OnAnswerClicked;
 
-            // Call is making app slow...
+            // Calling here is making app look slow...
             //if (MethodHelper.AnswerQuestion(questionAnswer.Id, userId))
             //{
             //    questionList.Remove(currentQuestion);
             //}
+
+            var handler=new Handler();
+            var runnable = new Runnable(() => MethodHelper.AnswerQuestion(questionAnswer.Id, userId));
+            handler.PostDelayed(runnable, 1000);
+
+        }
+
+        public void run()
+        {
+            
         }
 
         private void BindNextQuestion(object sender, EventArgs e)
@@ -261,7 +279,8 @@ namespace ReMinder.Activities
         protected override void OnStop()
         {
             base.OnStop();
-            Core.ApplicationActivityManager.IsActivityLoading = false;
+            //Core.ApplicationActivityManager.Instance.IsActivityLoading = false;
+            Core.ApplicationActivityManager.Instance.SetSetting(this.BaseContext, Core.SettingType.IsActivityLoading, false);
         }
 
         protected override void OnStart()

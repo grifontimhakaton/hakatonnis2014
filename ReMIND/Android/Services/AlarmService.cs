@@ -5,6 +5,7 @@ using ReMinder.Activities;
 using Android.App;
 using Android.Content;
 using Android.Preferences;
+using ReMinder.Core;
 using SharedPCL.Enums;
 using System.Collections.Generic;
 using SharedPCL.DataContracts;
@@ -37,7 +38,10 @@ namespace ReMinder.Services
             //read prefs 
             RemindedTimes = 0;
 
-            var time = GetTime(Core.ApplicationActivityManager.AlarmTimerType);
+            var alarmTymerType = Core.ApplicationActivityManager.Instance.GetSetting<AlarmTimerType>(BaseContext, SettingType.AlarmTimerType);
+            //var alarmTymerType = Core.ApplicationActivityManager.Instance.AlarmTimerType;
+
+            var time = GetTime(alarmTymerType);
             if (time > 0)
             {
                 _timer = new System.Threading.Timer((o) =>
@@ -66,11 +70,19 @@ namespace ReMinder.Services
         private void buildNotification(Context context)
         {
             RemindedTimes++;
-
-            if (Core.ApplicationActivityManager.IsQuestionActive || Core.ApplicationActivityManager.IsSettingsActive || Core.ApplicationActivityManager.IsActivityLoading)
+            var isQuestionActive = Core.ApplicationActivityManager.Instance.GetSetting<bool>(BaseContext, SettingType.IsQuestionActive);
+            var isSettingsActive = Core.ApplicationActivityManager.Instance.GetSetting<bool>(BaseContext, SettingType.IsSettingsActive);
+            var isActivityLoading = Core.ApplicationActivityManager.Instance.GetSetting<bool>(BaseContext, SettingType.IsActivityLoading);
+            if (isQuestionActive || isSettingsActive || isActivityLoading)
             {
                 return;
             }
+
+
+            //if (Core.ApplicationActivityManager.Instance.IsQuestionActive || Core.ApplicationActivityManager.Instance.IsSettingsActive || Core.ApplicationActivityManager.Instance.IsActivityLoading)
+            //{
+            //    return;
+            //}
 
             var subject = "mm";//prefs.GetString(Helpers.Constants.USER_SUBJECTS, "More");
             try

@@ -29,7 +29,8 @@ namespace ReMinder.Activities
 
         protected override void OnCreate(Bundle bundle)
         {
-            Core.ApplicationActivityManager.IsSettingsActive = true;
+            //Core.ApplicationActivityManager.Instance.IsSettingsActive = true;
+            Core.ApplicationActivityManager.Instance.SetSetting(this.BaseContext, Core.SettingType.IsSettingsActive, true);
             
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.Settings);
@@ -39,7 +40,9 @@ namespace ReMinder.Activities
             if (userId > 0)
             {
                 spinnerValues = Enum.GetValues(typeof(AlarmTimerType)).Cast<AlarmTimerType>().Select(x => (int)x).ToArray();
-                var alarmTimerType = Core.ApplicationActivityManager.AlarmTimerType;
+                //var alarmTimerType = Core.ApplicationActivityManager.Instance.AlarmTimerType;
+                var alarmTimerType = Core.ApplicationActivityManager.Instance.GetSetting<AlarmTimerType>(this.BaseContext, Core.SettingType.AlarmTimerType);
+
                 int selectedPosition = Array.IndexOf(spinnerValues, (int)alarmTimerType);
 
                 var spinnerStrings = spinnerValues.Select(x => string.Format("Every {0} mins", (int)x)).ToArray();
@@ -95,28 +98,34 @@ namespace ReMinder.Activities
         private void ChangeAlarmTimes(int alarmTimerPeriods)
         {
             StopService(new Intent(this, typeof(AlarmService)));
-            Core.ApplicationActivityManager.AlarmTimerType = (AlarmTimerType) alarmTimerPeriods;
+            //Core.ApplicationActivityManager.Instance.AlarmTimerType = (AlarmTimerType)alarmTimerPeriods;
+            Core.ApplicationActivityManager.Instance.SetSetting(this.BaseContext, Core.SettingType.AlarmTimerType, (AlarmTimerType)alarmTimerPeriods);
             StartService(new Intent(this, typeof(AlarmService)));
         }
 
         protected override void OnPause()
         {
-            Core.ApplicationActivityManager.IsActivityLoading = true;
+            //Core.ApplicationActivityManager.Instance.IsActivityLoading = true;
+            Core.ApplicationActivityManager.Instance.SetSetting(this.BaseContext, Core.SettingType.IsActivityLoading, true);
             base.OnPause();
-            Core.ApplicationActivityManager.IsSettingsActive = false;
+            //Core.ApplicationActivityManager.Instance.IsSettingsActive = false;
+            Core.ApplicationActivityManager.Instance.SetSetting(this.BaseContext, Core.SettingType.IsSettingsActive, false);
         }
 
         protected override void OnResume()
         {
-            Core.ApplicationActivityManager.IsSettingsActive = true;
+            //Core.ApplicationActivityManager.Instance.IsSettingsActive = true;
+            Core.ApplicationActivityManager.Instance.SetSetting(this.BaseContext, Core.SettingType.IsSettingsActive, true);
             base.OnResume();
-            Core.ApplicationActivityManager.IsActivityLoading = false;
+            //Core.ApplicationActivityManager.Instance.IsActivityLoading = false;
+            Core.ApplicationActivityManager.Instance.SetSetting(this.BaseContext, Core.SettingType.IsActivityLoading, false);
         }
 
         protected override void OnStop()
         {
             base.OnStop();
-            Core.ApplicationActivityManager.IsActivityLoading = false;
+            //Core.ApplicationActivityManager.Instance.IsActivityLoading = false;
+            Core.ApplicationActivityManager.Instance.SetSetting(this.BaseContext, Core.SettingType.IsActivityLoading, false);
         }
 
         protected override void OnStart()
