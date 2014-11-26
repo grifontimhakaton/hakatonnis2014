@@ -229,6 +229,9 @@
     <AndroidResource Include="Resources\drawable\ShapeTransparentButtonToogleVibration.xml" />
     <AndroidResource Include="Resources\drawable\SelectorColorWhiteToPurple.xml" />
     <AndroidResource Include="Resources\drawable\SelectorTextViewAnswerListItem.xml" />
+    <AndroidResource Include="Resources\drawable\SelectorRegisterButton.xml" />
+    <AndroidResource Include="Resources\drawable\ShapeRegisterButton.xml" />
+    <AndroidResource Include="Resources\drawable\ShapeRegisterButtonSelected.xml" />
     <Content Include="Scripts\json-serialize.js" />
     <Content Include="Scripts\json-serialize.min.js" />
   </ItemGroup>

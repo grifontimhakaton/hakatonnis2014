@@ -144,5 +144,11 @@ namespace ReMinder.Activities
         {
             StartActivity(typeof(QuestionActivity));
         }
+
+        //public override void OnBackPressed()
+        //{
+        //    base.OnBackPressed();
+        //    StartActivity(typeof(LoginActivity));
+        //}
     }
 }
